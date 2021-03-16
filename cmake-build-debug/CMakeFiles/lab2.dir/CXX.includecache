@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/cc++ labs/lab2/main.cpp
+iostream
+-
+complex
+-
+vector
+-
+myDynamicArray.cpp
+C:/cc++ labs/lab2/myDynamicArray.cpp
+
+C:/cc++ labs/lab2/myDynamicArray.cpp
+myDynamicArray.h
+C:/cc++ labs/lab2/myDynamicArray.h
+
+C:/cc++ labs/lab2/myDynamicArray.h
+cstdlib
+C:/cc++ labs/lab2/cstdlib
+cstring
+C:/cc++ labs/lab2/cstring
+string
+-
+iostream
+-
+
