@@ -1,11 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lab2.dir/main.cpp.obj"
-  "CMakeFiles/lab2.dir/myArraySequence.cpp.obj"
-  "CMakeFiles/lab2.dir/myDynamicArray.cpp.obj"
-  "CMakeFiles/lab2.dir/myLinkedList.cpp.obj"
-  "CMakeFiles/lab2.dir/mySequence.cpp.obj"
+  "CMakeFiles/lab2.dir/main.cpp.o"
+  "CMakeFiles/lab2.dir/myArraySequence.cpp.o"
+  "CMakeFiles/lab2.dir/myDynamicArray.cpp.o"
+  "CMakeFiles/lab2.dir/myLinkedList.cpp.o"
   "lab2.exe"
-  "lab2.exe.manifest"
   "lab2.pdb"
   "liblab2.dll.a"
 )

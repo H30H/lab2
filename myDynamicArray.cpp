@@ -5,12 +5,6 @@
 #include "myDynamicArray.h"
 
 template<class T>
-std::ostream &operator << (std::ostream &cout, myDynamicArray<T> dynamicArray) {
-    cout << dynamicArray.getStr();
-    return cout;
-}
-
-template<class T>
 myDynamicArray<T>::myDynamicArray(T *items, int count): len(count){
     if (len < 0) {len = 0; return;}
     arr = (T*) malloc(len * elSize);
@@ -78,12 +72,12 @@ void myDynamicArray<T>::resize(int newSize) {
 }
 
 template<class T>
-string myDynamicArray<T>::getStr() {
-    if (len == 0) return string("Empty!");
+std::string myDynamicArray<T>::getStr() {
+    if (len == 0) return std::string("Пустой массив!");
 
-    string res = string();
+    std::string res = std::string();
     for (int i = 0; i < len; i++) {
-        res += to_string(arr[i]);
+        res += std::to_string(arr[i]);
         if (i != len - 1)
             res += ' ';
     }

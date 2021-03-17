@@ -3,4 +3,12 @@ project(lab2)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(lab2 main.cpp myDynamicArray.cpp myDynamicArray.h myLinkedList.cpp myLinkedList.h mySequence.cpp mySequence.h myArraySequence.cpp myArraySequence.h)
+add_executable(lab2
+        main.cpp
+        myDynamicArray.cpp
+        myDynamicArray.h
+        myArraySequence.cpp
+        myArraySequence.h
+        myLinkedList.cpp
+        myLinkedList.h
+        )

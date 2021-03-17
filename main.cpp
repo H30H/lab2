@@ -1,7 +1,9 @@
+#include "myDynamicArray.cpp"
+#include "myLinkedList.cpp"
+
 #include <iostream>
 #include <complex>
 #include <vector>
-#include "myDynamicArray.cpp"
 
 using namespace std;
 

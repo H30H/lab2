@@ -18,8 +18,10 @@ private:
 public:
     class IndexOutOfRange{};
 
-    friend std::ostream& operator << (std::ostream& cout, myDynamicArray<T> dynamicArray);
-
+    friend std::ostream &operator << (std::ostream &cout, myDynamicArray<T> dynamicArray) {
+        cout << dynamicArray.getStr();
+        return cout;
+    }
     myDynamicArray(T *items, int count);
 
     myDynamicArray(int size);
@@ -38,7 +40,7 @@ public:
 
     void resize(int newSize);
 
-    string getStr();
+    std::string getStr();
 };
 
 

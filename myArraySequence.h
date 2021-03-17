@@ -5,8 +5,8 @@
 #ifndef LAB2_MYARRAYSEQUENCE_H
 #define LAB2_MYARRAYSEQUENCE_H
 
-#include "mySequence.cpp"
-#include "myDynamicArray.cpp"
+#include "mySequence.h"
+#include "myDynamicArray.h"
 template<class T>
 class myArraySequence: mySequence<T>{
 private:
@@ -92,7 +92,7 @@ public:
         return newArray;
     }
 
-    string toStr() {
+    std::string toStr() {
         return dynamicArray.getStr();
     }
 };
