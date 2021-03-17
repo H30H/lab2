@@ -128,7 +128,7 @@ T myLinkedList<T>::pop(int index) {
 
     T data;
 
-    for (int i = 1; i < index; i++, pref = el, el = el->next);
+    for (int i = 0; i < index; i++, pref = el, el = el->next);
 
     data = el->data;
 
@@ -139,7 +139,7 @@ T myLinkedList<T>::pop(int index) {
         pref->next = el->next;
     }
     delete el;
-
+    len--;
     return data;
 }
 
@@ -147,6 +147,7 @@ template<class T>
 myLinkedList<T>::~myLinkedList() {
     Element *next = head;
     while (next != nullptr) {
+        head = next;
         next = head->next;
         delete head;
     }
@@ -160,11 +161,16 @@ T myLinkedList<T>::operator[](int index) {
 template<class T>
 std::string myLinkedList<T>::getStr() {
     if (len == 0) return std::string("Пустой список!");
-    std::string str = std::string();
+    auto str = std::string();
+    str += std::string("Лист: {");
     element *el = head;
     while (el != nullptr) {
         str += std::to_string(el->data);
         el = el->next;
+        if (el != nullptr) {
+            str += std::string(", ");
+        }
     }
+    str += std::string("}");
     return str;
 }

@@ -15,11 +15,9 @@ int main() {
         cin >> k;
         linkedList.append(k);
     }
-    cout << linkedList.getStr() << endl;
     cout << linkedList << endl;
-    cout << "next\n";
-    cout << linkedList.getFirst() << linkedList.getLast() << endl;
-    cout << linkedList.length() << linkedList.pop(2) << linkedList.length() << endl;
+    cout << linkedList.getFirst() << " " << linkedList.getLast() << endl;
+    cout << linkedList.length() << " " << linkedList.pop(2) << " " << linkedList.length() << endl;
     cout << linkedList << endl;
     return 0;
 }
