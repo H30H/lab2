@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/cygdrive/c/cc++ labs/lab2/main.cpp
+myDynamicArray.cpp
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
+myLinkedList.cpp
+/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+iostream
+-
+complex
+-
+vector
+-
+
 /cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
 myArraySequence.h
 /cygdrive/c/cc++ labs/lab2/myArraySequence.h
@@ -16,13 +28,25 @@ mySequence.h
 myDynamicArray.h
 /cygdrive/c/cc++ labs/lab2/myDynamicArray.h
 
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
+myDynamicArray.h
 /cygdrive/c/cc++ labs/lab2/myDynamicArray.h
-cstdlib
-/cygdrive/c/cc++ labs/lab2/cstdlib
+
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
 cstring
 /cygdrive/c/cc++ labs/lab2/cstring
 string
 -
+iostream
+-
+
+/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+myLinkedList.h
+/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+
+/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+cstdlib
+/cygdrive/c/cc++ labs/lab2/cstdlib
 iostream
 -
 

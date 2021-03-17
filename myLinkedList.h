@@ -6,6 +6,7 @@
 #define LAB2_MYLINKEDLIST_H
 
 #include "cstdlib"
+#include <iostream>
 
 template<class T>
 class myLinkedList {
@@ -17,8 +18,8 @@ private:
 
     int len = 0;
 
-    element *head = NULL;
-    element *end = NULL;
+    element *head = nullptr;
+    element *end = nullptr;
 
 public:
     class IndexOutOfRange{};
@@ -31,15 +32,19 @@ public:
 
     myLinkedList(T *items, int count);
 
-    myLinkedList();;
+    myLinkedList();
 
     myLinkedList(myLinkedList<T> const &linkedList);
+
+    ~myLinkedList();
 
     T getFirst();
 
     T getLast();
 
     T get(int index);
+
+    T operator [] (int index);
 
     myLinkedList<T> getSubList(int startIndex, int endIndex);
 
@@ -48,6 +53,8 @@ public:
     T pop();
 
     T pop(int index);
+
+    std::string getString();
 };
 
 #endif //LAB2_MYLINKEDLIST_H

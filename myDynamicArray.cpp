@@ -7,7 +7,7 @@
 template<class T>
 myDynamicArray<T>::myDynamicArray(T *items, int count): len(count){
     if (len < 0) {len = 0; return;}
-    arr = (T*) malloc(len * elSize);
+    arr = new T(count);
     memcpy(arr, items, len * elSize);
 }
 
@@ -15,19 +15,19 @@ template<class T>
 myDynamicArray<T>::myDynamicArray(int size) {
     if (size < 0) {len = 0; return;}
     len = size;
-    arr = (T*) calloc(size, elSize);
+    arr = new T(size);
 }
 
 template<class T>
 myDynamicArray<T>::myDynamicArray(const myDynamicArray<T> &dynamicArray) {
     len = dynamicArray.len;
-    arr = (T*) malloc(len * elSize);
+    arr = new T(len);
     memcpy(arr, dynamicArray.arr, len * elSize);
 }
 
 template<class T>
 myDynamicArray<T>::~myDynamicArray() {
-    free(arr);
+    delete arr;
 }
 
 template<class T>
@@ -59,15 +59,15 @@ void myDynamicArray<T>::resize(int newSize) {
     if (newSize < 0) throw IndexOutOfRange(); //обработка исключений
     if (len == newSize) return;               //длина не изменилась
     if (newSize == 0) {
-        free(arr);
+        delete arr;
         len = 0;
-        arr = NULL;
+        arr = nullptr;
         return;
     }
-    T *arrNew = (T*) calloc(newSize, elSize);
+    T *arrNew = new T(newSize);
     memcpy(arrNew, arr, newSize < len ? newSize : len);
     len = newSize;
-    free(arr);
+    delete arr;
     arr = arrNew;
 }
 

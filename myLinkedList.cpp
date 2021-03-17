@@ -6,7 +6,7 @@
 
 template<class T>
 void myLinkedList<T>::append(T item) {
-    element *el = malloc(sizeof(element));
+    element *el = new element*;
     el->data = item;
     el->next = nullptr;
     len++;
@@ -21,7 +21,7 @@ void myLinkedList<T>::append(T item) {
 
 template<class T>
 void myLinkedList<T>::prepend(T item) {
-    element *el = malloc(sizeof(element));
+    element *el = new element*;
     el->data = item;
     el->next = head;
     len++;
@@ -38,7 +38,7 @@ void myLinkedList<T>::insert(T item, int index) {
     element *el = head;
     for (int i = 1; i < index - 1; i++, el = el->next);
 
-    element *elNew = malloc(sizeof(element));
+    element *elNew = new element*;
     elNew->next = el->next;
     elNew->data = item;
     el->next = elNew;
@@ -90,7 +90,7 @@ T myLinkedList<T>::get(int index) {
 
 template<class T>
 myLinkedList<T> myLinkedList<T>::getSubList(int startIndex, int endIndex) {
-    myLinkedList<T> newLinkedList;
+    myLinkedList<T> newLinkedList = myLinkedList<T>();
     element *el = head;
     for (int i = 1; i < startIndex; i++, el = el->next);
 
@@ -134,12 +134,36 @@ T myLinkedList<T>::pop(int index) {
 
     if (pref == nullptr) {
         head = el->next;
-        free(el);
     }
     else {
         pref->next = el->next;
-        free(el);
     }
+    delete el;
 
     return data;
+}
+
+template<class T>
+myLinkedList<T>::~myLinkedList() {
+    Element *next = head;
+    while (next != nullptr) {
+        next = head->next;
+        delete head;
+    }
+}
+
+template<class T>
+T myLinkedList<T>::operator[](int index) {
+    return get(index);
+}
+
+template<class T>
+std::string myLinkedList<T>::getString() {
+    if (len == 0) return std::string("Пустой список!");
+    std::string str = std::string();
+    element *el = head;
+    while (el != nullptr) {
+        str += std::to_string(el->data);
+        el = el->next;
+    }
 }

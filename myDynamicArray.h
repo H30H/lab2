@@ -4,7 +4,6 @@
 
 #ifndef LAB2_MYDYNAMICARRAY_H
 #define LAB2_MYDYNAMICARRAY_H
-#include "cstdlib"
 #include "cstring"
 #include <string>
 #include <iostream>
@@ -12,7 +11,7 @@
 template <class T>
 class myDynamicArray {
 private:
-    T *arr = NULL;
+    T *arr = nullptr;
     int len = 0;
     const size_t elSize = sizeof(T);
 public:
@@ -22,6 +21,11 @@ public:
         cout << dynamicArray.getStr();
         return cout;
     }
+
+    friend std::string to_string(myDynamicArray<T> dynamicArray) {
+        return dynamicArray.getStr();
+    }
+
     myDynamicArray(T *items, int count);
 
     myDynamicArray(int size);

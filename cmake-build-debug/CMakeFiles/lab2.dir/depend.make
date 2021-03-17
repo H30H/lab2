@@ -4,6 +4,8 @@
 CMakeFiles/lab2.dir/main.cpp.o: ../main.cpp
 CMakeFiles/lab2.dir/main.cpp.o: ../myDynamicArray.cpp
 CMakeFiles/lab2.dir/main.cpp.o: ../myDynamicArray.h
+CMakeFiles/lab2.dir/main.cpp.o: ../myLinkedList.cpp
+CMakeFiles/lab2.dir/main.cpp.o: ../myLinkedList.h
 
 CMakeFiles/lab2.dir/myArraySequence.cpp.o: ../myArraySequence.cpp
 CMakeFiles/lab2.dir/myArraySequence.cpp.o: ../myArraySequence.h
@@ -12,4 +14,7 @@ CMakeFiles/lab2.dir/myArraySequence.cpp.o: ../mySequence.h
 
 CMakeFiles/lab2.dir/myDynamicArray.cpp.o: ../myDynamicArray.cpp
 CMakeFiles/lab2.dir/myDynamicArray.cpp.o: ../myDynamicArray.h
+
+CMakeFiles/lab2.dir/myLinkedList.cpp.o: ../myLinkedList.cpp
+CMakeFiles/lab2.dir/myLinkedList.cpp.o: ../myLinkedList.h
 

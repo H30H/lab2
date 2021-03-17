@@ -5,6 +5,8 @@ CMakeFiles/lab2.dir/main.cpp.o
  /cygdrive/c/cc++ labs/lab2/main.cpp
  /cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
  /cygdrive/c/cc++ labs/lab2/myDynamicArray.h
+ /cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+ /cygdrive/c/cc++ labs/lab2/myLinkedList.h
 CMakeFiles/lab2.dir/myArraySequence.cpp.o
  /cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
  /cygdrive/c/cc++ labs/lab2/myArraySequence.h
@@ -13,3 +15,6 @@ CMakeFiles/lab2.dir/myArraySequence.cpp.o
 CMakeFiles/lab2.dir/myDynamicArray.cpp.o
  /cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
  /cygdrive/c/cc++ labs/lab2/myDynamicArray.h
+CMakeFiles/lab2.dir/myLinkedList.cpp.o
+ /cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+ /cygdrive/c/cc++ labs/lab2/myLinkedList.h
