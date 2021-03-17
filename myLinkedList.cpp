@@ -6,7 +6,7 @@
 
 template<class T>
 void myLinkedList<T>::append(T item) {
-    element *el = new element*;
+    auto *el = new element;
     el->data = item;
     el->next = nullptr;
     len++;
@@ -21,9 +21,9 @@ void myLinkedList<T>::append(T item) {
 
 template<class T>
 void myLinkedList<T>::prepend(T item) {
-    element *el = new element*;
-    el->data = item;
-    el->next = head;
+    auto *el = new element(item, head);
+    //el->data = item;
+    //el->next = head;
     len++;
     if (head == nullptr) {
         head = el;
@@ -158,7 +158,7 @@ T myLinkedList<T>::operator[](int index) {
 }
 
 template<class T>
-std::string myLinkedList<T>::getString() {
+std::string myLinkedList<T>::getStr() {
     if (len == 0) return std::string("Пустой список!");
     std::string str = std::string();
     element *el = head;
@@ -166,4 +166,5 @@ std::string myLinkedList<T>::getString() {
         str += std::to_string(el->data);
         el = el->next;
     }
+    return str;
 }

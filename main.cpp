@@ -8,18 +8,18 @@
 using namespace std;
 
 int main() {
-    int count = 5;
-    myDynamicArray<int> array = myDynamicArray<int>(count);
+    int count = 7;
+    auto linkedList = myLinkedList<int>();
     for (int i = 0; i < count; i++) {
-        int k = 0;
+        int k;
         cin >> k;
-        array.set(i, k);
+        linkedList.append(k);
     }
-    cout << array.getStr() << endl;
-    int a[] = {1, 3, 5, 7, 9};
-    cout << myDynamicArray<int>(a, sizeof(a) / sizeof(int)) << endl;
-    cout << myDynamicArray<int>(array) << endl;
-    cout << array << endl;
-    cout << myDynamicArray<int>(-100) << endl;
+    cout << linkedList.getStr() << endl;
+    cout << linkedList << endl;
+    cout << "next\n";
+    cout << linkedList.getFirst() << linkedList.getLast() << endl;
+    cout << linkedList.length() << linkedList.pop(2) << linkedList.length() << endl;
+    cout << linkedList << endl;
     return 0;
 }

@@ -24,6 +24,15 @@ private:
 public:
     class IndexOutOfRange{};
 
+    friend std::ostream &operator << (std::ostream &cout, myLinkedList<T> linkedList) {
+        cout << linkedList.getStr();
+        return cout;
+    }
+
+    friend std::string to_string(myLinkedList<T> linkedList) {
+        return linkedList.getStr();
+    }
+
     void append(T item);
 
     void prepend(T item);
@@ -54,7 +63,7 @@ public:
 
     T pop(int index);
 
-    std::string getString();
+    std::string getStr();
 };
 
 #endif //LAB2_MYLINKEDLIST_H

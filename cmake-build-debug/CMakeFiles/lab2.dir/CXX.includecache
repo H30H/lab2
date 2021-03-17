@@ -18,16 +18,6 @@ complex
 vector
 -
 
-/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
-myArraySequence.h
-/cygdrive/c/cc++ labs/lab2/myArraySequence.h
-
-/cygdrive/c/cc++ labs/lab2/myArraySequence.h
-mySequence.h
-/cygdrive/c/cc++ labs/lab2/mySequence.h
-myDynamicArray.h
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
-
 /cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
 myDynamicArray.h
 /cygdrive/c/cc++ labs/lab2/myDynamicArray.h
@@ -49,6 +39,4 @@ cstdlib
 /cygdrive/c/cc++ labs/lab2/cstdlib
 iostream
 -
-
-/cygdrive/c/cc++ labs/lab2/mySequence.h
 
