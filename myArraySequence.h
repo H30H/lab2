@@ -7,6 +7,7 @@
 
 #include "mySequence.h"
 #include "myDynamicArray.h"
+
 template<class T>
 class myArraySequence: mySequence<T>{
 private:
@@ -22,12 +23,11 @@ public:
         dynamicArray = myDynamicArray<T>(0);
     }
 
-    myArraySequence(const myDynamicArray<T> &array) {
-        dynamicArray = array;
+    myArraySequence(const myArraySequence<T> &array) {
+        dynamicArray = array.dynamicArray;
     }
 
     T getFirst() {
-
         return dynamicArray[0];
     }
 

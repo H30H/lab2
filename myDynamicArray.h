@@ -13,6 +13,7 @@ class myDynamicArray {
 private:
     T *arr = nullptr;
     int len = 0;
+    int size = 0;
     const size_t elSize = sizeof(T);
 public:
     class IndexOutOfRange{};
@@ -40,9 +41,13 @@ public:
 
     T operator [] (int index);
 
-    void set(int index, T value);
+    void set(int index, T value);                       //изменяет массив
 
-    void resize(int newSize);
+    myDynamicArray<T> set_(int index, T value);         //создаёт новый массив
+
+    void resize(int newSize);                           //изменяет массив
+
+    myDynamicArray<T> resize_(int newSize);             //создаёт новый массив
 
     std::string getStr();
 };

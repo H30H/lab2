@@ -61,14 +61,26 @@ void myDynamicArray<T>::resize(int newSize) {
     if (newSize == 0) {                       //нулевая длина, удаление массива
         delete arr;
         len = 0;
+        size = 0;
         arr = nullptr;
         return;
     }
-    T *arrNew = new T(newSize);               //создание нового массива и заполнение данных
-    memcpy(arrNew, arr, newSize < len ? newSize : len);
+    if (newSize > size) {                     //создание нового массива с выделением памяти и заполнение данных
+        if (size == 0) size = 1;
+        for (size; size < newSize; size *= 2);
+        T *arrNew = new T(size);
+        memcpy(arrNew, arr, newSize < len ? newSize : len);
+        if (arr != nullptr) delete arr;
+        arr = arrNew;
+    }
+    else if (newSize < size / 2) {            //создание нового массива с освобождением памяти и заполнение данных
+        for (size; size / 2 > newSize; size /= 2);
+        T *arrNew = new T(size);
+        memcpy(arrNew, arr, newSize < len ? newSize : len);
+        if (arr != nullptr) delete arr;
+        arr = arrNew;
+    }
     len = newSize;
-    delete arr;
-    arr = arrNew;
 }
 
 template<class T>
@@ -77,10 +89,24 @@ std::string myDynamicArray<T>::getStr() {
 
     std::string res = std::string("Динамический массив: {");  //создание новой строки
     for (int i = 0; i < len; i++) {
-        res += std::to_string(arr[i]);                        //преобразование типа данных (в стринг)
+        res += std::to_string(arr[i]);                        //преобразование типа данных элемента массива (в стринг)
         if (i != len - 1)
             res += ", ";
     }
     res += std::string("}");
     return res;
+}
+
+template<class T>
+myDynamicArray<T> myDynamicArray<T>::set_(int index, T value) {
+    auto dynamicArray = myDynamicArray<T>(this);
+    dynamicArray.set(index, value);
+    return dynamicArray;
+}
+
+template<class T>
+myDynamicArray<T> myDynamicArray<T>::resize_(int newSize) {
+    auto dynamicArray = myDynamicArray<T>(this);
+    dynamicArray.resize(newSize);
+    return dynamicArray;
 }

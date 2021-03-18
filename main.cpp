@@ -1,5 +1,8 @@
 #include "myDynamicArray.cpp"
 #include "myLinkedList.cpp"
+#include "mySequence.cpp"
+#include "myArraySequence.cpp"
+
 
 #include <iostream>
 #include <complex>
