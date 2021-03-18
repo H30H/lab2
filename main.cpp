@@ -18,6 +18,7 @@ int main() {
     cout << linkedList << endl;
     cout << linkedList.getFirst() << " " << linkedList.getLast() << endl;
     cout << linkedList.length() << " " << linkedList.pop(2) << " " << linkedList.length() << endl;
+    linkedList.prepend(3);
     cout << linkedList << endl;
     return 0;
 }

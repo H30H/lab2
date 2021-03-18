@@ -5,25 +5,32 @@
 #include "myLinkedList.h"
 
 template<class T>
-void myLinkedList<T>::append(T item) {
-    auto *el = new element;
+void myLinkedList<T>::append(T item) {  //добавление элемента в конец списка
+    auto *el = new element;             //создание элемента с входными данными
     el->data = item;
     el->next = nullptr;
     len++;
-    if (head == nullptr) {
+    if (head == nullptr) {              //проверка на пустоту списка
         head = el;
         end = el;
         return;
     }
-    end->next = el;
+    end->next = el;                     //добавление элемента в конец
     end = el;
 }
 
 template<class T>
-void myLinkedList<T>::prepend(T item) {
-    auto *el = new element(item, head);
-    //el->data = item;
-    //el->next = head;
+myLinkedList<T> myLinkedList<T>::append_(T item) {
+    auto linkedList = myLinkedList<T>(this);
+    linkedList.append(item);
+    return linkedList;
+}
+
+template<class T>
+void myLinkedList<T>::prepend(T item) { //добавление в начало
+    auto *el = new element;             //создание нового элемента и заполнение
+    el->data = item;
+    el->next = head;
     len++;
     if (head == nullptr) {
         head = el;
@@ -31,6 +38,13 @@ void myLinkedList<T>::prepend(T item) {
         return;
     }
     head = el;
+}
+
+template<class T>
+myLinkedList<T> myLinkedList<T>::prepend_(T item) {
+    auto linkedList = myLinkedList<T>(this);
+    linkedList.prepend(item);
+    return linkedList;
 }
 
 template<class T>
@@ -42,6 +56,31 @@ void myLinkedList<T>::insert(T item, int index) {
     elNew->next = el->next;
     elNew->data = item;
     el->next = elNew;
+}
+
+template<class T>
+myLinkedList<T> myLinkedList<T>::insert_(T item, int index) {
+    auto linkedList = myLinkedList<T>(this);
+    linkedList.insert(item, index);
+    return linkedList;
+}
+
+
+template<class T>
+void myLinkedList<T>::set(T item, int index) {
+    if (index >= len || index < 0) throw IndexOutOfRange();
+    element *el = head;
+
+    for (int i = 0; i < index; i++, el = el->next);
+
+    el->data = item;
+}
+
+template<class T>
+myLinkedList<T> myLinkedList<T>::set_(T item, int index) {
+    auto linkedList = myLinkedList<T>(this);
+    linkedList.set(item, index);
+    return linkedList;
 }
 
 template<class T>
@@ -144,6 +183,20 @@ T myLinkedList<T>::pop(int index) {
 }
 
 template<class T>
+myLinkedList<T> myLinkedList<T>::pop_() {
+    auto linkedList = myLinkedList<T>(this);
+    linkedList.pop();
+    return linkedList;
+}
+
+template<class T>
+myLinkedList<T> myLinkedList<T>::pop_(int index) {
+    auto linkedList = myLinkedList<T>(this);
+    linkedList.pop(index);
+    return linkedList;
+}
+
+template<class T>
 myLinkedList<T>::~myLinkedList() {
     Element *next = head;
     while (next != nullptr) {
@@ -157,6 +210,8 @@ template<class T>
 T myLinkedList<T>::operator[](int index) {
     return get(index);
 }
+
+
 
 template<class T>
 std::string myLinkedList<T>::getStr() {
@@ -174,3 +229,4 @@ std::string myLinkedList<T>::getStr() {
     str += std::string("}");
     return str;
 }
+

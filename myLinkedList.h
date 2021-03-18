@@ -33,11 +33,21 @@ public:
         return linkedList.getStr();
     }
 
-    void append(T item);
+    void append(T item);                        //изменяет список
 
-    void prepend(T item);
+    myLinkedList<T> append_(T item);            //создаёт новый список
 
-    void insert(T item, int index);
+    void prepend(T item);                       //изменяет список
+
+    myLinkedList<T> prepend_(T item);           //создаёт новый список
+
+    void insert(T item, int index);             //изменяет список
+
+    myLinkedList<T> insert_(T item, int index); //создаёт новый список
+
+    void set(T item, int index);                //изменяет список
+
+    myLinkedList<T> set_(T item, int index);    //создаёт новый список
 
     myLinkedList(T *items, int count);
 
@@ -59,9 +69,13 @@ public:
 
     int length();
 
-    T pop();
+    T pop();                                    //изменяет список
 
-    T pop(int index);
+    T pop(int index);                           //изменяет список
+
+    myLinkedList<T> pop_();                     //создаёт новый список
+
+    myLinkedList<T> pop_(int index);            //создаёт новый список
 
     std::string getStr();
 };
