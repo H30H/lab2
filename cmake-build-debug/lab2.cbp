@@ -101,6 +101,12 @@
 		<Unit filename="/cygdrive/c/cc++ labs/lab2/myLinkedList.h">
 			<Option target="lab2"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myListSequence.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myListSequence.h">
+			<Option target="lab2"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/cc++ labs/lab2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

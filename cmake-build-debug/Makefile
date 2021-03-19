@@ -251,6 +251,33 @@ myLinkedList.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/myLinkedList.cpp.s
 .PHONY : myLinkedList.cpp.s
 
+myListSequence.o: myListSequence.cpp.o
+
+.PHONY : myListSequence.o
+
+# target to build an object file
+myListSequence.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/myListSequence.cpp.o
+.PHONY : myListSequence.cpp.o
+
+myListSequence.i: myListSequence.cpp.i
+
+.PHONY : myListSequence.i
+
+# target to preprocess a source file
+myListSequence.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/myListSequence.cpp.i
+.PHONY : myListSequence.cpp.i
+
+myListSequence.s: myListSequence.cpp.s
+
+.PHONY : myListSequence.s
+
+# target to generate assembly for a file
+myListSequence.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/myListSequence.cpp.s
+.PHONY : myListSequence.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -272,6 +299,9 @@ help:
 	@echo "... myLinkedList.o"
 	@echo "... myLinkedList.i"
 	@echo "... myLinkedList.s"
+	@echo "... myListSequence.o"
+	@echo "... myListSequence.i"
+	@echo "... myListSequence.s"
 .PHONY : help
 
 
