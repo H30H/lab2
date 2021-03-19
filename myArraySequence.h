@@ -15,6 +15,15 @@ private:
 public:
     class IndexOtOfRange{};
 
+    friend std::ostream &operator << (std::ostream &cout, myArraySequence<T> arraySequence) {
+        cout << arraySequence.dynamicArray;
+        return cout;
+    }
+
+    friend std::string to_string(myArraySequence<T> arraySequence) {
+        return arraySequence.dynamicArray.getStr();
+    }
+
     myArraySequence(T* items, int count) {
         dynamicArray = myDynamicArray<T> (items, count);
     }
@@ -83,9 +92,8 @@ public:
         dynamicArray[index] = item;
     }
 
-    mySequence<T>* concat(mySequence<T>* list) {
-        auto *newArray = (myArraySequence<T>*) malloc(sizeof(myArraySequence<T>));
-        *newArray = myArraySequence();
+    mySequence<T> *concat(mySequence<T>* list) {
+        auto *newArray = new myArraySequence<T>(this);
         for (int i = this->length(), j = 0; i < newArray->length(); i++, j++) {
             newArray->append(list[j]);
         }
