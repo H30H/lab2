@@ -12,4 +12,6 @@ add_executable(
         myArraySequence.h
         myLinkedList.cpp
         myLinkedList.h
-        myListSequence.cpp myListSequence.h)
+        myListSequence.cpp
+        myListSequence.h
+        myPolynomial.cpp myPolynomial.h)

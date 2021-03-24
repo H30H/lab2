@@ -9,7 +9,7 @@
 #include "myDynamicArray.h"
 
 template<class T>
-class myArraySequence: mySequence<T>{
+class myArraySequence: mySequence<T> {
 private:
     myDynamicArray<T> dynamicArray;
 public:
@@ -32,8 +32,16 @@ public:
         dynamicArray = myDynamicArray<T>(0);
     }
 
+    myArraySequence(T item) {
+        dynamicArray = myDynamicArray<T>(item);
+    }
+
     myArraySequence(const myArraySequence<T> &array) {
         dynamicArray = array.dynamicArray;
+    }
+
+    myArraySequence(const myDynamicArray<T> &array) {
+        dynamicArray = array;
     }
 
     T getFirst() {
@@ -45,10 +53,14 @@ public:
     }
 
     T get(int index) {
-        return dynamicArray[index];
+        return dynamicArray.get(index);
     }
 
-    T operator [] (int index) {
+    void set(T item, int index) {
+        dynamicArray.set(item, index);
+    }
+
+    T &operator [] (int index) {
         return dynamicArray.get(index);
     }
 
@@ -75,12 +87,24 @@ public:
         dynamicArray[length() - 1] = item;
     }
 
+    mySequence<T> append_(T item) {
+        auto arraySequence = myArraySequence<T>(this);
+        arraySequence.append(item);
+        return arraySequence;
+    }
+
     void prepend(T item) {
         dynamicArray.resize(dynamicArray.length() + 1);
         for (int i = dynamicArray.length() - 1; i >= 0; i--) {
             dynamicArray.set(i+1, dynamicArray[i]);
         }
         dynamicArray.set(0, item);
+    }
+
+    mySequence<T> prepend_(T item) {
+        auto arraySequence = myArraySequence<T>(this);
+        arraySequence.prepend(item);
+        return arraySequence;
     }
 
     void insert(T item, int index) {
@@ -92,6 +116,12 @@ public:
         dynamicArray[index] = item;
     }
 
+    mySequence<T> insert_(T item, int index) {
+        auto arraySequence = myArraySequence<T>(this);
+        arraySequence.insert(item, index);
+        return arraySequence;
+    }
+
     mySequence<T> *concat(mySequence<T>* list) {
         auto *newArray = new myArraySequence<T>(this);
         for (int i = this->length(), j = 0; i < newArray->length(); i++, j++) {
@@ -100,7 +130,7 @@ public:
         return newArray;
     }
 
-    std::string toStr() {
+    std::string getStr() {
         return dynamicArray.getStr();
     }
 };

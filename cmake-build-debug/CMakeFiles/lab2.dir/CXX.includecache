@@ -11,12 +11,28 @@ myDynamicArray.cpp
 /cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
 myLinkedList.cpp
 /cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+mySequence.cpp
+/cygdrive/c/cc++ labs/lab2/mySequence.cpp
+myArraySequence.cpp
+/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
+myLinkedList.h
+/cygdrive/c/cc++ labs/lab2/myLinkedList.h
 iostream
 -
 complex
 -
 vector
 -
+
+/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
+myArraySequence.h
+/cygdrive/c/cc++ labs/lab2/myArraySequence.h
+
+/cygdrive/c/cc++ labs/lab2/myArraySequence.h
+mySequence.h
+/cygdrive/c/cc++ labs/lab2/mySequence.h
+myDynamicArray.h
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
 
 /cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
 myDynamicArray.h
@@ -37,6 +53,38 @@ myLinkedList.h
 /cygdrive/c/cc++ labs/lab2/myLinkedList.h
 cstdlib
 /cygdrive/c/cc++ labs/lab2/cstdlib
+iostream
+-
+
+/cygdrive/c/cc++ labs/lab2/myListSequence.cpp
+myListSequence.h
+/cygdrive/c/cc++ labs/lab2/myListSequence.h
+
+/cygdrive/c/cc++ labs/lab2/myListSequence.h
+mySequence.h
+/cygdrive/c/cc++ labs/lab2/mySequence.h
+myLinkedList.h
+/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+iostream
+-
+
+/cygdrive/c/cc++ labs/lab2/myPolynomial.cpp
+myPolynomial.h
+/cygdrive/c/cc++ labs/lab2/myPolynomial.h
+
+/cygdrive/c/cc++ labs/lab2/myPolynomial.h
+iostream
+-
+myArraySequence.h
+/cygdrive/c/cc++ labs/lab2/myArraySequence.h
+myListSequence.h
+/cygdrive/c/cc++ labs/lab2/myListSequence.h
+
+/cygdrive/c/cc++ labs/lab2/mySequence.cpp
+mySequence.h
+/cygdrive/c/cc++ labs/lab2/mySequence.h
+
+/cygdrive/c/cc++ labs/lab2/mySequence.h
 iostream
 -
 

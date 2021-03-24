@@ -31,6 +31,8 @@ public:
 
     myDynamicArray(int size);
 
+    myDynamicArray(T item);
+
     myDynamicArray(myDynamicArray<T> const &dynamicArray);
 
     ~myDynamicArray();
@@ -39,11 +41,11 @@ public:
 
     T get(int index);
 
-    T operator [] (int index);
+    T &operator [] (int index);
 
-    void set(int index, T value);                       //изменяет массив
+    void set(T item, int index);                        //изменяет массив
 
-    myDynamicArray<T> set_(int index, T value);         //создаёт новый массив
+    myDynamicArray<T> set_(T item, int index);          //создаёт новый массив
 
     void resize(int newSize);                           //изменяет массив
 

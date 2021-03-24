@@ -1,8 +1,10 @@
+
 #include "myDynamicArray.cpp"
 #include "myLinkedList.cpp"
 #include "mySequence.cpp"
 #include "myArraySequence.cpp"
-
+/**/
+#include "myLinkedList.h"
 
 #include <iostream>
 #include <complex>
@@ -10,18 +12,37 @@
 
 using namespace std;
 
-int main() {
-    int count = 7;
-    auto linkedList = myLinkedList<int>();
-    for (int i = 0; i < count; i++) {
-        int k;
-        cin >> k;
-        linkedList.append(k);
+class Test {
+public:
+    int array[10] = {0};
+
+    int get(int index) {
+        return array[index];
     }
-    cout << linkedList << endl;
-    cout << linkedList.getFirst() << " " << linkedList.getLast() << endl;
-    cout << linkedList.length() << " " << linkedList.pop(2) << " " << linkedList.length() << endl;
-    linkedList.prepend(3);
-    cout << linkedList << endl;
+
+    void set(int item, int index) {
+        array[index] = item;
+    }
+
+    void print(int index) {
+        cout << array[index] << endl;
+    }
+
+    int &operator [] (int index) {
+        return array[index];
+    }
+};
+
+int main() {
+    Test test;
+
+    test.set(10, 5);
+    test.print(5);
+
+    test[5] = 15;
+    test.print(5);
+
+    cout << test[5] << endl;
+
     return 0;
 }

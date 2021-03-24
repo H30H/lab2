@@ -13,6 +13,8 @@ void myLinkedList<T>::append(T item) {  //добавление элемента 
     if (head == nullptr) {              //проверка на пустоту списка
         head = el;
         end = el;
+        lastGet = el;
+        lastInd = 0;
         return;
     }
     end->next = el;                     //добавление элемента в конец
@@ -35,9 +37,12 @@ void myLinkedList<T>::prepend(T item) { //добавление в начало
     if (head == nullptr) {
         head = el;
         end = el;
+        lastGet = el;
+        lastInd = 0;
         return;
     }
     head = el;
+    lastInd++;
 }
 
 template<class T>
@@ -56,6 +61,7 @@ void myLinkedList<T>::insert(T item, int index) {
     elNew->next = el->next;
     elNew->data = item;
     el->next = elNew;
+    if (index < lastInd) lastInd++;
 }
 
 template<class T>
@@ -64,7 +70,6 @@ myLinkedList<T> myLinkedList<T>::insert_(T item, int index) {
     linkedList.insert(item, index);
     return linkedList;
 }
-
 
 template<class T>
 void myLinkedList<T>::set(T item, int index) {
@@ -100,6 +105,12 @@ myLinkedList<T>::myLinkedList(const myLinkedList<T> &linkedList) {
     }
 }
 
+
+template<class T>
+myLinkedList<T>::myLinkedList(T item) {
+    append(item);
+}
+
 template<class T>
 T myLinkedList<T>::getFirst() {
     if (head == nullptr) throw IndexOutOfRange(); //обработка ошибки
@@ -118,12 +129,18 @@ template<class T>
 T myLinkedList<T>::get(int index) {
     if (index < 0 || index >= len) throw IndexOutOfRange(); //обработка ошибки
 
+    if (lastInd < index) {
+        for (lastInd; lastInd < index; lastInd++, lastGet = lastGet->next);
+        return lastGet->data;
+    }
+
     element *el = head;
 
     T data;
 
     for (int i = 1; i < index; i++, el = el->next);
-
+    lastInd = index;
+    lastGet = el;
     return el->data;
 }
 
@@ -207,11 +224,9 @@ myLinkedList<T>::~myLinkedList() {
 }
 
 template<class T>
-T myLinkedList<T>::operator[](int index) {
+T &myLinkedList<T>::operator[](int index) {
     return get(index);
 }
-
-
 
 template<class T>
 std::string myLinkedList<T>::getStr() {
@@ -229,4 +244,5 @@ std::string myLinkedList<T>::getStr() {
     str += std::string("}");
     return str;
 }
+
 

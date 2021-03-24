@@ -17,9 +17,11 @@ private:
     } element;
 
     int len = 0;
+    int lastInd = -1;
 
     element *head = nullptr;
     element *end = nullptr;
+    element *lastGet = nullptr;
 
 public:
     class IndexOutOfRange{};
@@ -51,6 +53,8 @@ public:
 
     myLinkedList(T *items, int count);
 
+    myLinkedList(T item);
+
     myLinkedList();
 
     myLinkedList(myLinkedList<T> const &linkedList);
@@ -63,7 +67,7 @@ public:
 
     T get(int index);
 
-    T operator [] (int index);
+    T &operator [] (int index);
 
     myLinkedList<T> getSubList(int startIndex, int endIndex);
 

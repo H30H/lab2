@@ -5,17 +5,23 @@
 #include "myDynamicArray.h"
 
 template<class T>
-myDynamicArray<T>::myDynamicArray(T *items, int count): len(count){
-    if (len < 0) {len = 0; return;}             //создание нового пустого массива и копирование в него данных из исходного
-    arr = new T(count);
+myDynamicArray<T>::myDynamicArray(T *items, int count) {
+    if (count < 0) {len = 0; return;}             //создание нового пустого массива и копирование в него данных из исходного
+    resize(count);
     memcpy(arr, items, len * elSize);
 }
 
 template<class T>
 myDynamicArray<T>::myDynamicArray(int size) {   //создание нового пустого массива размера size
     if (size < 0) {len = 0; return;}
-    len = size;
-    arr = new T(size);
+    resize(size);
+}
+
+
+template<class T>
+myDynamicArray<T>::myDynamicArray(T item) {     //создание нового массива из одного элемента item
+    resize(1);
+    arr[0] = item;
 }
 
 template<class T>
@@ -43,15 +49,15 @@ T myDynamicArray<T>::get(int index) {
 }
 
 template<class T>
-T myDynamicArray<T>::operator[](int index) {
+T &myDynamicArray<T>::operator[](int index) {
     return get(index);
 }
 
 template<class T>
-void myDynamicArray<T>::set(int index, T value) {
+void myDynamicArray<T>::set(T item, int index) {
     if (index < 0 || index >= len) throw IndexOutOfRange(); //обработка исключений
 
-    arr[index] = value;
+    arr[index] = item;
 }
 
 template<class T>
@@ -73,8 +79,8 @@ void myDynamicArray<T>::resize(int newSize) {
         if (arr != nullptr) delete arr;
         arr = arrNew;
     }
-    else if (newSize < size / 2) {            //создание нового массива с освобождением памяти и заполнение данных
-        for (size; size / 2 > newSize; size /= 2);
+    else if (newSize < size / 3) {            //создание нового массива с освобождением памяти и заполнение данных
+        for (size; size / 3 > newSize; size /= 2);
         T *arrNew = new T(size);
         memcpy(arrNew, arr, newSize < len ? newSize : len);
         if (arr != nullptr) delete arr;
@@ -98,9 +104,9 @@ std::string myDynamicArray<T>::getStr() {
 }
 
 template<class T>
-myDynamicArray<T> myDynamicArray<T>::set_(int index, T value) {
+myDynamicArray<T> myDynamicArray<T>::set_(T item, int index) {
     auto dynamicArray = myDynamicArray<T>(this);
-    dynamicArray.set(index, value);
+    dynamicArray.set(item, index);
     return dynamicArray;
 }
 
@@ -110,3 +116,4 @@ myDynamicArray<T> myDynamicArray<T>::resize_(int newSize) {
     dynamicArray.resize(newSize);
     return dynamicArray;
 }
+

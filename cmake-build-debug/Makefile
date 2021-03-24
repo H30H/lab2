@@ -278,6 +278,33 @@ myListSequence.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/myListSequence.cpp.s
 .PHONY : myListSequence.cpp.s
 
+myPolynomial.o: myPolynomial.cpp.o
+
+.PHONY : myPolynomial.o
+
+# target to build an object file
+myPolynomial.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/myPolynomial.cpp.o
+.PHONY : myPolynomial.cpp.o
+
+myPolynomial.i: myPolynomial.cpp.i
+
+.PHONY : myPolynomial.i
+
+# target to preprocess a source file
+myPolynomial.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/myPolynomial.cpp.i
+.PHONY : myPolynomial.cpp.i
+
+myPolynomial.s: myPolynomial.cpp.s
+
+.PHONY : myPolynomial.s
+
+# target to generate assembly for a file
+myPolynomial.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/myPolynomial.cpp.s
+.PHONY : myPolynomial.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -302,6 +329,9 @@ help:
 	@echo "... myListSequence.o"
 	@echo "... myListSequence.i"
 	@echo "... myListSequence.s"
+	@echo "... myPolynomial.o"
+	@echo "... myPolynomial.i"
+	@echo "... myPolynomial.s"
 .PHONY : help
 
 
