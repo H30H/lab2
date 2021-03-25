@@ -16,6 +16,16 @@ class Test {
 public:
     int array[10] = {0};
 
+    class IndexOutOfRange{};
+
+    class IndexOutOfRange2{};
+
+    void ttest() {
+        throw IndexOutOfRange();
+    }
+    void ttest2() {
+        throw IndexOutOfRange2();
+    }
     int get(int index) {
         return array[index];
     }
@@ -44,5 +54,15 @@ int main() {
 
     cout << test[5] << endl;
 
+    try {
+        test.ttest2();
+        cout << 1 << endl;
+    }
+    catch (Test::IndexOutOfRange2) {
+        cout << 1551 << endl;
+    }
+    catch (Test::IndexOutOfRange) {
+        cout << 155 << endl;
+    }
     return 0;
 }
