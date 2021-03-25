@@ -56,30 +56,6 @@ cstdlib
 iostream
 -
 
-/cygdrive/c/cc++ labs/lab2/myListSequence.cpp
-myListSequence.h
-/cygdrive/c/cc++ labs/lab2/myListSequence.h
-
-/cygdrive/c/cc++ labs/lab2/myListSequence.h
-mySequence.h
-/cygdrive/c/cc++ labs/lab2/mySequence.h
-myLinkedList.h
-/cygdrive/c/cc++ labs/lab2/myLinkedList.h
-iostream
--
-
-/cygdrive/c/cc++ labs/lab2/myPolynomial.cpp
-myPolynomial.h
-/cygdrive/c/cc++ labs/lab2/myPolynomial.h
-
-/cygdrive/c/cc++ labs/lab2/myPolynomial.h
-iostream
--
-myArraySequence.h
-/cygdrive/c/cc++ labs/lab2/myArraySequence.h
-myListSequence.h
-/cygdrive/c/cc++ labs/lab2/myListSequence.h
-
 /cygdrive/c/cc++ labs/lab2/mySequence.cpp
 mySequence.h
 /cygdrive/c/cc++ labs/lab2/mySequence.h
