@@ -5,10 +5,12 @@
 #include "myArraySequence.cpp"
 /**/
 #include "myLinkedList.h"
+#include "myDynamicArray.h"
 
 #include <iostream>
 #include <complex>
 #include <vector>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -19,6 +21,10 @@ public:
     class IndexOutOfRange{};
 
     class IndexOutOfRange2{};
+
+    ~Test() {
+        cout << "Delete" << endl;
+    }
 
     void ttest() {
         throw IndexOutOfRange();
@@ -44,25 +50,17 @@ public:
 };
 
 int main() {
-    Test test;
+    int arr[]{1, 2, 3, 4, 5, 3, 1, 2, 3, 4, 5, 3};
+    int arr2[]{4, 5};
 
-    test.set(10, 5);
-    test.print(5);
+    myArraySequence<int> arraySequence(arr, 12);
+    myArraySequence<int> arraySequence2(arr2, 2);
 
-    test[5] = 15;
-    test.print(5);
+    auto res = arraySequence.split(3);
 
-    cout << test[5] << endl;
+    cout << res << " " << arraySequence << endl;
 
-    try {
-        test.ttest2();
-        cout << 1 << endl;
-    }
-    catch (Test::IndexOutOfRange2) {
-        cout << 1551 << endl;
-    }
-    catch (Test::IndexOutOfRange) {
-        cout << 155 << endl;
-    }
-    return 0;
+    auto res2 = res.split(arraySequence2);
+
+    cout << res2 << endl;
 }

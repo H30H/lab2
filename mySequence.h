@@ -20,16 +20,16 @@ public:
 
     virtual int length() = 0;
 
-    virtual void append(T item) = 0;
-    virtual void prepend(T item) = 0;
-    virtual void insert(T item, int index) = 0;
+//    virtual void append(T item) = 0;
+//    virtual void prepend(T item) = 0;
+//    virtual void insert(T item, int index) = 0;
 
 //    virtual mySequence<T> append_(T item) = 0;
 //    virtual mySequence<T> prepend_(T item) = 0;
 //    virtual mySequence<T> insert_(T item, int index) = 0;
 
     virtual mySequence<T>* concat(mySequence<T>* list) = 0;
-    virtual std::string getStr() = 0;
+//    virtual std::string getStr() = 0;
 };
 
 #endif //LAB2_MYSEQUENCE_H

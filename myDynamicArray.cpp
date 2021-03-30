@@ -5,35 +5,53 @@
 #include "myDynamicArray.h"
 
 template<class T>
+void arrCopy(T *arr_in, T *arr_out, int count) {
+    for (int i = 0; i < count; i++) {
+        arr_in[i] = arr_out[i];
+    }
+}
+
+template<class T>
 myDynamicArray<T>::myDynamicArray(T *items, int count) {
+    arr = nullptr;
+    size = 0;
+    len = 0;
     if (count < 0) {len = 0; return;}             //создание нового пустого массива и копирование в него данных из исходного
     resize(count);
-    memcpy(arr, items, len * elSize);
+    //memcpy(arr, items, len * elSize);
+    for (int i = 0; i < len; i++) {
+        arr[i] = items[i];
+    }
 }
 
 template<class T>
-myDynamicArray<T>::myDynamicArray(int size) {   //создание нового пустого массива размера size
-    if (size < 0) {len = 0; return;}
-    resize(size);
-}
-
-
-template<class T>
-myDynamicArray<T>::myDynamicArray(T item) {     //создание нового массива из одного элемента item
-    resize(1);
-    arr[0] = item;
+myDynamicArray<T>::myDynamicArray(int newSize) {   //создание нового пустого массива размера size
+    size = 0;
+    arr = nullptr;
+    len = 0;
+    if (newSize <= 0) {len = 0; return;}
+    resize(newSize);
 }
 
 template<class T>
 myDynamicArray<T>::myDynamicArray(const myDynamicArray<T> &dynamicArray) { //создание нового массива и копирование элементов из такого же класса
-    len = dynamicArray.len;
-    arr = new T(len);
-    memcpy(arr, dynamicArray.arr, len * elSize);
+    arr = nullptr;
+    size = 0;
+    len = 0;
+    if (dynamicArray.len == 0) {
+        return;
+    }
+    resize(dynamicArray.len);
+    //memcpy(arr, dynamicArray.arr, len * elSize);
+    for (int i = 0; i < len; i++) {
+        arr[i] = dynamicArray.arr[i];
+    }
 }
 
 template<class T>
 myDynamicArray<T>::~myDynamicArray() {      //удаление массива
-    delete arr;
+    if (arr != nullptr && arr != NULL && size != 0)
+        delete[] arr;
 }
 
 template<class T>
@@ -43,64 +61,58 @@ int myDynamicArray<T>::length() {           //вывод длины массив
 
 template<class T>
 T myDynamicArray<T>::get(int index) {
-    if (len == 0) throw IndexOutOfRange();  //обработка исключений
+    return (*this)[index];
+}
+
+template<class T>
+T &myDynamicArray<T>::operator[](int index) {
+    if (index < 0 || index >= len) throw IndexOutOfRange();  //исключение выхода за массив
 
     return arr[index];
 }
 
 template<class T>
-T &myDynamicArray<T>::operator[](int index) {
-    return get(index);
-}
-
-template<class T>
 void myDynamicArray<T>::set(T item, int index) {
-    if (index < 0 || index >= len) throw IndexOutOfRange(); //обработка исключений
+    if (index < 0 || index >= len) throw IndexOutOfRange(); //исключение выхода за массив
 
     arr[index] = item;
 }
 
 template<class T>
 void myDynamicArray<T>::resize(int newSize) {
-    if (newSize < 0) throw IndexOutOfRange(); //обработка исключений
+    if (newSize < 0) throw IndexOutOfRange(); //исключение выхода за массив
     if (len == newSize) return;               //длина не изменилась
     if (newSize == 0) {                       //нулевая длина, удаление массива
-        delete arr;
+        if (arr != nullptr)
+            delete[] arr;
         len = 0;
         size = 0;
         arr = nullptr;
         return;
     }
-    if (newSize > size) {                     //создание нового массива с выделением памяти и заполнение данных
+    else if (newSize > size) {                     //создание нового массива с выделением памяти и заполнение данных
         if (size == 0) size = 1;
-        for (size; size < newSize; size *= 2);
-        T *arrNew = new T(size);
-        memcpy(arrNew, arr, newSize < len ? newSize : len);
-        if (arr != nullptr) delete arr;
+        for (size; size <= newSize + 1; size *= 2);
+        int newSize2 = newSize;
+        T *arrNew = new T[size];
+        if (arr != nullptr) {
+            arrCopy<T>(arrNew, arr, len);
+            delete[] arr;
+        }
+        newSize = newSize2;
         arr = arrNew;
     }
     else if (newSize < size / 3) {            //создание нового массива с освобождением памяти и заполнение данных
-        for (size; size / 3 > newSize; size /= 2);
-        T *arrNew = new T(size);
-        memcpy(arrNew, arr, newSize < len ? newSize : len);
-        if (arr != nullptr) delete arr;
+        for (size; size / 3 > newSize + 1; size /= 2);
+        T *arrNew = new T[size];
+        if (arr != nullptr) {
+            arrCopy<T>(arrNew, arr, newSize);
+            delete[] arr;
+        }
         arr = arrNew;
     }
+    /**/
     len = newSize;
-}
-
-template<class T>
-std::string myDynamicArray<T>::getStr() {
-    if (len == 0) return std::string("Пустой массив!");
-
-    std::string res = std::string("Динамический массив: {");  //создание новой строки
-    for (int i = 0; i < len; i++) {
-        res += std::to_string(arr[i]);                        //преобразование типа данных элемента массива (в стринг)
-        if (i != len - 1)
-            res += ", ";
-    }
-    res += std::string("}");
-    return res;
 }
 
 template<class T>
@@ -117,3 +129,19 @@ myDynamicArray<T> myDynamicArray<T>::resize_(int newSize) {
     return dynamicArray;
 }
 
+template<class T>
+T *myDynamicArray<T>::begin() const {
+    return arr;
+}
+
+template<class T>
+T *myDynamicArray<T>::end() const {
+    return arr ? arr + len : nullptr;
+}
+
+template<class T>
+myDynamicArray<T>::myDynamicArray() {
+    arr = nullptr;
+    len = 0;
+    size = 0;
+}

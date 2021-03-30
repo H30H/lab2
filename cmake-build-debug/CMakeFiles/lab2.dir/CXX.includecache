@@ -6,61 +6,65 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/cc++ labs/lab2/main.cpp
+/mnt/c/cc++ labs/lab2/main.cpp
 myDynamicArray.cpp
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
+/mnt/c/cc++ labs/lab2/myDynamicArray.cpp
 myLinkedList.cpp
-/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+/mnt/c/cc++ labs/lab2/myLinkedList.cpp
 mySequence.cpp
-/cygdrive/c/cc++ labs/lab2/mySequence.cpp
+/mnt/c/cc++ labs/lab2/mySequence.cpp
 myArraySequence.cpp
-/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
+/mnt/c/cc++ labs/lab2/myArraySequence.cpp
 myLinkedList.h
-/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+/mnt/c/cc++ labs/lab2/myLinkedList.h
+myDynamicArray.h
+/mnt/c/cc++ labs/lab2/myDynamicArray.h
 iostream
 -
 complex
 -
 vector
 -
+stdlib.h
+-
 
-/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
+/mnt/c/cc++ labs/lab2/myArraySequence.cpp
 myArraySequence.h
-/cygdrive/c/cc++ labs/lab2/myArraySequence.h
+/mnt/c/cc++ labs/lab2/myArraySequence.h
 
-/cygdrive/c/cc++ labs/lab2/myArraySequence.h
+/mnt/c/cc++ labs/lab2/myArraySequence.h
 mySequence.h
-/cygdrive/c/cc++ labs/lab2/mySequence.h
+/mnt/c/cc++ labs/lab2/mySequence.h
 myDynamicArray.h
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
+/mnt/c/cc++ labs/lab2/myDynamicArray.h
 
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
+/mnt/c/cc++ labs/lab2/myDynamicArray.cpp
 myDynamicArray.h
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
+/mnt/c/cc++ labs/lab2/myDynamicArray.h
 
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
+/mnt/c/cc++ labs/lab2/myDynamicArray.h
 cstring
-/cygdrive/c/cc++ labs/lab2/cstring
+/mnt/c/cc++ labs/lab2/cstring
 string
 -
 iostream
 -
 
-/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+/mnt/c/cc++ labs/lab2/myLinkedList.cpp
 myLinkedList.h
-/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+/mnt/c/cc++ labs/lab2/myLinkedList.h
 
-/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+/mnt/c/cc++ labs/lab2/myLinkedList.h
 cstdlib
-/cygdrive/c/cc++ labs/lab2/cstdlib
+/mnt/c/cc++ labs/lab2/cstdlib
 iostream
 -
 
-/cygdrive/c/cc++ labs/lab2/mySequence.cpp
+/mnt/c/cc++ labs/lab2/mySequence.cpp
 mySequence.h
-/cygdrive/c/cc++ labs/lab2/mySequence.h
+/mnt/c/cc++ labs/lab2/mySequence.h
 
-/cygdrive/c/cc++ labs/lab2/mySequence.h
+/mnt/c/cc++ labs/lab2/mySequence.h
 iostream
 -
 

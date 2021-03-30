@@ -11,27 +11,45 @@
 template <class T>
 class myDynamicArray {
 private:
-    T *arr = nullptr;
-    int len = 0;
-    int size = 0;
+    T *arr;
+    int len;
+    int size;
     const size_t elSize = sizeof(T);
 public:
     class IndexOutOfRange{};
 
-    friend std::ostream &operator << (std::ostream &cout, myDynamicArray<T> dynamicArray) {
-        cout << dynamicArray.getStr();
-        return cout;
+    //std::string getStr();
+
+    friend std::string to_string(myDynamicArray<T> &dynamicArray) {
+        std::string res = "{";
+
+        for (int i = 0; i < dynamicArray.len; i++) {
+            res += std::to_string(dynamicArray[i]);
+            if (i < dynamicArray.len - 1) {
+                res += ", ";
+            }
+        }
+        res += "}";
+        return res;
     }
 
-    friend std::string to_string(myDynamicArray<T> dynamicArray) {
-        return dynamicArray.getStr();
+    friend std::ostream &operator << (std::ostream &cout, myDynamicArray<T> &dynamicArray) {
+        //cout << dynamicArray.length() << ' ';
+        cout << '{';
+        for (int i = 0; i < dynamicArray.length(); i++) {
+            cout << dynamicArray[i];
+            if (i < dynamicArray.length() - 1) {
+                cout << ", ";
+            }
+        }
+        return cout << '}';
     }
 
     myDynamicArray(T *items, int count);
 
-    myDynamicArray(int size);
+    explicit myDynamicArray(int size);
 
-    myDynamicArray(T item);
+    myDynamicArray();
 
     myDynamicArray(myDynamicArray<T> const &dynamicArray);
 
@@ -41,7 +59,33 @@ public:
 
     T get(int index);
 
+    int getSize() {
+        return size;
+    }
+
     T &operator [] (int index);
+
+    myDynamicArray<T> &operator = (myDynamicArray<T> dynamicArray) {
+        resize(dynamicArray.len);
+        for (int i = 0; i < len; i++) {
+            arr[i] = dynamicArray.arr[i];
+        }
+        return *this;
+    }
+
+    int operator == (myDynamicArray<T> dynamicArray) {
+        if (len != dynamicArray.length()) return 0;
+
+        for (int i = 0; i < len; i++) {
+            if (arr[i] != dynamicArray.arr[i])
+                return 0;
+        }
+        return 1;
+    }
+
+    T *begin() const;
+
+    T *end() const;
 
     void set(T item, int index);                        //изменяет массив
 
@@ -51,7 +95,37 @@ public:
 
     myDynamicArray<T> resize_(int newSize);             //создаёт новый массив
 
-    std::string getStr();
+    myDynamicArray<myDynamicArray<T>> split(T item) {
+        myDynamicArray<int> indexes;
+
+        for (int i = 0; i < len; i++) {
+            if (arr[i] == item) {
+                indexes.resize(indexes.length() + 1);
+                indexes[indexes.length() - 1] = i;
+            }
+        }
+        indexes.resize(indexes.length() + 1);
+        indexes[indexes.length() - 1] = len;
+
+        myDynamicArray<myDynamicArray<T>> res(indexes.length());
+        for(int i = 0; i < indexes.length(); res[i] = myDynamicArray<T>(), i++);
+
+        int index = 0;
+        myDynamicArray<T> element;
+        element.resize(indexes[index]);
+
+        for (int i = 0, j = 0; i < len; i++, j++) {
+            if (i == indexes[index]) {
+                res[index] = element;
+                element.resize(indexes[index + 1] - indexes[index] - 1);
+                index++;
+                j = -1;
+                continue;
+            }
+            element[j] = arr[i];
+        }
+        return res;
+    }
 };
 
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16.3)
 project(lab2)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -7,11 +7,8 @@ add_executable(
         lab2
         main.cpp
         myDynamicArray.cpp
-        myDynamicArray.h
         myArraySequence.cpp
-        myArraySequence.h
         myLinkedList.cpp
-        myLinkedList.h
         myListSequence.cpp
-        myListSequence.h
-        myPolynomial.cpp myPolynomial.h)
+        myPolynomial.cpp
+)

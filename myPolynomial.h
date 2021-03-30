@@ -12,13 +12,9 @@
 template<class T>
 class myPolynomial {
 private:
-    mySequence<T> elements;
+    myArraySequence<T> elements;
 public:
-    myPolynomial(mySequence<T> sequence) : elements(sequence) {};
-
-    myPolynomial(myLinkedList<T> linkedList) : elements(myListSequence<T>(linkedList)) {};
-
-    myPolynomial(myArraySequence<T> arraySequence) : elements(myArraySequence<T>(arraySequence)) {};
+    myPolynomial(myArraySequence<T> &arraySequence) : elements(myArraySequence<T>(arraySequence)) {};
 
     myPolynomial(T item) : elements(myArraySequence<T>(item)) {};
 
@@ -149,6 +145,11 @@ public:
     myPolynomial<T> operator () (myPolynomial<T> polynomial) {
         return myPolynomial<T>(this).getValue(polynomial);
     }
+    /*
+    friend std::string to_string(myPolynomial<T> polynomial) {
+        std::string res("");
+        //for (auto i : )
+    }/**/
 };
 
 
