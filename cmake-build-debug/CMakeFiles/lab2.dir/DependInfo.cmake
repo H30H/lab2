@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/c/cc++ labs/lab2/main.cpp" "/mnt/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/main.cpp.o"
-  "/mnt/c/cc++ labs/lab2/myArraySequence.cpp" "/mnt/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myArraySequence.cpp.o"
-  "/mnt/c/cc++ labs/lab2/myDynamicArray.cpp" "/mnt/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myDynamicArray.cpp.o"
-  "/mnt/c/cc++ labs/lab2/myLinkedList.cpp" "/mnt/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myLinkedList.cpp.o"
-  "/mnt/c/cc++ labs/lab2/myListSequence.cpp" "/mnt/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myListSequence.cpp.o"
-  "/mnt/c/cc++ labs/lab2/myPolynomial.cpp" "/mnt/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myPolynomial.cpp.o"
+  "/cygdrive/c/cc++ labs/lab2/main.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/main.cpp.o"
+  "/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myArraySequence.cpp.o"
+  "/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myDynamicArray.cpp.o"
+  "/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myLinkedList.cpp.o"
+  "/cygdrive/c/cc++ labs/lab2/myListSequence.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myListSequence.cpp.o"
+  "/cygdrive/c/cc++ labs/lab2/myPolynomial.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myPolynomial.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

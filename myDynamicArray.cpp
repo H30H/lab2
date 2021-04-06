@@ -34,6 +34,13 @@ myDynamicArray<T>::myDynamicArray(int newSize) {   //создание новог
 }
 
 template<class T>
+myDynamicArray<T>::myDynamicArray() {
+    arr = nullptr;
+    len = 0;
+    size = 0;
+}
+
+template<class T>
 myDynamicArray<T>::myDynamicArray(const myDynamicArray<T> &dynamicArray) { //создание нового массива и копирование элементов из такого же класса
     arr = nullptr;
     size = 0;
@@ -137,11 +144,4 @@ T *myDynamicArray<T>::begin() const {
 template<class T>
 T *myDynamicArray<T>::end() const {
     return arr ? arr + len : nullptr;
-}
-
-template<class T>
-myDynamicArray<T>::myDynamicArray() {
-    arr = nullptr;
-    len = 0;
-    size = 0;
 }

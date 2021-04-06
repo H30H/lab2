@@ -126,9 +126,8 @@ public:
         }
         return res;
     }
+    int k123 = 0;
 };
-
-
 
 
 #endif //LAB2_MYDYNAMICARRAY_H

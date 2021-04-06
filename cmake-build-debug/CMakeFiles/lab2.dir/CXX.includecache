@@ -6,65 +6,81 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/cc++ labs/lab2/main.cpp
+/cygdrive/c/cc++ labs/lab2/main.cpp
 myDynamicArray.cpp
-/mnt/c/cc++ labs/lab2/myDynamicArray.cpp
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
 myLinkedList.cpp
-/mnt/c/cc++ labs/lab2/myLinkedList.cpp
+/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
 mySequence.cpp
-/mnt/c/cc++ labs/lab2/mySequence.cpp
+/cygdrive/c/cc++ labs/lab2/mySequence.cpp
 myArraySequence.cpp
-/mnt/c/cc++ labs/lab2/myArraySequence.cpp
+/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
+myPolynomial.h
+/cygdrive/c/cc++ labs/lab2/myPolynomial.h
 myLinkedList.h
-/mnt/c/cc++ labs/lab2/myLinkedList.h
+/cygdrive/c/cc++ labs/lab2/myLinkedList.h
 myDynamicArray.h
-/mnt/c/cc++ labs/lab2/myDynamicArray.h
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
 iostream
 -
 complex
 -
 vector
 -
-stdlib.h
--
 
-/mnt/c/cc++ labs/lab2/myArraySequence.cpp
+/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
 myArraySequence.h
-/mnt/c/cc++ labs/lab2/myArraySequence.h
+/cygdrive/c/cc++ labs/lab2/myArraySequence.h
 
-/mnt/c/cc++ labs/lab2/myArraySequence.h
+/cygdrive/c/cc++ labs/lab2/myArraySequence.h
 mySequence.h
-/mnt/c/cc++ labs/lab2/mySequence.h
+/cygdrive/c/cc++ labs/lab2/mySequence.h
 myDynamicArray.h
-/mnt/c/cc++ labs/lab2/myDynamicArray.h
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
 
-/mnt/c/cc++ labs/lab2/myDynamicArray.cpp
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
 myDynamicArray.h
-/mnt/c/cc++ labs/lab2/myDynamicArray.h
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
 
-/mnt/c/cc++ labs/lab2/myDynamicArray.h
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
 cstring
-/mnt/c/cc++ labs/lab2/cstring
+/cygdrive/c/cc++ labs/lab2/cstring
 string
 -
 iostream
 -
 
-/mnt/c/cc++ labs/lab2/myLinkedList.cpp
+/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
 myLinkedList.h
-/mnt/c/cc++ labs/lab2/myLinkedList.h
+/cygdrive/c/cc++ labs/lab2/myLinkedList.h
 
-/mnt/c/cc++ labs/lab2/myLinkedList.h
+/cygdrive/c/cc++ labs/lab2/myLinkedList.h
 cstdlib
-/mnt/c/cc++ labs/lab2/cstdlib
+/cygdrive/c/cc++ labs/lab2/cstdlib
 iostream
 -
 
-/mnt/c/cc++ labs/lab2/mySequence.cpp
+/cygdrive/c/cc++ labs/lab2/myListSequence.h
 mySequence.h
-/mnt/c/cc++ labs/lab2/mySequence.h
+/cygdrive/c/cc++ labs/lab2/mySequence.h
+myLinkedList.h
+/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+iostream
+-
 
-/mnt/c/cc++ labs/lab2/mySequence.h
+/cygdrive/c/cc++ labs/lab2/myPolynomial.h
+iostream
+-
+myArraySequence.h
+/cygdrive/c/cc++ labs/lab2/myArraySequence.h
+myListSequence.h
+/cygdrive/c/cc++ labs/lab2/myListSequence.h
+
+/cygdrive/c/cc++ labs/lab2/mySequence.cpp
+mySequence.h
+/cygdrive/c/cc++ labs/lab2/mySequence.h
+
+/cygdrive/c/cc++ labs/lab2/mySequence.h
 iostream
 -
 

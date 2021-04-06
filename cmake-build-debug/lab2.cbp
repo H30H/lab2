@@ -8,114 +8,112 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/mnt/c/cc++ labs/lab2/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/c/cc++ labs/lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/mnt/c/cc++ labs/lab2/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/c/cc++ labs/lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/mnt/c/cc++ labs/lab2/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/c/cc++ labs/lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lab2">
-				<Option output="/mnt/c/cc++ labs/lab2/cmake-build-debug/lab2" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/c/cc++ labs/lab2/cmake-build-debug"/>
+				<Option output="/cygdrive/c/cc++ labs/lab2/cmake-build-debug/lab2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/cc++ labs/lab2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include"/>
 					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab2"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab2"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lab2/fast">
-				<Option output="/mnt/c/cc++ labs/lab2/cmake-build-debug/lab2" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/c/cc++ labs/lab2/cmake-build-debug"/>
+				<Option output="/cygdrive/c/cc++ labs/lab2/cmake-build-debug/lab2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/cc++ labs/lab2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include"/>
 					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab2/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab2/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/cc++\ labs/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/c/cc++ labs/lab2/main.cpp">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/main.cpp">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/myArraySequence.cpp">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/myArraySequence.h">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myArraySequence.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/myDynamicArray.cpp">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/myDynamicArray.h">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myDynamicArray.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/myLinkedList.cpp">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/myLinkedList.h">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myLinkedList.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/myListSequence.cpp">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myListSequence.cpp">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/myListSequence.h">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myListSequence.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/myPolynomial.cpp">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myPolynomial.cpp">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/myPolynomial.h">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/myPolynomial.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="/mnt/c/cc++ labs/lab2/CMakeLists.txt">
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

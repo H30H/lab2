@@ -178,8 +178,10 @@ public:
         res.append(element);
 
         return res;
+        /* */
     }
 };
+
 
 
 #endif //LAB2_MYARRAYSEQUENCE_H
