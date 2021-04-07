@@ -110,8 +110,9 @@ int main() {
     }
 
     myDynamicArray<myDynamicArray<int>*> k2;
-    k2.resize(1);
+    k2.resize(2);
     k2[0] = &k1;
+    k2[1] = &k1;
 
     cout << k1 << endl;
     cout << &k1 << endl;

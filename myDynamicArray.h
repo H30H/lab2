@@ -46,13 +46,15 @@ public:
     }
 
     friend std::ostream &operator << (std::ostream &cout, myDynamicArray<T> *dynamicArray) {
+        return cout << dynamicArray[0];
+        /*
         cout << '{';
         for (int i = 0; i < dynamicArray->length(); i++) {
             cout << dynamicArray[0][i];
             if (i != dynamicArray->length() - 1)
                 cout << ", ";
         }
-        return cout << '}';
+        return cout << '}';/**/
     }
 
     myDynamicArray(T *items, int count);

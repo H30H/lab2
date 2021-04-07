@@ -27,8 +27,8 @@ public:
         return cout;
     }
 
-    friend std::string to_string(myArraySequence<T> arraySequence) {
-        return std::to_string(arraySequence.dynamicArray);
+    friend std::ostream &operator << (std::ostream &cout, myArraySequence<T> *arraySequence) {
+        return cout << arraySequence[0];
     }
 
     myArraySequence(T* items, int count) {
