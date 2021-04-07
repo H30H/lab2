@@ -113,7 +113,7 @@ public:
 
     void append(T *item) {
         dynamicArray.resize(dynamicArray.length() + 1);
-        dynamicArray[length() - 1] = item;
+        dynamicArray[length() - 1] = *item;
     }
 
     myArraySequence<T> append_(const T &item) {

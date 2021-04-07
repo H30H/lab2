@@ -9,23 +9,22 @@ void myLinkedList<T>::append(T item) {  //добавление элемента 
     auto *el = new element;             //создание элемента с входными данными
     el->data = item;
     el->next = nullptr;
+    std::cout << "data: " << el->data << ", " << len << std::endl;
     len++;
     if (head == nullptr) {              //проверка на пустоту списка
         head = el;
-        end = el;
+        ending = el;
         lastGet = el;
         lastInd = 0;
         return;
     }
-    end->next = el;                     //добавление элемента в конец
-    end = el;
+    ending->next = el;                     //добавление элемента в конец
+    ending = el;
 }
 
 template<class T>
 myLinkedList<T> myLinkedList<T>::append_(T item) {
-    auto linkedList = myLinkedList<T>(this);
-    linkedList.append(item);
-    return linkedList;
+    return myLinkedList<T>(*this);//.append(item);
 }
 
 template<class T>
@@ -36,7 +35,7 @@ void myLinkedList<T>::prepend(T item) { //добавление в начало
     len++;
     if (head == nullptr) {
         head = el;
-        end = el;
+        ending = el;
         lastGet = el;
         lastInd = 0;
         return;
@@ -47,13 +46,13 @@ void myLinkedList<T>::prepend(T item) { //добавление в начало
 
 template<class T>
 myLinkedList<T> myLinkedList<T>::prepend_(T item) {
-    auto linkedList = myLinkedList<T>(this);
-    linkedList.prepend(item);
-    return linkedList;
+    return myLinkedList<T>(*this).prepend(item);
 }
 
 template<class T>
 void myLinkedList<T>::insert(T item, int index) {
+    if (index < 0 || index >= len) throw IndexOutOfRange(len, index);
+
     element *el = head;
     for (int i = 1; i < index - 1; i++, el = el->next);
 
@@ -66,37 +65,29 @@ void myLinkedList<T>::insert(T item, int index) {
 
 template<class T>
 myLinkedList<T> myLinkedList<T>::insert_(T item, int index) {
-    auto linkedList = myLinkedList<T>(this);
-    linkedList.insert(item, index);
-    return linkedList;
+    return myLinkedList<T>(*this).insert(item, index);
 }
 
 template<class T>
 void myLinkedList<T>::set(T item, int index) {
-    if (index >= len || index < 0) throw IndexOutOfRange();
-    element *el = head;
-
-    for (int i = 0; i < index; i++, el = el->next);
-
-    el->data = item;
+    (*this)[index] = item;
 }
 
 template<class T>
 myLinkedList<T> myLinkedList<T>::set_(T item, int index) {
-    auto linkedList = myLinkedList<T>(this);
-    linkedList.set(item, index);
-    return linkedList;
+    return myLinkedList<T>(*this).set(item, index);
 }
 
 template<class T>
 myLinkedList<T>::myLinkedList(T *items, int count) {
+    if (count < 0) throw IndexOutOfRange(0, count);
     for (int i = 0; i < count; i++) {
         append(items[i]);
     }
 }
 
 template<class T>
-myLinkedList<T>::myLinkedList(const myLinkedList<T> &linkedList) {
+myLinkedList<T>::myLinkedList(myLinkedList<T> const &linkedList) {
     len = linkedList.len;
     element *el = linkedList.head;
     while (el != nullptr) {
@@ -113,46 +104,26 @@ myLinkedList<T>::myLinkedList(T item) {
 
 template<class T>
 T myLinkedList<T>::getFirst() {
-    if (head == nullptr) throw IndexOutOfRange(); //обработка ошибки
+    if (head == nullptr) throw IndexOutOfRange(len, 0); //обработка ошибки
 
     return head->data;
 }
 
 template<class T>
 T myLinkedList<T>::getLast() {
-    if (end == nullptr) throw IndexOutOfRange(); //обработка ошибки
+    if (ending == nullptr) throw IndexOutOfRange(len, len - 1); //обработка ошибки
 
-    return end->data;
-}
-
-template<class T>
-T myLinkedList<T>::get(int index) {
-    if (index < 0 || index >= len) throw IndexOutOfRange(); //обработка ошибки
-
-    if (lastInd < index) {
-        for (lastInd; lastInd < index; lastInd++, lastGet = lastGet->next);
-        return lastGet->data;
-    }
-
-    element *el = head;
-
-    T data;
-
-    for (int i = 1; i < index; i++, el = el->next);
-    lastInd = index;
-    lastGet = el;
-    return el->data;
+    return ending->data;
 }
 
 template<class T>
 myLinkedList<T> myLinkedList<T>::getSubList(int startIndex, int endIndex) {
-    myLinkedList<T> newLinkedList = myLinkedList<T>();
-    element *el = head;
-    for (int i = 1; i < startIndex; i++, el = el->next);
+    if (startIndex < 0 || startIndex >= len) throw IndexOutOfRange(len, startIndex);
+    if (endIndex < 0 || endIndex >= len) throw IndexOutOfRange(len, endIndex);
 
+    myLinkedList<T> newLinkedList = myLinkedList<T>();
     for (int i = startIndex; i < endIndex; i++) {
-        newLinkedList.append(el->data);
-        el = el->next;
+        newLinkedList.append(get(i));
     }
 
     return newLinkedList;
@@ -167,7 +138,7 @@ template<class T>
 myLinkedList<T>::myLinkedList() {
     len = 0;
     head = nullptr;
-    end = nullptr;
+    ending = nullptr;
 }
 
 template<class T>
@@ -177,7 +148,7 @@ T myLinkedList<T>::pop() {
 
 template<class T>
 T myLinkedList<T>::pop(int index) {
-    if (index < 0 || index >= len) throw IndexOutOfRange(); //обработка ошибки
+    if (index < 0 || index >= len) throw IndexOutOfRange(len, index); //обработка ошибки
 
     element *el = head;
     element *pref = nullptr;
@@ -201,14 +172,14 @@ T myLinkedList<T>::pop(int index) {
 
 template<class T>
 myLinkedList<T> myLinkedList<T>::pop_() {
-    auto linkedList = myLinkedList<T>(this);
+    auto linkedList = myLinkedList<T>(*this);
     linkedList.pop();
     return linkedList;
 }
 
 template<class T>
 myLinkedList<T> myLinkedList<T>::pop_(int index) {
-    auto linkedList = myLinkedList<T>(this);
+    auto linkedList = myLinkedList<T>(*this);
     linkedList.pop(index);
     return linkedList;
 }
@@ -225,24 +196,27 @@ myLinkedList<T>::~myLinkedList() {
 
 template<class T>
 T &myLinkedList<T>::operator[](int index) {
-    return get(index);
+    if (index < 0 || index >= len) throw IndexOutOfRange(len, index); //обработка ошибки
+
+    if (lastInd < index) {
+        for (lastInd; lastInd < index; lastInd++, lastGet = lastGet->next);
+        return lastGet->data;
+    }
+
+    element *el = head;
+
+    T data;
+
+    for (int i = 0; i < index; i++, el = el->next);
+    lastInd = index;
+    lastGet = el;
+    return el->data;
 }
 
 template<class T>
-std::string myLinkedList<T>::getStr() {
-    if (len == 0) return std::string("Пустой список!");
-    auto str = std::string();
-    str += std::string("Лист: {");
-    element *el = head;
-    while (el != nullptr) {
-        str += std::to_string(el->data);
-        el = el->next;
-        if (el != nullptr) {
-            str += std::string(", ");
-        }
-    }
-    str += std::string("}");
-    return str;
+T myLinkedList<T>::get(int index) {
+    return (*this)[index];
 }
+
 
 

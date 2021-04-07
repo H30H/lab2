@@ -45,6 +45,16 @@ public:
         return cout << '}';
     }
 
+    friend std::ostream &operator << (std::ostream &cout, myDynamicArray<T> *dynamicArray) {
+        cout << '{';
+        for (int i = 0; i < dynamicArray->length(); i++) {
+            cout << dynamicArray[0][i];
+            if (i != dynamicArray->length() - 1)
+                cout << ", ";
+        }
+        return cout << '}';
+    }
+
     myDynamicArray(T *items, int count);
 
     explicit myDynamicArray(int size);
@@ -73,6 +83,18 @@ public:
         return *this;
     }
 
+    myDynamicArray<T> &operator = (myDynamicArray<T> *dynamicArray) {
+        arr = dynamicArray->arr;
+        len = dynamicArray->len;
+        size = dynamicArray->size;
+
+        return *this;
+    }
+
+    myDynamicArray<T> &operator* () {
+        return *this;
+    }
+
     int operator == (myDynamicArray<T> dynamicArray) {
         if (len != dynamicArray.length()) return 0;
 
@@ -87,15 +109,11 @@ public:
 
     T *end() const;
 
-    void set(T item, int index);                        //изменяет массив
+    void set(T item, int index);
 
-    myDynamicArray<T> set_(T item, int index);          //создаёт новый массив
+    void resize(int newSize);
 
-    void resize(int newSize);                           //изменяет массив
-
-    myDynamicArray<T> resize_(int newSize);             //создаёт новый массив
-
-    myDynamicArray<myDynamicArray<T>> split(T item) {
+    myDynamicArray<myDynamicArray<T>*> *split(T item) {
         myDynamicArray<int> indexes;
 
         for (int i = 0; i < len; i++) {
@@ -104,26 +122,30 @@ public:
                 indexes[indexes.length() - 1] = i;
             }
         }
+
         indexes.resize(indexes.length() + 1);
         indexes[indexes.length() - 1] = len;
 
-        myDynamicArray<myDynamicArray<T>> res(indexes.length());
-        for(int i = 0; i < indexes.length(); res[i] = myDynamicArray<T>(), i++);
+        auto res = new myDynamicArray<myDynamicArray<T>*>;
+
+        res->resize(indexes.length());
 
         int index = 0;
-        myDynamicArray<T> element;
-        element.resize(indexes[index]);
+        auto *element = new myDynamicArray<T>;
+        element->resize(indexes[index]);
 
         for (int i = 0, j = 0; i < len; i++, j++) {
             if (i == indexes[index]) {
-                res[index] = element;
-                element.resize(indexes[index + 1] - indexes[index] - 1);
+                res[0][index] = element;
+                element = new myDynamicArray<T>;
                 index++;
+                element->resize(indexes[index] - indexes[index - 1] - 1);
                 j = -1;
                 continue;
             }
-            element[j] = arr[i];
+            element[0][j] = arr[i];
         }
+        res[0][index] = element;
         return res;
     }
     int k123 = 0;

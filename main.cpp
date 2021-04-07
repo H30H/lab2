@@ -104,28 +104,33 @@ int main() {
     k1[3] = 7;
      */
 
-
-    myDynamicArray<int> k7;
-    myDynamicArray<float> k8;
-    myDynamicArray<myDynamicArray<myDynamicArray<char>>> k9;
-
-    vector<int> v1, v2;
-
-    myArraySequence<int> k1;
-    myArraySequence<int> k2;
-    v1.resize(10); v2.resize(10);
-    for (int i = 0; i < 6; i++) {
-        k1.append(i);
-        k2.append(i*2);
-        v1[i] = i;
-        v2[i] = 2*i;
+    myDynamicArray<int> k1(20);
+    for (int i = 0; i < 20; i++) {
+        k1[i] = i % 10;
     }
 
-    myPolynomial<int> pol1(k1);
-    myPolynomial<int> pol2(k2);
-    cout << pol1 << " " << k1 << endl;
-    cout << pol2 << " " << k2 << endl << endl;
-    cout << pol1 + pol2 << endl;
+    myDynamicArray<myDynamicArray<int>*> k2;
+    k2.resize(1);
+    k2[0] = &k1;
 
-    cout << endl << pol1.map(pol2.get, myFunc) << endl;
+    cout << k1 << endl;
+    cout << &k1 << endl;
+    cout << k2 << endl;
+    cout << k1.split(5) << endl;
+
+    /*
+    myLinkedList<int> list;
+    cout << list << endl;
+    for(int i = 0; i < 10; i++) {
+        cout << i << endl;
+        list.append(i);
+    }
+
+    cout << list << endl;
+    cout << list[0] << ' ' << list[1] << endl;
+    cout << list.get(0) << ' ' << list.get(1) << endl;
+    /*
+    for (auto &i: myLinkedList<int>::Iterator(list)) {
+        cout << i << " ";
+    } /**/
 }

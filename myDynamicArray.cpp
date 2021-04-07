@@ -123,20 +123,6 @@ void myDynamicArray<T>::resize(int newSize) {
 }
 
 template<class T>
-myDynamicArray<T> myDynamicArray<T>::set_(T item, int index) {
-    auto dynamicArray = myDynamicArray<T>(this);
-    dynamicArray.set(item, index);
-    return dynamicArray;
-}
-
-template<class T>
-myDynamicArray<T> myDynamicArray<T>::resize_(int newSize) {
-    auto dynamicArray = myDynamicArray<T>(this);
-    dynamicArray.resize(newSize);
-    return dynamicArray;
-}
-
-template<class T>
 T *myDynamicArray<T>::begin() const {
     return arr;
 }

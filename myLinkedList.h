@@ -20,19 +20,53 @@ private:
     int lastInd = -1;
 
     element *head = nullptr;
-    element *end = nullptr;
+    element *ending = nullptr;
     element *lastGet = nullptr;
 
 public:
-    class IndexOutOfRange{};
+    class IndexOutOfRange{
+    public:
+        int length;
+        int index;
+        IndexOutOfRange(int length, int index): length(length), index(index) {};
+        IndexOutOfRange(): length(-1), index(-1) {};
+    };
+
+    /*
+    class Iterator {
+    private:
+        element *el;
+    public:
+        explicit Iterator(myLinkedList<T> linkedList): el(linkedList.head) {};
+
+        T *operator*() {
+            return &(el->data);
+        }
+
+        void operator++(int) {
+            el = el->next;
+        }
+
+        T *begin() {
+            return &(head->data);
+        }
+
+        T *end() {
+            return &(ending->data);
+        }
+    }; /**/
 
     friend std::ostream &operator << (std::ostream &cout, myLinkedList<T> linkedList) {
-        cout << linkedList.getStr();
-        return cout;
-    }
-
-    friend std::string to_string(myLinkedList<T> linkedList) {
-        return linkedList.getStr();
+        element *el = linkedList.head;
+        cout << '{';
+        while(el != nullptr) {
+            cout << el->data;
+            el = el->next;
+            if (el != nullptr) {
+                cout << ' ';
+            }
+        }
+        return cout << '}';
     }
 
     void append(T item);                        //изменяет список
@@ -53,7 +87,7 @@ public:
 
     myLinkedList(T *items, int count);
 
-    myLinkedList(T item);
+    explicit myLinkedList(T item);
 
     myLinkedList();
 
@@ -80,8 +114,6 @@ public:
     myLinkedList<T> pop_();                     //создаёт новый список
 
     myLinkedList<T> pop_(int index);            //создаёт новый список
-
-    std::string getStr();
 };
 
 #endif //LAB2_MYLINKEDLIST_H
