@@ -11,17 +11,17 @@
 template<class T>
 class myLinkedList {
 private:
-    typedef struct Element {
-        T data;
-        struct Element *next;
+    typedef struct Element {        //структура одного элемента связного списка
+        T data;                     // * данные, хранящиеся в одном элементе
+        struct Element *next;       // * ссылка на следующий элемент
     } element;
 
-    int len = 0;
-    int lastInd = -1;
+    int len = 0;                    //длина связного списка
+    int lastInd = -1;               //индекс того элемента, к которому мы обращались в последный раз
 
-    element *head = nullptr;
-    element *ending = nullptr;
-    element *lastGet = nullptr;
+    element *head = nullptr;        //ссылка на начало списка
+    element *ending = nullptr;      //ссылка на конец списка
+    element *lastGet = nullptr;     //ссылка на элемент с индексом lastInd
 
 public:
     class IndexOutOfRange{
