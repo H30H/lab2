@@ -32,12 +32,13 @@ public:
         IndexOutOfRange(): length(-1), index(-1) {};
     };
 
-    /*
+    //TODO пока не работает
     class Iterator {
     private:
+        myLinkedList<T> *list;
         element *el;
     public:
-        explicit Iterator(myLinkedList<T> linkedList): el(linkedList.head) {};
+        explicit Iterator(myLinkedList<T> *linkedList): list(linkedList), el(linkedList->head) {};
 
         T *operator*() {
             return &(el->data);
@@ -48,11 +49,12 @@ public:
         }
 
         T *begin() {
-            return &(head->data);
+            el = list->head;
+            return &(list->head->data);
         }
 
         T *end() {
-            return &(ending->data);
+            return &(list->ending->data);
         }
     }; /**/
 
@@ -63,27 +65,19 @@ public:
             cout << el->data;
             el = el->next;
             if (el != nullptr) {
-                cout << ' ';
+                cout << ", ";
             }
         }
         return cout << '}';
     }
 
-    void append(T item);                        //изменяет список
+    void append(T item);
 
-    myLinkedList<T> append_(T item);            //создаёт новый список
+    void prepend(T item);
 
-    void prepend(T item);                       //изменяет список
+    void insert(T item, int index);
 
-    myLinkedList<T> prepend_(T item);           //создаёт новый список
-
-    void insert(T item, int index);             //изменяет список
-
-    myLinkedList<T> insert_(T item, int index); //создаёт новый список
-
-    void set(T item, int index);                //изменяет список
-
-    myLinkedList<T> set_(T item, int index);    //создаёт новый список
+    void set(T item, int index);
 
     myLinkedList(T *items, int count);
 
@@ -107,13 +101,14 @@ public:
 
     int length();
 
-    T pop();                                    //изменяет список
+    T pop();
 
-    T pop(int index);                           //изменяет список
+    T pop(int index);
+    /*
+    myLinkedList<myLinkedList<T>*>* split(T item) {
 
-    myLinkedList<T> pop_();                     //создаёт новый список
-
-    myLinkedList<T> pop_(int index);            //создаёт новый список
+    }
+    /* */
 };
 
 #endif //LAB2_MYLINKEDLIST_H

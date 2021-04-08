@@ -9,7 +9,6 @@ void myLinkedList<T>::append(T item) {  //добавление элемента 
     auto *el = new element;             //создание элемента с входными данными
     el->data = item;
     el->next = nullptr;
-    std::cout << "data: " << el->data << ", " << len << std::endl;
     len++;
     if (head == nullptr) {              //проверка на пустоту списка
         head = el;
@@ -20,11 +19,6 @@ void myLinkedList<T>::append(T item) {  //добавление элемента 
     }
     ending->next = el;                     //добавление элемента в конец
     ending = el;
-}
-
-template<class T>
-myLinkedList<T> myLinkedList<T>::append_(T item) {
-    return myLinkedList<T>(*this);//.append(item);
 }
 
 template<class T>
@@ -45,11 +39,6 @@ void myLinkedList<T>::prepend(T item) { //добавление в начало
 }
 
 template<class T>
-myLinkedList<T> myLinkedList<T>::prepend_(T item) {
-    return myLinkedList<T>(*this).prepend(item);
-}
-
-template<class T>
 void myLinkedList<T>::insert(T item, int index) {
     if (index < 0 || index >= len) throw IndexOutOfRange(len, index);
 
@@ -64,18 +53,8 @@ void myLinkedList<T>::insert(T item, int index) {
 }
 
 template<class T>
-myLinkedList<T> myLinkedList<T>::insert_(T item, int index) {
-    return myLinkedList<T>(*this).insert(item, index);
-}
-
-template<class T>
 void myLinkedList<T>::set(T item, int index) {
     (*this)[index] = item;
-}
-
-template<class T>
-myLinkedList<T> myLinkedList<T>::set_(T item, int index) {
-    return myLinkedList<T>(*this).set(item, index);
 }
 
 template<class T>
@@ -168,20 +147,6 @@ T myLinkedList<T>::pop(int index) {
     delete el;
     len--;
     return data;
-}
-
-template<class T>
-myLinkedList<T> myLinkedList<T>::pop_() {
-    auto linkedList = myLinkedList<T>(*this);
-    linkedList.pop();
-    return linkedList;
-}
-
-template<class T>
-myLinkedList<T> myLinkedList<T>::pop_(int index) {
-    auto linkedList = myLinkedList<T>(*this);
-    linkedList.pop(index);
-    return linkedList;
 }
 
 template<class T>

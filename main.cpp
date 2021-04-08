@@ -103,7 +103,7 @@ int main() {
 
     k1[3] = 7;
      */
-
+    /*
     myDynamicArray<int> k1(20);
     for (int i = 0; i < 20; i++) {
         k1[i] = i % 10;
@@ -119,18 +119,24 @@ int main() {
     cout << k2 << endl;
     cout << k1.split(5) << endl;
     cout << k1.split(20) << endl;
+    */
 
-    /*
     myLinkedList<int> list;
     cout << list << endl;
     for(int i = 0; i < 10; i++) {
-        cout << i << endl;
         list.append(i);
     }
 
     cout << list << endl;
     cout << list[0] << ' ' << list[1] << endl;
     cout << list.get(0) << ' ' << list.get(1) << endl;
+
+    myLinkedList<int>::Iterator iter(&list);
+
+    for (auto &i : iter) {
+        cout << i << " ";
+    }
+
     /*
     for (auto &i: myLinkedList<int>::Iterator(list)) {
         cout << i << " ";
