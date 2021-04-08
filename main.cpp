@@ -118,6 +118,7 @@ int main() {
     cout << &k1 << endl;
     cout << k2 << endl;
     cout << k1.split(5) << endl;
+    cout << k1.split(20) << endl;
 
     /*
     myLinkedList<int> list;

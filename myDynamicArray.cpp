@@ -55,6 +55,14 @@ myDynamicArray<T>::myDynamicArray(const myDynamicArray<T> &dynamicArray) { //с�
     }
 }
 
+
+template<class T>
+myDynamicArray<T>::myDynamicArray(myDynamicArray<T> *dynamicArray) {
+    len = dynamicArray->len;
+    arr = dynamicArray->arr;
+    size = dynamicArray->size;
+}
+
 template<class T>
 myDynamicArray<T>::~myDynamicArray() {      //удаление массива
     if (arr != nullptr && arr != NULL && size != 0)
@@ -73,21 +81,21 @@ T myDynamicArray<T>::get(int index) {
 
 template<class T>
 T &myDynamicArray<T>::operator[](int index) {
-    if (index < 0 || index >= len) throw IndexOutOfRange();  //исключение выхода за массив
+    if (index < 0 || index >= len) throw IndexOutOfRange(len, index);  //исключение выхода за массив
 
     return arr[index];
 }
 
 template<class T>
 void myDynamicArray<T>::set(T item, int index) {
-    if (index < 0 || index >= len) throw IndexOutOfRange(); //исключение выхода за массив
+    if (index < 0 || index >= len) throw IndexOutOfRange(len, index); //исключение выхода за массив
 
     arr[index] = item;
 }
 
 template<class T>
 void myDynamicArray<T>::resize(int newSize) {
-    if (newSize < 0) throw IndexOutOfRange(); //исключение выхода за массив
+    if (newSize < 0) throw IndexOutOfRange(len, newSize); //исключение выхода за массив
     if (len == newSize) return;               //длина не изменилась
     if (newSize == 0) {                       //нулевая длина, удаление массива
         if (arr != nullptr)
@@ -97,7 +105,7 @@ void myDynamicArray<T>::resize(int newSize) {
         arr = nullptr;
         return;
     }
-    else if (newSize > size) {                     //создание нового массива с выделением памяти и заполнение данных
+    if (newSize > size) {                     //создание нового массива с выделением памяти и заполнение данных
         if (size == 0) size = 1;
         for (size; size <= newSize + 1; size *= 2);
         int newSize2 = newSize;

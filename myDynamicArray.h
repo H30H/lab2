@@ -11,12 +11,19 @@
 template <class T>
 class myDynamicArray {
 private:
-    T *arr;
-    int len;
-    int size;
+    T *arr;                           //массив элементов, с которыми работает пользователь
+    int len;                          //длина массива (количество элементов, достуных пользователю)
+    int size;                         //количество элементов, под которые выделена память
+    int sizeOfBlock;                  //TODO количество элементов, на которое нужно увеличить массив в resize(int)
     const size_t elSize = sizeof(T);
 public:
-    class IndexOutOfRange{};
+    class IndexOutOfRange{
+    public:
+        int length;
+        int index;
+        IndexOutOfRange(int length, int index): length(length), index(index) {};
+        IndexOutOfRange(): length(-1), index(-1) {};
+    };
 
     //std::string getStr();
 
@@ -64,6 +71,8 @@ public:
     myDynamicArray();
 
     myDynamicArray(myDynamicArray<T> const &dynamicArray);
+
+    explicit myDynamicArray(myDynamicArray<T> *dynamicArray);
 
     ~myDynamicArray();
 

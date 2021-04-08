@@ -13,7 +13,13 @@ class myArraySequence: mySequence<T> {
 private:
     myDynamicArray<T> dynamicArray;
 public:
-    class IndexOutOfRange: myDynamicArray<T>::IndexOutOfRange{};
+    class IndexOutOfRange{
+    public:
+        int length;
+        int index;
+        IndexOutOfRange(int length, int index): length(length), index(index) {};
+        IndexOutOfRange(): length(-1), index(-1) {};
+    };
 
     friend std::ostream &operator << (std::ostream &cout, myArraySequence<T> &arraySequence) {
         cout << '{';
@@ -53,22 +59,27 @@ public:
     }
 
     T getFirst() {
+        if (length() == 0) throw IndexOutOfRange(length(), 0);
         return dynamicArray[0];
     }
 
     T getLast() {
+        if (length() == 0) throw IndexOutOfRange(length(), -1);
         return dynamicArray[dynamicArray.length() - 1];
     }
 
     T get(int index) {
+        if (index < 0 || index >= length()) throw IndexOutOfRange(length(), index);
         return dynamicArray.get(index);
     }
 
     void set(T item, int index) {
+        if (index < 0 || index >= length()) throw IndexOutOfRange(length(), index);
         dynamicArray.set(item, index);
     }
 
     T &operator [] (int index) {
+        if (index < 0 || index >= length()) throw IndexOutOfRange(length(), index);
         return dynamicArray[index];
     }
 
@@ -85,14 +96,21 @@ public:
         return *this;
     }
 
+    myArraySequence<T> *operator*() {
+        return this;
+    }
+
     int operator == (myArraySequence<T> arraySequence) {
         return dynamicArray == arraySequence.dynamicArray;
     }
 
     myArraySequence<T> *getSubSequence(int startIndex, int endIndex) {
+        if (startIndex < 0 || startIndex >= length())
+            throw IndexOutOfRange(length(), startIndex);
+        if (endIndex < 0 || endIndex >= length())
+            throw IndexOutOfRange(length(), endIndex);
+
         int delta = startIndex < endIndex ? 1 : -1;
-        dynamicArray.get(startIndex);
-        dynamicArray.get(endIndex);
 
         auto newArray = new myArraySequence<T>;
         for (int i = startIndex, j = 0; i != endIndex; i += delta, j++) {
@@ -116,12 +134,6 @@ public:
         dynamicArray[length() - 1] = *item;
     }
 
-    myArraySequence<T> append_(const T &item) {
-        auto arraySequence = myArraySequence<T>(this);
-        arraySequence.append(item);
-        return arraySequence;
-    }
-
     void prepend(T item) {
         dynamicArray.resize(dynamicArray.length() + 1);
         for (int i = dynamicArray.length() - 1; i >= 0; i--) {
@@ -130,14 +142,16 @@ public:
         dynamicArray[0] = item;
     }
 
-    void remove() {
-        dynamicArray.resize(0);
+    void prepend(T *item) {
+        dynamicArray.resize(dynamicArray.length() + 1);
+        for (int i = dynamicArray.length() - 1; i >= 0; i--) {
+            dynamicArray[i+1] = dynamicArray[i];
+        }
+        dynamicArray[0] = *item;
     }
 
-    myArraySequence<T> prepend_(T item) {
-        auto arraySequence = myArraySequence<T>(this);
-        arraySequence.prepend(item);
-        return arraySequence;
+    void remove() {
+        dynamicArray.resize(0);
     }
 
     void insert(T item, int index) {
@@ -149,22 +163,63 @@ public:
         dynamicArray[index] = item;
     }
 
-    myArraySequence<T> insert_(T item, int index) {
-        auto arraySequence = myArraySequence<T>(this);
-        arraySequence.insert(item, index);
-        return arraySequence;
+    void insert(T *item, int index) {
+        dynamicArray[index];
+        dynamicArray.resize(dynamicArray.length() + 1);
+        for (int i = dynamicArray.length() - 1; i >= index; i--) {
+            dynamicArray[i+1] = dynamicArray[i];
+        }
+        dynamicArray[index] = *item;
     }
 
-    myArraySequence<T> *concat(mySequence<T>* list) {
+    myArraySequence<T> *concat(mySequence<T> *sequence) {
+        int start = dynamicArray.length();
+        dynamicArray.resize(start + sequence->length());
+
+        for (int i = 0; i < sequence->length(); i++) {
+            dynamicArray[i + start] = sequence[i];
+        }
+
+        return this;
+    }
+
+    myArraySequence<T> *concat_(mySequence<T>* sequence) {
         auto *newArray = new myArraySequence<T>();
         newArray->dynamicArray = dynamicArray;
-        for (int i = this->length(), j = 0; i < newArray->length(); i++, j++) {
-            newArray->append(list->get(i));
+
+        int start = dynamicArray.length();
+        newArray->dynamicArray.resize(start + sequence->length());
+
+        for (int i = 0; i < sequence->length(); i++) {
+            newArray[i + start] = sequence[i];
         }
         return newArray;
     }
 
-    myArraySequence<myArraySequence<T>> split(T item) {
+    myArraySequence<T> *operator + (mySequence<T>* sequence) {
+        return concat_(sequence);
+    }
+
+    void operator += (mySequence<T> sequence) {
+        concat(sequence);
+    }
+
+    myArraySequence<myArraySequence<T>*> *split(T item) {
+        auto res = new myArraySequence<myArraySequence<T>*>;
+        auto element = new myArraySequence<T>;
+
+        for (auto &i : dynamicArray) {
+            if (i == item) {
+                res->append(element);
+                element = new myArraySequence<T>;
+                continue;
+            }
+            element->append(i);
+        }
+        res->append(element);
+
+        return res;
+        /*
         myArraySequence<myArraySequence<T>> res;
         myArraySequence<T> element;
         for (auto &i : dynamicArray) {
