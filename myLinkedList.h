@@ -22,7 +22,6 @@ private:
     element *head = nullptr;        //ссылка на начало списка
     element *ending = nullptr;      //ссылка на конец списка
     element *lastGet = nullptr;     //ссылка на элемент с индексом lastInd
-
 public:
     class IndexOutOfRange{
     public:
@@ -32,31 +31,40 @@ public:
         IndexOutOfRange(): length(-1), index(-1) {};
     };
 
-    //TODO пока не работает
-    class Iterator {
+    class Iterator {               //класс итератора, для работы итератора со связным списком
     private:
         myLinkedList<T> *list;
         element *el;
     public:
         explicit Iterator(myLinkedList<T> *linkedList): list(linkedList), el(linkedList->head) {};
+        explicit Iterator(myLinkedList<T> *linkedList, element *elem): list(linkedList), el(elem) {};
 
-        T *operator*() {
-            return &(el->data);
+        T &operator*() const {
+            return el->data;
         }
 
-        void operator++(int) {
-            el = el->next;
+        int operator == (const Iterator& iter) const {
+            return list == iter.list && el == iter.el;
         }
 
-        T *begin() {
-            el = list->head;
-            return &(list->head->data);
+        int operator != (const Iterator& iter) const {
+            return !(*this == iter);
         }
 
-        T *end() {
-            return &(list->ending->data);
+        Iterator& operator++() {
+            if (el != nullptr)
+                el = el->next;
+            return *this;
         }
-    }; /**/
+
+        Iterator begin() {
+            return Iterator(list);
+        }
+
+        Iterator end() {
+            return Iterator(list, nullptr);
+        }
+    };
 
     friend std::ostream &operator << (std::ostream &cout, myLinkedList<T> linkedList) {
         element *el = linkedList.head;
