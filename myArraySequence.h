@@ -174,6 +174,10 @@ public:
         dynamicArray.resize(dynamicArray.length() - to + from);
     }
 
+    void reverse() {
+        dynamicArray.reverse();
+    }
+
     void insert(T item, int index) {
         dynamicArray[index];
         dynamicArray.resize(dynamicArray.length() + 1);

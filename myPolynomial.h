@@ -28,11 +28,21 @@ template<class T>
 class myPolynomial {
 private:
     myArraySequence<T> elements;
+    std::string symbol = "x";
 public:
     friend std::ostream &operator << (std::ostream &cout, myPolynomial<T> polynomial) {
-        for (int i = 0; i < polynomial.elements.length(); i++) {
+        for (int i = polynomial.elements.length() - 1; i >= 0; i--) {
             if (polynomial.elements[i] == 0) continue;
-            cout << '(' << polynomial.elements[i] << ")*x^" << i << " + ";
+            cout << '(' << polynomial.elements[i] << ')';
+            if (i != 0) {
+                cout << '*';
+                if (polynomial.symbol.length() == 1)
+                    cout << polynomial.symbol;
+                else
+                    cout << "\"" << polynomial.symbol << "\"";
+                cout << '^' << i;
+            }
+            cout << " + ";
         }
         return cout << "\b\b\b";
     }
@@ -43,10 +53,20 @@ public:
 
     myPolynomial() : elements(myArraySequence<T>()) {};
 
-    myPolynomial(const myPolynomial<T> &polynomial) : elements(polynomial.elements) {};
+    myPolynomial(const myPolynomial<T> &polynomial) : elements(polynomial.elements), symbol(polynomial.symbol) {};
 
     T get(int index) {
         return elements[index];
+    }
+
+    myPolynomial<T> setSymbol(const std::string& str) {
+        if (str.length() != 0)
+            symbol = str;
+        return *this;
+    }
+
+    std::string getSymbol() {
+        return symbol;
     }
 
     void checkLength() {

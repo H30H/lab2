@@ -83,6 +83,12 @@
 		<Unit filename="/cygdrive/c/cc++ labs/lab2/main.cpp">
 			<Option target="lab2"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/menu.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/cc++ labs/lab2/menu.h">
+			<Option target="lab2"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp">
 			<Option target="lab2"/>
 		</Unit>

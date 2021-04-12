@@ -69,6 +69,15 @@ public:
         return size;
     }
 
+    void reverse() {
+        for (auto i = 0; i < len / 2; i++) {
+            int index = len - 1 - i;
+            T item = arr[i];
+            arr[i] = arr[index];
+            arr[index] = item;
+        }
+    }
+
     T &operator [] (int index);
 
     myDynamicArray<T> &operator = (myDynamicArray<T> dynamicArray) {

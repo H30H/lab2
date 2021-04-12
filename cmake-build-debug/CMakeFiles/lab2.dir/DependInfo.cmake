@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/cygdrive/c/cc++ labs/lab2/main.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/main.cpp.o"
+  "/cygdrive/c/cc++ labs/lab2/menu.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/menu.cpp.o"
   "/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myArraySequence.cpp.o"
   "/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myDynamicArray.cpp.o"
   "/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myLinkedList.cpp.o"

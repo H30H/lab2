@@ -11,7 +11,7 @@
 #include <iostream>
 #include <complex>
 #include <vector>
-
+#include "menu.h"
 using namespace std;
 
 template<class T>
@@ -78,9 +78,5 @@ int myFunc(int val1, int val2) {
 }
 
 int main() {
-    myArraySequence<int> sequence;
-    for (int i = 0; i < 10; i++) {
-        sequence.append(i);
-    }
-
+    mainMenu();
 }

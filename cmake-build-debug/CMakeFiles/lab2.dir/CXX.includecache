@@ -27,6 +27,22 @@ complex
 -
 vector
 -
+menu.h
+/cygdrive/c/cc++ labs/lab2/menu.h
+
+/cygdrive/c/cc++ labs/lab2/menu.cpp
+menu.h
+/cygdrive/c/cc++ labs/lab2/menu.h
+myDynamicArray.cpp
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
+
+/cygdrive/c/cc++ labs/lab2/menu.h
+complex
+-
+myPolynomial.h
+/cygdrive/c/cc++ labs/lab2/myPolynomial.h
+iostream
+-
 
 /cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
 myArraySequence.h
