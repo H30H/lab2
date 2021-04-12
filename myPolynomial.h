@@ -29,7 +29,13 @@ class myPolynomial {
 private:
     myArraySequence<T> elements;
 public:
-    friend std::ostream;
+    friend std::ostream &operator << (std::ostream &cout, myPolynomial<T> polynomial) {
+        for (int i = 0; i < polynomial.elements.length(); i++) {
+            if (polynomial.elements[i] == 0) continue;
+            cout << '(' << polynomial.elements[i] << ")*x^" << i << " + ";
+        }
+        return cout << "\b\b\b";
+    }
 
     explicit myPolynomial(myArraySequence<T> &arraySequence) : elements(myArraySequence<T>(arraySequence)) {};
 
@@ -39,11 +45,20 @@ public:
 
     myPolynomial(const myPolynomial<T> &polynomial) : elements(polynomial.elements) {};
 
-    /*myPolynomial(myPolynomial<int> polynomial) {
-        elements = polynomial.elements;
-    }*/
     T get(int index) {
         return elements[index];
+    }
+
+    void checkLength() {
+        int i;
+        for (i = elements.length() - 1; i > 0 && elements[i] != 0; i--);
+        i++;
+        if (i != elements.length())
+            elements.remove(i);
+    }
+
+    int length() {
+        return elements.length();
     }
 
     T &operator[](int index) {
@@ -56,19 +71,14 @@ public:
             elements[i] += polynomial[i];
         }
 
-
         for (int i = elements.length(); i < polynomial.elements.length(); i++) {
             elements.append(polynomial[i]);
         }
         return *this;
     }
 
-    myPolynomial<T> add_(myPolynomial<T> polynomial) {
-        return myPolynomial<T>(*this).add(polynomial);
-    }
-
     myPolynomial<T> operator+(myPolynomial<T> polynomial) {
-        return myPolynomial<T>(*this).add(polynomial);
+        return (*this).add(polynomial);
     }
 
     myPolynomial<T> operator+() {
@@ -86,12 +96,8 @@ public:
         return *this;
     }
 
-    myPolynomial<T> sub_(myPolynomial<T> polynomial) {
-        return myPolynomial<T>(*this).sub(polynomial);
-    }
-
     myPolynomial<T> operator-(myPolynomial<T> polynomial1) {
-        return myPolynomial<T>(*this).sub(polynomial1);
+        return(*this).sub(polynomial1);
     }
 
     myPolynomial<T> operator-() {
@@ -115,10 +121,6 @@ public:
         return *this;
     }
 
-    myPolynomial<T> mult_(myPolynomial<T> polynomial) {
-        return myPolynomial<T>(*this).mult(polynomial);
-    }
-
     myPolynomial<T> operator*(myPolynomial<T> polynomial) {
         return myPolynomial<T>(*this).mult(polynomial);
     }
@@ -128,10 +130,6 @@ public:
             elements[i] *= item;
         }
         return *this;
-    }
-
-    myPolynomial<T> scalarMult_(T item) {
-        return myPolynomial<T>(*this).scalarMult(item);
     }
 
     myPolynomial<T> operator*(T item) {
@@ -176,17 +174,27 @@ public:
         return myPolynomial<T>(*this).getValue(polynomial);
     }
 
-    friend std::ostream &operator << (std::ostream &cout, myPolynomial<T> polynomial) {
-        for (int i = 0; i < polynomial.elements.length(); i++) {
-            if (polynomial.elements[i] == 0) continue;
-            cout << '(' << polynomial.elements[i] << ")*x^" << i << " + ";
-        }
-       return cout << "\b\b\b";
-    }
-
     myPolynomial<T> &operator = (const myPolynomial<T> &polynomial) {
         elements = polynomial.elements;
         return *this;
+    }
+
+    int operator == (myPolynomial<T> polynomial) {
+        if (elements.length() != polynomial.length()) return 0;
+
+        for (int i = 0; i < elements.length(); i++) {
+            if (elements[i] != polynomial[i])
+                return 0;
+        }
+        return 1;
+    }
+
+    int operator == (T value) {
+        if (elements.length() == 1 && elements[0] == value) return 1;
+
+        if (elements.length() == 0 && value == 0) return 1;
+
+        return 0;
     }
 
     myPolynomial<T> map (T value, T (*func)(T value1, T value2)) {
@@ -196,33 +204,13 @@ public:
         return *this;
     }
 
-    myPolynomial<T> map(T (*funcEl)(int index), T (*func)(T value1, T value2)) {
-        for (int i = 0; i < elements.length(); i++) {
-            elements[i] = func(elements[i], funcEl(i));
+    myPolynomial<T> map(myPolynomial<T> polynomial, T (*func)(T value1, T value2)) {
+        for (int i = 0; i < elements.length() && i < polynomial.elements.length(); i++) {
+            elements[i] = func(elements[i], polynomial[i]);
         }
 
         return *this;
     }
-
-    /*
-    friend std::string to_string(myPolynomial<T> polynomial) {
-        std::string res("");
-        //for (auto i : )
-    }/**/
 };
-
-/*
-myPolynomial<int> operator + (myPolynomial<int> pol1, myPolynomial<int> pol2) {
-    pol1.add(pol2);
-    return pol2;
-}
-
-//template<> class myPolynomial<int>;
-//template<> class myPolynomial<float>;
-//template<> class myPolynomial<double>;
-/*
-template<int> std::ostream &operator << (std::ostream &cout, const myPolynomial<int> &polynomial) {
-    return cout << polynomial;
-};*/
 
 #endif //LAB2_MYPOLYNOMIAL_H

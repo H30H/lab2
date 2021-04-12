@@ -16,7 +16,7 @@ myDynamicArray<T>::myDynamicArray(T *items, int count) {
     arr = nullptr;
     size = 0;
     len = 0;
-    if (count < 0) {len = 0; return;}             //создание нового пустого массива и копирование в него данных из исходного
+    if (count < 0) {return;}                       //создание нового пустого массива и копирование в него данных из исходного
     resize(count);
     //memcpy(arr, items, len * elSize);
     for (int i = 0; i < len; i++) {
@@ -57,7 +57,7 @@ myDynamicArray<T>::myDynamicArray(const myDynamicArray<T> &dynamicArray) { //с�
 
 
 template<class T>
-myDynamicArray<T>::myDynamicArray(myDynamicArray<T> *dynamicArray) {
+myDynamicArray<T>::myDynamicArray(myDynamicArray<T> *dynamicArray) {     //копирование элементов по ссылке на массив
     len = dynamicArray->len;
     arr = dynamicArray->arr;
     size = dynamicArray->size;
@@ -65,8 +65,7 @@ myDynamicArray<T>::myDynamicArray(myDynamicArray<T> *dynamicArray) {
 
 template<class T>
 myDynamicArray<T>::~myDynamicArray() {      //удаление массива
-    if (arr != nullptr && arr != NULL && size != 0)
-        delete[] arr;
+    delete[] arr;
 }
 
 template<class T>
@@ -75,7 +74,7 @@ int myDynamicArray<T>::length() {           //вывод длины массив
 }
 
 template<class T>
-T myDynamicArray<T>::get(int index) {
+T myDynamicArray<T>::get(int index) {       //получение элемента по индексу
     return (*this)[index];
 }
 
@@ -87,7 +86,7 @@ T &myDynamicArray<T>::operator[](int index) {
 }
 
 template<class T>
-void myDynamicArray<T>::set(T item, int index) {
+void myDynamicArray<T>::set(T item, int index) {  //задание элемента по индексу
     if (index < 0 || index >= len) throw IndexOutOfRange(len, index); //исключение выхода за массив
 
     arr[index] = item;
@@ -131,11 +130,11 @@ void myDynamicArray<T>::resize(int newSize) {
 }
 
 template<class T>
-T *myDynamicArray<T>::begin() const {
+T *myDynamicArray<T>::begin() const {  //функция для работы итератора
     return arr;
 }
 
 template<class T>
-T *myDynamicArray<T>::end() const {
+T *myDynamicArray<T>::end() const {    //функция для работы итератора
     return arr ? arr + len : nullptr;
 }

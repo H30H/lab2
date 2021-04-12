@@ -42,8 +42,7 @@ public:
     }
 
     myArraySequence() {
-        int a = 0;
-        dynamicArray = myDynamicArray<T>(a);
+        dynamicArray = myDynamicArray<T>();
     }
 
     explicit myArraySequence(T item) {
@@ -113,7 +112,7 @@ public:
         int delta = startIndex < endIndex ? 1 : -1;
 
         auto newArray = new myArraySequence<T>;
-        for (int i = startIndex, j = 0; i != endIndex; i += delta, j++) {
+        for (int i = startIndex; i != endIndex; i += delta) {
             newArray->append(dynamicArray[i]);
         }
 
@@ -130,8 +129,10 @@ public:
     }
 
     void append(T *item) {
+        append(*item);
+        /*
         dynamicArray.resize(dynamicArray.length() + 1);
-        dynamicArray[length() - 1] = *item;
+        dynamicArray[length() - 1] = *item;*/
     }
 
     void prepend(T item) {
@@ -143,15 +144,34 @@ public:
     }
 
     void prepend(T *item) {
+        prepend(*item);
+        /*
         dynamicArray.resize(dynamicArray.length() + 1);
         for (int i = dynamicArray.length() - 1; i >= 0; i--) {
             dynamicArray[i+1] = dynamicArray[i];
         }
-        dynamicArray[0] = *item;
+        dynamicArray[0] = *item;*/
     }
 
     void remove() {
         dynamicArray.resize(0);
+    }
+
+    void remove(int from) {
+        if (from < 0 || from >= dynamicArray.length()) throw IndexOutOfRange(dynamicArray.length(), from);
+        dynamicArray.resize(from);
+    }
+
+    void remove(int from, int to) {
+        if (from < 0 || from >= dynamicArray.length()) throw IndexOutOfRange(dynamicArray.length(), from);
+        if (to < 0 || to >= dynamicArray.length()) throw IndexOutOfRange(dynamicArray.length(), to);
+
+        if (from >= to) return;
+
+        for (int i = 0; i + to < dynamicArray.length(); i++) {
+            dynamicArray[i + from] = dynamicArray[i + to];
+        }
+        dynamicArray.resize(dynamicArray.length() - to + from);
     }
 
     void insert(T item, int index) {
@@ -164,12 +184,14 @@ public:
     }
 
     void insert(T *item, int index) {
+        insert(*item);
+        /*
         dynamicArray[index];
         dynamicArray.resize(dynamicArray.length() + 1);
         for (int i = dynamicArray.length() - 1; i >= index; i--) {
             dynamicArray[i+1] = dynamicArray[i];
         }
-        dynamicArray[index] = *item;
+        dynamicArray[index] = *item;*/
     }
 
     myArraySequence<T> *concat(mySequence<T> *sequence) {
@@ -177,7 +199,7 @@ public:
         dynamicArray.resize(start + sequence->length());
 
         for (int i = 0; i < sequence->length(); i++) {
-            dynamicArray[i + start] = sequence[i];
+            dynamicArray[i + start] = sequence[0][i];
         }
 
         return this;
@@ -200,8 +222,9 @@ public:
         return concat_(sequence);
     }
 
-    void operator += (mySequence<T> sequence) {
+    myArraySequence<T> *operator += (mySequence<T> *sequence) {
         concat(sequence);
+        return this;
     }
 
     myArraySequence<myArraySequence<T>*> *split(T item) {

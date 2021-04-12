@@ -2,6 +2,10 @@
 // Created by Grisha on 09.03.2021.
 //
 
+
+#ifndef LAB2_MYLINKEDLIST_CPP
+#define LAB2_MYLINKEDLIST_CPP
+
 #include "myLinkedList.h"
 
 template<class T>
@@ -13,8 +17,6 @@ void myLinkedList<T>::append(T item) {  //добавление элемента 
     if (head == nullptr) {              //проверка на пустоту списка
         head = el;
         ending = el;
-        lastGet = el;
-        lastInd = 0;
         return;
     }
     ending->next = el;                     //добавление элемента в конец
@@ -30,26 +32,33 @@ void myLinkedList<T>::prepend(T item) { //добавление в начало
     if (head == nullptr) {
         head = el;
         ending = el;
-        lastGet = el;
-        lastInd = 0;
         return;
     }
     head = el;
-    lastInd++;
 }
 
 template<class T>
 void myLinkedList<T>::insert(T item, int index) {
     if (index < 0 || index >= len) throw IndexOutOfRange(len, index);
 
-    element *el = head;
-    for (int i = 1; i < index - 1; i++, el = el->next);
+    if (index == 0) {
+        prepend(item);
+        return;
+    }
+    if (index == len - 1) {
+        append(item);
+        return;
+    }
 
-    element *elNew = new element*;
+    element *el = head;
+
+    for (int i = 0; i < index - 1; i++, el = el->next);
+
+    auto *elNew = new element;
     elNew->next = el->next;
     elNew->data = item;
     el->next = elNew;
-    if (index < lastInd) lastInd++;
+    len++;
 }
 
 template<class T>
@@ -163,18 +172,11 @@ template<class T>
 T &myLinkedList<T>::operator[](int index) {
     if (index < 0 || index >= len) throw IndexOutOfRange(len, index); //обработка ошибки
 
-    if (lastInd < index) {
-        for (lastInd; lastInd < index; lastInd++, lastGet = lastGet->next);
-        return lastGet->data;
-    }
-
     element *el = head;
 
     T data;
 
     for (int i = 0; i < index; i++, el = el->next);
-    lastInd = index;
-    lastGet = el;
     return el->data;
 }
 
@@ -184,4 +186,4 @@ T myLinkedList<T>::get(int index) {
 }
 
 
-
+#endif

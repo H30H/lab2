@@ -25,21 +25,6 @@ public:
         IndexOutOfRange(): length(-1), index(-1) {};
     };
 
-    //std::string getStr();
-
-    friend std::string to_string(myDynamicArray<T> &dynamicArray) {
-        std::string res = "{";
-
-        for (int i = 0; i < dynamicArray.len; i++) {
-            res += std::to_string(dynamicArray[i]);
-            if (i < dynamicArray.len - 1) {
-                res += ", ";
-            }
-        }
-        res += "}";
-        return res;
-    }
-
     friend std::ostream &operator << (std::ostream &cout, myDynamicArray<T> &dynamicArray) {
         //cout << dynamicArray.length() << ' ';
         cout << '{';

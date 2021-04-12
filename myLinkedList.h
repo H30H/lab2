@@ -17,11 +17,9 @@ private:
     } element;
 
     int len = 0;                    //длина связного списка
-    int lastInd = -1;               //индекс того элемента, к которому мы обращались в последный раз
 
     element *head = nullptr;        //ссылка на начало списка
     element *ending = nullptr;      //ссылка на конец списка
-    element *lastGet = nullptr;     //ссылка на элемент с индексом lastInd
 public:
     class IndexOutOfRange{
     public:
@@ -64,6 +62,11 @@ public:
         Iterator end() {
             return Iterator(list, nullptr);
         }
+
+        void operator () (myLinkedList<T> *linkedList) {
+            list = linkedList;
+            el = linkedList->head;
+        }
     };
 
     friend std::ostream &operator << (std::ostream &cout, myLinkedList<T> linkedList) {
@@ -77,6 +80,10 @@ public:
             }
         }
         return cout << '}';
+    }
+
+    friend std::ostream &operator << (std::ostream &cout, myLinkedList<T> *linkedList) {
+        return cout << *linkedList;
     }
 
     void append(T item);
@@ -112,11 +119,27 @@ public:
     T pop();
 
     T pop(int index);
-    /*
-    myLinkedList<myLinkedList<T>*>* split(T item) {
 
+    myLinkedList<T> operator * () {
+        return *this;
     }
-    /* */
+
+    myLinkedList<myLinkedList<T>*>* split(T item) {
+        auto res = new myLinkedList<myLinkedList<T>*>;
+        auto elem = new myLinkedList<T>;
+        myLinkedList<T>::Iterator iter(this);
+        for (auto &i : iter) {
+            if (i == item) {
+                res->append(elem);
+                elem = new myLinkedList<T>;
+                continue;
+            }
+            elem->append(i);
+        }
+        res->append(elem);
+        return res;
+    }
+
 };
 
 #endif //LAB2_MYLINKEDLIST_H

@@ -78,67 +78,9 @@ int myFunc(int val1, int val2) {
 }
 
 int main() {
-    /*
-    int arr1[] = {1, 2, 3, 4, 5};
-    int arr2[] = {1, 2, 3, 4, 5};
-
-    Test<int> k1(arr1, 5);
-    Test<int> k2(arr2, 5);
-
-    cout << k1 << endl;
-    cout << k2 << endl;
-
-    cout << k1 + k2 << endl;
-
-    /*
-    swap(arr+1, arr+2);
-
-    cout << arr[1] << " " << arr[2] << endl;
-
-    swap2(arr[1], arr[2]);
-
-    cout << arr[1] << " " << arr[2] << endl;
-
-    myDynamicArray<int> k1(arr, 5);
-
-    k1[3] = 7;
-     */
-    /*
-    myDynamicArray<int> k1(20);
-    for (int i = 0; i < 20; i++) {
-        k1[i] = i % 10;
+    myArraySequence<int> sequence;
+    for (int i = 0; i < 10; i++) {
+        sequence.append(i);
     }
 
-    myDynamicArray<myDynamicArray<int>*> k2;
-    k2.resize(2);
-    k2[0] = &k1;
-    k2[1] = &k1;
-
-    cout << k1 << endl;
-    cout << &k1 << endl;
-    cout << k2 << endl;
-    cout << k1.split(5) << endl;
-    cout << k1.split(20) << endl;
-    */
-
-    myLinkedList<int> list;
-    cout << list << endl;
-    for(int i = 0; i < 10; i++) {
-        list.append(i);
-    }
-
-    cout << list << endl;
-    cout << list[0] << ' ' << list[1] << endl;
-    cout << list.get(0) << ' ' << list.get(1) << endl;
-
-    myLinkedList<int>::Iterator iter(&list);
-
-    for (auto &i : iter) {
-        cout << i << " ";
-    }
-
-    /*
-    for (auto &i: myLinkedList<int>::Iterator(list)) {
-        cout << i << " ";
-    } /**/
 }
