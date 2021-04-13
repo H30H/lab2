@@ -77,6 +77,23 @@ int myFunc(int val1, int val2) {
     return val1*5 + val2;
 }
 
-int main() {
+int main() {/*
+    myArraySequence<int> sequence1;
+    for (int i = 0; i < 3; i++) {
+        sequence1.append(i);
+    }
+    myPolynomial<int> polynomial1(sequence1);
+    sequence1.append(11);
+    sequence1.append(12);
+    myPolynomial<int> polynomial2(sequence1);
+    cout << polynomial1 << endl << polynomial2 << endl << endl;
+    cout << polynomial1 + polynomial2 << endl << endl;
+    cout << polynomial1 << endl << polynomial2 << endl << endl;
+    cout << polynomial1 - polynomial2 << endl;
+
+    cout << polynomial1 * polynomial2 << endl;
+    cout << polynomial1 << endl << polynomial2 << endl << endl;
+    cout << polynomial1(polynomial2) << endl;
+    */
     mainMenu();
 }

@@ -12,6 +12,7 @@
 void mainMenu();
 int getType();
 
+//1
 void readPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
                     myArraySequence<myPolynomial<float>*> *floatArr,
                     myArraySequence<myPolynomial<std::complex<int>>*> *complexArr);
@@ -19,12 +20,30 @@ void readPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
 template<class T>
 void readTypePolynomial(myArraySequence<myPolynomial<T>*> *arr, int count);
 
+//2
+void operationWithPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
+                             myArraySequence<myPolynomial<float>*> *floatArr,
+                             myArraySequence<myPolynomial<std::complex<int>>*> *complexArr);
+
+template<class T>
+void operationTypeWithPolynomial(myArraySequence<myPolynomial<T>*> *arr);
+
+//3
 void printPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
                      myArraySequence<myPolynomial<float>*> *floatArr,
                      myArraySequence<myPolynomial<std::complex<int>>*> *complexArr);
 
 template<class T>
 void printTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);
+
+
+//4
+void deletePolynomial(myArraySequence<myPolynomial<int>*> *intArr,
+                      myArraySequence<myPolynomial<float>*> *floatArr,
+                      myArraySequence<myPolynomial<std::complex<int>>*> *complexArr);
+
+template<class T>
+void deleteTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);
 
 
 

@@ -77,6 +77,25 @@ public:
         dynamicArray.set(item, index);
     }
 
+    T pop() {
+        if (dynamicArray.length() == 0) throw IndexOutOfRange(0, -1);
+        T item = dynamicArray[dynamicArray.length() - 1];
+        dynamicArray.resize(dynamicArray.length() - 1);
+        return item;
+    }
+
+    T pop(int index) {
+        if (index < 0 || index >= dynamicArray.length())
+            throw IndexOutOfRange(dynamicArray.length(), index);
+
+        T item = dynamicArray[index];
+        for (int i = index; i < dynamicArray.length() - 1; i++) {
+            dynamicArray[i] = dynamicArray[i+1];
+        }
+        dynamicArray.resize(dynamicArray.length() - 1);
+        return item;
+    }
+
     T &operator [] (int index) {
         if (index < 0 || index >= length()) throw IndexOutOfRange(length(), index);
         return dynamicArray[index];

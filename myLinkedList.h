@@ -140,6 +140,42 @@ public:
         return res;
     }
 
+    int find(T item) {
+        if (len == 0) throw IndexOutOfRange(0, 0);
+        element *elem = head;
+        int index = 0;
+        while(elem != nullptr) {
+            if (elem->data == item)
+                return index;
+            elem = elem->next;
+            index++;
+        }
+        return -1;
+    }
+    /*
+    int find(myLinkedList<T> linkedList) {
+        if (linkedList.len == 0) throw IndexOutOfRange(0, 0);
+        if (len == 0) throw IndexOutOfRange(0, 0);
+
+        if (len < linkedList.len) return -1;
+
+        element *elem = head;
+        element *compare = linkedList.head;
+        int index = 0;
+        int count = 0;
+        while (elem != nullptr) {
+            if (count == linkedList.len)
+                return index;
+
+            if ()
+
+            elem = elem->next;
+        }
+
+        return -1;
+    }
+     */
+
 };
 
 #endif //LAB2_MYLINKEDLIST_H

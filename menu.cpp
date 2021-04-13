@@ -33,12 +33,20 @@ int getInt(int down, int up) {
     return k;
 }
 
+template<class T>
+void printArr(myArraySequence<myPolynomial<T>*> *arr) {
+    for (int i = 0; i < arr->length(); i++) {
+        cout << i << ": " << *arr->get(i) << endl;
+    }
+    cout << endl;
+}
+
 void mainMenu() {
     myArraySequence<myPolynomial<int>*>          arrInt;
     myArraySequence<myPolynomial<float>*>        arrFloat;
     myArraySequence<myPolynomial<complex<int>>*> arrComplex;
     int item;
-    while(1) {
+    while(true) {
         cout << "Программа имеет следующие возможности: \n"
              << "\t1: Ввести и запомнить многочлен\n"
              << "\t2: Выполнить операцию над многочленами\n"
@@ -49,7 +57,7 @@ void mainMenu() {
              << "Введите число: ";
         cin >> item;
         if (item < 1 || item > 6) {
-            cout << "Ошибка! Нет такого пункта!\n";
+            cout << "Ошибка! Нет такого пункта! Повторите попытку\n";
             continue;
         }
 
@@ -57,15 +65,11 @@ void mainMenu() {
             break;
 
         switch (item) {
-            case 1:
-                readPolynomial(&arrInt, &arrFloat, &arrComplex);
-                break;
-            case 2: break;
-            case 3:
-                printPolynomial(&arrInt, &arrFloat, &arrComplex);
-                break;
-            case 4: break;
-            case 5: break;
+            case 1: readPolynomial(&arrInt, &arrFloat, &arrComplex); break;
+            case 2: operationWithPolynomial(&arrInt, &arrFloat, &arrComplex); break;
+            case 3: printPolynomial(&arrInt, &arrFloat, &arrComplex); break;
+            case 4: deletePolynomial(&arrInt, &arrFloat, &arrComplex); break;
+            case 5: cout << "В разработке...\n"; break;
             default: break;
         }
     }
@@ -94,16 +98,17 @@ int getType() {
     return getInt(0, 3);
 }
 
+//1
 void readPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
                     myArraySequence<myPolynomial<float>*> *floatArr,
                     myArraySequence<myPolynomial<std::complex<int>>*> *complexArr){
 
     int count = 0;
 
-    cout << "Введите степень многочлена или -1 для выхода\n:";
+    cout << "Введите степень многочлена или -1 для выхода\n: ";
     do {
         if (count < 0) {
-            cout << "Многочлены отрицательной степени не поддерживаются\n";
+            cout << "Многочлены отрицательной степени не поддерживаются!\n: ";
         }
         cin >> count;
 
@@ -120,6 +125,15 @@ void readPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
         case 3: readTypePolynomial<complex<int>>(complexArr, count); break;
         default: break;
     }
+
+    cout << "Хотите ввести ещё один многочлен?\n"
+            "\t0 - нет\n"
+            "\t1 - да\n: ";
+
+    item = getInt(0, 1);
+    if (item) {
+        readPolynomial(intArr, floatArr, complexArr);
+    }
 }
 
 template<class T>
@@ -132,12 +146,12 @@ void readTypePolynomial(myArraySequence<myPolynomial<T>*> *arr, int count) {
         element.append(item);
     }
     element.reverse();
-    cout << "Введите переменную многочлена (по умолчанию х): ";
+    cout << "Введите переменную многочлена (по умолчанию х)\n: ";
     string symbol;
     cin >> symbol;
     cout << "Вы ввели: " << myPolynomial<T>(element).setSymbol(symbol)
          << "\nЗаписать этот многочлен? (1 - да, 0 - повторить попытку ввода, "
-         << "другое число приведёт к выходу их функции)";
+         << "другое число приведёт к выходу их функции)\n:";
     int item;
     cin >> item;
 
@@ -147,12 +161,117 @@ void readTypePolynomial(myArraySequence<myPolynomial<T>*> *arr, int count) {
         case 1:
             auto *res = new myPolynomial<T>;
             *res = myPolynomial<T>(element);
+            res->setSymbol(symbol);
             arr->append(res);
             break;
     }
 }
 
+//2
+void operationWithPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
+                             myArraySequence<myPolynomial<float>*> *floatArr,
+                             myArraySequence<myPolynomial<std::complex<int>>*> *complexArr) {
+    int type = getType();
 
+    switch (type) {
+        default: break;
+        case 1: operationTypeWithPolynomial<int>(intArr); break;
+        case 2: operationTypeWithPolynomial<float>(floatArr); break;
+        case 3: operationTypeWithPolynomial<complex<int>>(complexArr); break;
+    }
+}
+
+template<class T>
+void operationTypeWithPolynomial(myArraySequence<myPolynomial<T>*> *arr) {
+    if (arr->length() == 0 ) {
+        cout << "Таких многочленов нет!\n";
+        return;
+    }
+    int item;
+
+    while(true) {
+        auto len = arr->length();
+        cout << "В памяти находится \"" << len << "\" многочленов, введите:\n"
+                "\tчисло меньше нуля для выхода\n"
+                "\tиндекс многочлена, для его выбора\n"
+                "\tчисло, больше чем число элементов, для вывода всем многочленов\n: ";
+
+        item = getInt();
+        if (item < 0) break;
+
+        if (item >= len) {
+            printArr(arr);
+            continue;
+        }
+
+        cout << "Вы выбрали: " << *arr->get(item) << endl;
+
+        cout << "Какую операцию необходимо выполнить:\n"
+                "\t0: выбрать другой многочлен\n"
+                "\t1: сложить многочлены\n"
+                "\t2: вычесть многочлены\n"
+                "\t3: умножить многочлен на скаляр\n"
+                "\t4: умножить многочлены\n"
+                "\t5: вычислить значение для данного значения аргумента\n"
+                "\t6: выполнить композицию\n: ";
+
+        int item2 = getInt(0, 6);
+
+        if (item2 == 0) continue;
+
+        auto *polynomial1 = arr->get(item);
+        myPolynomial<T> *polynomial2, *polynomial3;
+
+        if (item2 == 3 || item2 == 5) {
+            T elem;
+            cout << "Введите скаляр\n: ";
+            cin >> elem;
+            if (item2 == 5) {
+                cout << "Полученное значение: " << polynomial1->getValue(elem) << endl << endl;
+                continue;
+            }
+            polynomial3 = new myPolynomial<T>;
+            *polynomial3 = *polynomial1 * elem;
+        }
+
+        else {
+            cout << "Введите:\n"
+                    "\t-1: для выбора другого многочлена\n"
+                    "\t индекс многочлена для выполнения данной операции\n: ";
+
+            int item3 = getInt(-1, len - 1);
+            if (item3 == -1) {
+                continue;
+            }
+
+            polynomial2 = arr->get(item3);
+            polynomial3 = new myPolynomial<T>;
+
+            switch(item2) {
+                default: break;
+                case 1: *polynomial3 = *polynomial1 + *polynomial2; break;
+                case 2: *polynomial3 = *polynomial1 - *polynomial2; break;
+                case 4: *polynomial3 = *polynomial1 * *polynomial2; break;
+                case 6: *polynomial3 = polynomial1->getValue(*polynomial2); break;
+            }
+        }
+
+        cout << "Был получен: \"" << *polynomial3
+             << "\". Запомнить его под индексом \"" << len << "\" ?:\n"
+             << "0 - нет\n"
+                "1 - да\n: ";
+
+        item = getInt(0, 1);
+        if (item == 1) {
+            arr->append(polynomial3);
+        }
+        else {
+            delete polynomial3;
+        }
+    }
+}
+
+//3
 void printPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
                      myArraySequence<myPolynomial<float>*> *floatArr,
                      myArraySequence<myPolynomial<std::complex<int>>*> *complexArr) {
@@ -175,13 +294,13 @@ void printPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
 
 template<class T>
 void printTypePolynomial(myArraySequence<myPolynomial<T>*> *arr) {
-    cout << "Всего " << arr->length() << "многочленов этого типа\n\n";
+    cout << "В памяти находится \"" << arr->length() << "\" многочленов этого типа\n\n";
     int item;
     do {
-        cout << "Введите:"
+        cout << "Введите:\n"
                 "\tИндекс элемента для его вывода в консоль\n"
                 "\tЧисло, больше чем количество многочленов для вывода всех многочленов "
-                "того типа\n"
+                "этого типа\n"
                 "\tЧисло меньше нуля для выхода из функции\n:";
         item = getInt();
 
@@ -192,12 +311,85 @@ void printTypePolynomial(myArraySequence<myPolynomial<T>*> *arr) {
         }
 
         if (item >= arr->length())
-            for (int i = 0; i < arr->length(); i++) {
-                cout << i << ": " << *arr->get(i) << endl;
-            }
+            printArr(arr);
 
         cout << endl;
     } while (item >= 0);
+}
+
+//4
+void deletePolynomial(myArraySequence<myPolynomial<int>*> *intArr,
+                      myArraySequence<myPolynomial<float>*> *floatArr,
+                      myArraySequence<myPolynomial<std::complex<int>>*> *complexArr) {
+
+    auto item = getType();
+    if (item == 0) return;
+
+    switch (item) {
+        case 1: deleteTypePolynomial(intArr); break;
+        case 2: deleteTypePolynomial(floatArr); break;
+        case 3: deleteTypePolynomial(complexArr); break;
+        default: break;
+    }
+}
+
+template<class T>
+void deleteTypePolynomial(myArraySequence<myPolynomial<T>*> *arr) {
+    if (arr->length() == 0) {
+        cout << "Таких многочленов нет!\n";
+        return;
+    }
+    int item;
+
+    while(true) {
+        int len = arr->length();
+        if (len == 0) {
+            cout << "Больше не осталось многочленов этого типа! Автоматический выход из функции\n";
+            break;
+        }
+        cout << "В памяти находится \"" << len << "\" многочленов, введите:\n"
+                "\tЧисло меньше нуля для выхода из функции\n"
+                "\tИндекс элемента, для его выбора\n"
+                "\tЧисло, больше длины массива, для вывода многочленов в консоль\n: ";
+
+        item = getInt();
+
+        if (item < 0) break;
+
+        if (item >= arr->length()) {
+            printArr(arr);
+            continue;
+        }
+
+        cout << "Выберите операцию:"
+                "\t-1: вернуться к выбору индекса\n"
+                "\t 0: для удаления элемента\n"
+                "\t 1: для перемещения элемента на другое место\n: ";
+        int item2 = getInt(-1, 1);
+
+        if (item2 == -1) continue;
+
+        if (item2 == 0) {
+            cout << "Вы действительно хотите удалить: " << *arr->get(item) << " ?\n"
+                    "0 - нет\n"
+                    "1 - да\n: ";
+            item2 = getInt(0, 1);
+            if (item2 == 1) {
+                arr->pop(item);
+            }
+            continue;
+        }
+
+        cout << "Введите номер многочлена, с которым надо поменять \""
+             << item << "\" многочлен\n: ";
+
+        item2 = getInt(0, len - 1);
+        if (item != item2) {
+            myPolynomial<T> *polynomial = arr->get(item);
+            arr->set(arr->get(item2), item);
+            arr->set(polynomial, item2);
+        }
+    }
 }
 
 
@@ -219,8 +411,20 @@ void printTypePolynomial(myArraySequence<myPolynomial<T>*> *arr) {
 
 
 
+#define funcTemplate(T) \
+template void readTypePolynomial(myArraySequence<myPolynomial<T>*> *arr, int count); \
+template void printTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);           \
+template void printArr(myArraySequence<myPolynomial<T>*> *arr);                      \
+template void deleteTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);          \
+template void operationTypeWithPolynomial(myArraySequence<myPolynomial<T>*> *arr);
 
+funcTemplate(int)
 
+funcTemplate(float)
+
+funcTemplate(complex<int>)
+
+/*
 template void readTypePolynomial<int>(myArraySequence<myPolynomial<int>*> *arr, int count);
 template void readTypePolynomial<float>(myArraySequence<myPolynomial<float>*> *arr, int count);
 template void readTypePolynomial<complex<int>>(myArraySequence<myPolynomial<complex<int>>*> *arr, int count);
@@ -228,3 +432,6 @@ template void readTypePolynomial<complex<int>>(myArraySequence<myPolynomial<comp
 template void printTypePolynomial<int>(myArraySequence<myPolynomial<int>*> *arr);
 template void printTypePolynomial<float>(myArraySequence<myPolynomial<float>*> *arr);
 template void printTypePolynomial<complex<int>>(myArraySequence<myPolynomial<complex<int>>*> *arr);
+
+template void printArr<int>(myArraySequence<myPolynomial<int>*> *arr);
+ */

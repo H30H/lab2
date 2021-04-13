@@ -98,26 +98,34 @@ public:
     }
 
     myPolynomial<T> operator+(myPolynomial<T> polynomial) {
+        return myPolynomial<T>(*this).add(polynomial);
+    }
+
+    myPolynomial<T> operator += (myPolynomial<T> polynomial) {
         return (*this).add(polynomial);
     }
 
     myPolynomial<T> operator+() {
-        return *this;
+        return myPolynomial<T>(*this);
     }
     /**/
     myPolynomial<T> sub(myPolynomial<T> polynomial) {
         for (int i = 0; i < polynomial.elements.length() && i < elements.length(); i++) {
-            elements[i] = -polynomial[i];
+            elements[i] -= polynomial.elements[i];
         }
 
         for (int i = elements.length(); i < polynomial.elements.length(); i++) {
-            elements.append(0 - polynomial[i]);
+            elements.append(0 - polynomial.elements[i]);
         }
         return *this;
     }
 
     myPolynomial<T> operator-(myPolynomial<T> polynomial1) {
-        return(*this).sub(polynomial1);
+        return myPolynomial<T>(*this).sub(polynomial1);
+    }
+
+    myPolynomial<T> operator -= (myPolynomial<T> polynomial) {
+        return (*this).sub(polynomial);
     }
 
     myPolynomial<T> operator-() {
@@ -130,7 +138,7 @@ public:
             for (int j = 0; j < polynomial.elements.length(); j++) {
                 T elem = elements[i] * polynomial.elements[j];
                 int index = i + j;
-                if (result.elements.length() < index) {
+                if (result.elements.length() <= index) {
                     result.elements.append(elem);
                     continue;
                 }
@@ -145,15 +153,23 @@ public:
         return myPolynomial<T>(*this).mult(polynomial);
     }
 
+    myPolynomial<T> operator *= (myPolynomial<T> polynomial) {
+        return (*this).mult(polynomial);
+    }
+
     myPolynomial<T> scalarMult(T item) {
         for (int i = 0; i < elements.length(); i++) {
             elements[i] *= item;
         }
-        return *this;
+        return myPolynomial<T>(*this);
     }
 
     myPolynomial<T> operator*(T item) {
         return myPolynomial<T>(*this).scalarMult(item);
+    }
+
+    myPolynomial<T> operator *= (T item) {
+        return (*this).scalarMult(item);
     }
 
     myPolynomial<T> pow_(int degree) {
@@ -167,11 +183,12 @@ public:
 
     T getValue(T item) {
         T res = elements[0];
-        for (int i = 0; i < elements.length(); i++) {
+        for (int i = 1; i < elements.length(); i++) {
+            if (elements[i] == 0) continue;
             T val = item;
-            for (int j = 1; j < i; j++) {
+            for (int j =1; j < i; j++)
                 val *= item;
-            }
+
             res += val * elements[i];
         }
 
@@ -185,8 +202,9 @@ public:
     myPolynomial<T> getValue(myPolynomial<T> polynomial) {
         auto res = myPolynomial<T>(elements[0]);
         for (int i = 1; i < elements.length(); i++) {
-            res += elements[i] * polynomial.pow_(i);
+            res += polynomial.pow_(i) * elements[i];
         }
+        res.symbol = polynomial.symbol;
         return res;
     }
 
