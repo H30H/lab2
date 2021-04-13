@@ -186,4 +186,4 @@ T myLinkedList<T>::get(int index) {
 }
 
 
-#endif
+#endif //LAB2_MYLINKEDLIST_CPP

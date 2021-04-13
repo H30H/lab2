@@ -153,7 +153,43 @@ public:
         res[0][index] = element;
         return res;
     }
-    int k123 = 0;
+
+    int find(T item) {
+        if (len == 0) throw  IndexOutOfRange(0, 0);
+
+        for (int i = 0; i < len; i++) {
+            if (arr[i] == item)
+                return i;
+        }
+        return -1;
+    }
+
+    int find(myDynamicArray<T> dynamicArray) {
+        if (len == 0) throw IndexOutOfRange(0, 0);
+        if (dynamicArray.len == 0) throw IndexOutOfRange(0, 0);
+
+        if (len < dynamicArray.len) return -1;
+
+        int count = 0;
+
+        for (int i = 0; i < len; i++) {
+            if (i + dynamicArray.len > len && count == 0)
+                break;
+
+            if (count == dynamicArray.len) {
+                return i - count;
+            }
+
+            if (arr[i] == dynamicArray.arr) {
+                count++;
+            }
+            else {
+                count = 0;
+            }
+        }
+
+        return -1;
+    }
 };
 
 

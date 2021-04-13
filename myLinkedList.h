@@ -152,7 +152,7 @@ public:
         }
         return -1;
     }
-    /*
+
     int find(myLinkedList<T> linkedList) {
         if (linkedList.len == 0) throw IndexOutOfRange(0, 0);
         if (len == 0) throw IndexOutOfRange(0, 0);
@@ -164,17 +164,32 @@ public:
         int index = 0;
         int count = 0;
         while (elem != nullptr) {
-            if (count == linkedList.len)
+            if (count == linkedList.len)  //мы нашли подпоследовательность, которая начинается с элемента index
                 return index;
 
-            if ()
+            if (index + len > linkedList.len)  //у нас осталось для обхода меньше элементов, чем содержится в linkedList
+                break;
+
+            if (elem->data == compare->data) {
+                count++;
+                compare = compare->next;
+            }
+            else {
+                index++;
+
+                if (count != 0) {
+                    compare = linkedList.head;
+                    index += count;
+                    count = 0;
+                }
+            }
 
             elem = elem->next;
         }
 
         return -1;
     }
-     */
+
 
 };
 

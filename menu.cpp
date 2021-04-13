@@ -393,30 +393,13 @@ void deleteTypePolynomial(myArraySequence<myPolynomial<T>*> *arr) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #define funcTemplate(T) \
 template void readTypePolynomial(myArraySequence<myPolynomial<T>*> *arr, int count); \
 template void printTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);           \
 template void printArr(myArraySequence<myPolynomial<T>*> *arr);                      \
 template void deleteTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);          \
-template void operationTypeWithPolynomial(myArraySequence<myPolynomial<T>*> *arr);
+template void operationTypeWithPolynomial(myArraySequence<myPolynomial<T>*> *arr);   \
+
 
 funcTemplate(int)
 
