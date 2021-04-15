@@ -256,10 +256,10 @@ void operationTypeWithPolynomial(myArraySequence<myPolynomial<T>*> *arr) {
             }
         }
 
-        cout << "Был получен: \"" << *polynomial3
-             << "\". Запомнить его под индексом \"" << len << "\" ?:\n"
-             << "0 - нет\n"
-                "1 - да\n: ";
+        cout << "Был получен: \"" << *polynomial3 <<
+                "\". Запомнить его под индексом \"" << len << "\" ?:\n"
+                "\t0 - нет\n"
+                "\t1 - да\n: ";
 
         item = getInt(0, 1);
         if (item == 1) {
@@ -294,10 +294,13 @@ void printPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
 
 template<class T>
 void printTypePolynomial(myArraySequence<myPolynomial<T>*> *arr) {
-    cout << "В памяти находится \"" << arr->length() << "\" многочленов этого типа\n\n";
+    if (arr->length() == 0) {
+        cout << "Таких многочленов нет!";
+        return;
+    }
     int item;
     do {
-        cout << "Введите:\n"
+        cout << "В памяти находится \"" << arr->length() << "\" многочленов этого типа, введите:\n"
                 "\tИндекс элемента для его вывода в консоль\n"
                 "\tЧисло, больше чем количество многочленов для вывода всех многочленов "
                 "этого типа\n"
@@ -370,9 +373,9 @@ void deleteTypePolynomial(myArraySequence<myPolynomial<T>*> *arr) {
         if (item2 == -1) continue;
 
         if (item2 == 0) {
-            cout << "Вы действительно хотите удалить: " << *arr->get(item) << " ?\n"
-                    "0 - нет\n"
-                    "1 - да\n: ";
+            cout << "Вы действительно хотите удалить \"" << *arr->get(item) << "\" ?\n"
+                    "\t0 - нет\n"
+                    "\t1 - да\n: ";
             item2 = getInt(0, 1);
             if (item2 == 1) {
                 arr->pop(item);

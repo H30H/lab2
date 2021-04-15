@@ -9,7 +9,6 @@ CMakeFiles/lab2.dir/main.cpp.o: ../myDynamicArray.cpp
 CMakeFiles/lab2.dir/main.cpp.o: ../myDynamicArray.h
 CMakeFiles/lab2.dir/main.cpp.o: ../myLinkedList.cpp
 CMakeFiles/lab2.dir/main.cpp.o: ../myLinkedList.h
-CMakeFiles/lab2.dir/main.cpp.o: ../myListSequence.h
 CMakeFiles/lab2.dir/main.cpp.o: ../myPolynomial.h
 CMakeFiles/lab2.dir/main.cpp.o: ../mySequence.cpp
 CMakeFiles/lab2.dir/main.cpp.o: ../mySequence.h
@@ -19,8 +18,6 @@ CMakeFiles/lab2.dir/menu.cpp.o: ../menu.h
 CMakeFiles/lab2.dir/menu.cpp.o: ../myArraySequence.h
 CMakeFiles/lab2.dir/menu.cpp.o: ../myDynamicArray.cpp
 CMakeFiles/lab2.dir/menu.cpp.o: ../myDynamicArray.h
-CMakeFiles/lab2.dir/menu.cpp.o: ../myLinkedList.h
-CMakeFiles/lab2.dir/menu.cpp.o: ../myListSequence.h
 CMakeFiles/lab2.dir/menu.cpp.o: ../myPolynomial.h
 CMakeFiles/lab2.dir/menu.cpp.o: ../mySequence.h
 
@@ -42,8 +39,6 @@ CMakeFiles/lab2.dir/myListSequence.cpp.o: ../mySequence.h
 
 CMakeFiles/lab2.dir/myPolynomial.cpp.o: ../myArraySequence.h
 CMakeFiles/lab2.dir/myPolynomial.cpp.o: ../myDynamicArray.h
-CMakeFiles/lab2.dir/myPolynomial.cpp.o: ../myLinkedList.h
-CMakeFiles/lab2.dir/myPolynomial.cpp.o: ../myListSequence.h
 CMakeFiles/lab2.dir/myPolynomial.cpp.o: ../myPolynomial.cpp
 CMakeFiles/lab2.dir/myPolynomial.cpp.o: ../myPolynomial.h
 CMakeFiles/lab2.dir/myPolynomial.cpp.o: ../mySequence.h

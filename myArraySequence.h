@@ -125,7 +125,7 @@ public:
     myArraySequence<T> *getSubSequence(int startIndex, int endIndex) {
         if (startIndex < 0 || startIndex >= length())
             throw IndexOutOfRange(length(), startIndex);
-        if (endIndex < 0 || endIndex >= length())
+        if (endIndex < 0 || endIndex > length())
             throw IndexOutOfRange(length(), endIndex);
 
         int delta = startIndex < endIndex ? 1 : -1;
@@ -222,7 +222,7 @@ public:
         dynamicArray.resize(start + sequence->length());
 
         for (int i = 0; i < sequence->length(); i++) {
-            dynamicArray[i + start] = sequence[0][i];
+            dynamicArray[i + start] = (*sequence)[i];
         }
 
         return this;
@@ -265,21 +265,58 @@ public:
         res->append(element);
 
         return res;
-        /*
-        myArraySequence<myArraySequence<T>> res;
-        myArraySequence<T> element;
-        for (auto &i : dynamicArray) {
-            if (i == item) {
-                res.append(element);
-                element.remove();
-                continue;
-            }
-            element.append(i);
+    }
+
+    template<class U>
+    myArraySequence<U> *map(U (*func)(T item)) {
+        auto *res = new myArraySequence<U>;
+        auto arr = dynamicArray.map(func);
+        for (auto &i : *arr) {
+            res->append(i);
         }
-        res.append(element);
+        delete arr;
+        return res;
+    }
+
+    template<class U>
+    myArraySequence<U> *map(T item, U (*func)(T item1, T item2)) {
+        auto *res = new myArraySequence<U>;
+        res->dynamicArray = dynamicArray.map(item, func);
+        return res;
+    }
+
+    template<class U>
+    U reduce(U (*func)(T item1, T item2)) {
+        return dynamicArray.reduce(func);
+    }
+
+    myArraySequence<myArraySequence<T>> *zip(myArraySequence<T> *arraySequence) {
+        auto *res = new myArraySequence<myArraySequence<T>>;
+        auto min = dynamicArray.length() < arraySequence->length() ? dynamicArray.length() : arraySequence->length();
+
+        for (int i = 0; i < min; i++) {
+            myArraySequence<T> element;
+            element.append(dynamicArray[i]);
+            element.append(arraySequence->dynamicArray[i]);
+            (*res).append(element);
+        }
 
         return res;
-        /* */
+    }
+
+    template<class U>
+    static myArraySequence<myArraySequence<U>> *unzip(myArraySequence<myArraySequence<U>> *arraySequence) {
+        auto *res = new myArraySequence<myArraySequence<U>>;
+        (*res).append(myArraySequence<U>());
+        (*res).append(myArraySequence<U>());
+
+        for (int i = 0; i < arraySequence->length(); i++) {
+            if ((*arraySequence)[i].length() < 2) break;
+            (*res)[0].append((*arraySequence)[i][0]);
+            (*res)[1].append((*arraySequence)[i][1]);
+        }
+
+        return res;
     }
 };
 

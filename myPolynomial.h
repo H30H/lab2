@@ -7,32 +7,45 @@
 
 #include <iostream>
 #include "myArraySequence.h"
-#include "myListSequence.h"
 
-template<class T>
-T addEl(T el1, T el2) {
-    return el1 + el2;
-}
 
-template<class T>
-T subEl(T el1, T el2) {
-    return el1 - el2;
-}
-
-template<class T>
-T multEl(T el1, T el2) {
-    return el1 * el2;
-}
 
 template<class T>
 class myPolynomial {
 private:
     myArraySequence<T> elements;
     std::string symbol = "x";
+
+    static T sumElem(T item1, T item2) {
+        return item1 + item2;
+    }
+
+    static T sumArr(myArraySequence<T> array) {
+        return array.reduce(sumElem);
+    }
+
+    static T subElem(T item1, T item2) {
+        return item1 - item2;
+    }
+
+    static T subArr(myArraySequence<T> array) {
+        return array.template reduce(subElem);
+    }
+
+    static T multElem(T item1, T item2) {
+        return item1 * item2;
+    }
+
+    static T multArr(myArraySequence<T> array) {
+        return array.template reduce(multElem);
+    }
+
 public:
     friend std::ostream &operator << (std::ostream &cout, myPolynomial<T> polynomial) {
+        int count = 0;
         for (int i = polynomial.elements.length() - 1; i >= 0; i--) {
             if (polynomial.elements[i] == 0) continue;
+            count++;
             cout << '(' << polynomial.elements[i] << ')';
             if (i != 0) {
                 cout << '*';
@@ -44,7 +57,9 @@ public:
             }
             cout << " + ";
         }
-        return cout << "\b\b\b";
+        if (count == 0) cout << '(' << (T) 0 << ')';
+        else cout << "\b\b\b";
+        return cout;
     }
 
     explicit myPolynomial(myArraySequence<T> &arraySequence) : elements(myArraySequence<T>(arraySequence)) {};
@@ -86,7 +101,22 @@ public:
     }
 
     myPolynomial<T> add(myPolynomial<T> polynomial) {
+        auto *arrZip = elements.zip(&polynomial.elements);
+        myArraySequence<T> *arrRes = arrZip->map(sumArr);
 
+        delete arrZip;
+
+        for (int i = arrRes->length(); i < elements.length(); i++) {
+            arrRes->append(elements[i]);
+        }
+
+        for (int i = arrRes->length(); i < polynomial.elements.length(); i++) {
+            arrRes->append(polynomial.elements[i]);
+        }
+
+        elements = *arrRes;
+        delete arrRes;
+        /*
         for (int i = 0; i < polynomial.elements.length() && i < elements.length(); i++) {
             elements[i] += polynomial[i];
         }
@@ -94,6 +124,7 @@ public:
         for (int i = elements.length(); i < polynomial.elements.length(); i++) {
             elements.append(polynomial[i]);
         }
+         */
         return *this;
     }
 
@@ -110,6 +141,22 @@ public:
     }
     /**/
     myPolynomial<T> sub(myPolynomial<T> polynomial) {
+        auto *arrZip = elements.zip(&polynomial.elements);
+        myArraySequence<T> *arrRes = arrZip->map(subArr);
+
+        delete arrZip;
+
+        for (int i = arrRes->length(); i < elements.length(); i++) {
+            arrRes->append(elements[i]);
+        }
+
+        for (int i = arrRes->length(); i < polynomial.elements.length(); i++) {
+            arrRes->append(0 - polynomial.elements[i]);
+        }
+
+        elements = *arrRes;
+        delete arrRes;
+        /*
         for (int i = 0; i < polynomial.elements.length() && i < elements.length(); i++) {
             elements[i] -= polynomial.elements[i];
         }
@@ -117,6 +164,7 @@ public:
         for (int i = elements.length(); i < polynomial.elements.length(); i++) {
             elements.append(0 - polynomial.elements[i]);
         }
+         */
         return *this;
     }
 
@@ -133,6 +181,18 @@ public:
     }
 
     myPolynomial<T> mult(myPolynomial<T> polynomial) {
+        myPolynomial<T> res;
+        myPolynomial<T> pol;
+        for (int i = 0; i < polynomial.elements.length(); i++) {
+            auto *arr = elements.map(polynomial.elements[i], multElem);
+            pol.elements = *arr;
+            pol.changeDegree(i);
+            res += pol;
+            delete arr;
+        }
+
+        elements = res.elements;
+        /*
         auto result = myPolynomial<T>();
         for (int i = 0; i < elements.length(); i++) {
             for (int j = 0; j < polynomial.elements.length(); j++) {
@@ -146,6 +206,7 @@ public:
             }
         }
         elements = result.elements;
+         */
         return *this;
     }
 
@@ -158,10 +219,15 @@ public:
     }
 
     myPolynomial<T> scalarMult(T item) {
+        auto *arr = elements.map(item, multElem);
+        elements = *arr;
+        delete arr;
+        /*
         for (int i = 0; i < elements.length(); i++) {
             elements[i] *= item;
         }
-        return myPolynomial<T>(*this);
+         */
+        return *this;
     }
 
     myPolynomial<T> operator*(T item) {
@@ -170,6 +236,34 @@ public:
 
     myPolynomial<T> operator *= (T item) {
         return (*this).scalarMult(item);
+    }
+
+    myPolynomial<T> *changeDegree(int delta) {
+        if (delta == 0) return this;
+        if (delta > 0) {
+            myArraySequence<T> res;
+            for (int i = 0; i < delta; i++) {
+                res.append((T) 0);
+            }
+            res.concat((mySequence<T>*) &elements);
+            elements = res;
+        }
+        else {
+            delta *= -1;
+            if (delta >= elements.length()) {
+                elements.remove();
+                return this;
+            }
+            auto *res = elements.getSubSequence(delta, elements.length());
+            elements = *res;
+            delete res;
+        }
+        return this;
+    }
+
+    myPolynomial<T> *changeDegree_(int delta) {
+        auto *res = new myPolynomial<T>(*this);
+        return res->changeDegree(delta);
     }
 
     myPolynomial<T> pow_(int degree) {
@@ -186,7 +280,7 @@ public:
         for (int i = 1; i < elements.length(); i++) {
             if (elements[i] == 0) continue;
             T val = item;
-            for (int j =1; j < i; j++)
+            for (int j = 1; j < i; j++)
                 val *= item;
 
             res += val * elements[i];

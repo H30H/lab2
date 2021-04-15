@@ -190,6 +190,76 @@ public:
 
         return -1;
     }
+
+    template<class U>
+    myDynamicArray<U>* map(U (*func)(T item)) {
+        auto *res = new myDynamicArray<U>;
+        res->resize(len);
+        for (int i = 0; i <len; i++) {
+            (*res)[i] = func(arr[i]);
+        }
+
+        return res;
+    }
+
+    template<class U>
+    myDynamicArray<U>* map(T item, U (*func)(T item1, T item2)) {
+        auto *res = new myDynamicArray<U>;
+        res->resize(len);
+        for (int i = 0; i < len; i++) {
+            (*res)[i] = func(arr[i], item);
+        }
+
+        return res;
+    }
+
+    template<class U>
+    T reduce(U (*func)(T item1, T item2)) {
+        if (len < 2) throw IndexOutOfRange(len, 1);
+
+        auto res = func(arr[0], arr[1]);
+        for (int i = 2; i < len; i++) {
+            res = func(res, arr[i]);
+        }
+
+        return res;
+    }
+
+    myDynamicArray<myDynamicArray<T>>* zip(myDynamicArray<T> *arr1) {
+        auto *res = new myDynamicArray<myDynamicArray<T>>;
+        if (arr1->length() == 0 || len == 0) throw IndexOutOfRange(0, 0);
+        int min = len < arr1->length() ? len : arr1->length();
+        res->resize(min);
+        for (int i = 0; i < min; i++) {
+            (*res)[i].resize(2);
+            (*res)[i][0] = arr[i];
+            (*res)[i][1] = (*arr1)[i];
+        }
+
+        return res;
+    }
+
+    template<class U>
+    static myDynamicArray<myDynamicArray<U>> *unzip(myDynamicArray<myDynamicArray<U>> *dynamicArray) {
+        auto *res = new myDynamicArray<myDynamicArray<U>>;
+        res->resize(2);
+        int dlen = dynamicArray->length();
+        (*res)[0].resize(dlen);
+        (*res)[1].resize(dlen);
+        int i;
+        for (i = 0; i < dlen; i++) {
+            if ((*dynamicArray)[i].length() < 2) break;
+
+            (*res)[0][i] = (*dynamicArray)[i][0];
+            (*res)[1][i] = (*dynamicArray)[i][1];
+        }
+        if (i != dlen) {
+            (*res)[0].resize(i);
+            (*res)[1].resize(i);
+        }
+
+        return res;
+    }
 };
 
 

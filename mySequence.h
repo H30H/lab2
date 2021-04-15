@@ -71,7 +71,7 @@ public:
     virtual void prepend(T item) = 0;
     virtual void insert(T item, int index) = 0;
 
-    virtual mySequence<T>* concat(mySequence<T>* list) = 0;
+    virtual mySequence<T>* concat(mySequence<T>* sequence) = 0;
 };
 
 #endif //LAB2_MYSEQUENCE_H
