@@ -13,6 +13,7 @@ CMakeFiles/lab2.dir/main.cpp.o
  /cygdrive/c/cc++ labs/lab2/myPolynomial.h
  /cygdrive/c/cc++ labs/lab2/mySequence.cpp
  /cygdrive/c/cc++ labs/lab2/mySequence.h
+ /cygdrive/c/cc++ labs/lab2/tests.h
 CMakeFiles/lab2.dir/menu.cpp.o
  /cygdrive/c/cc++ labs/lab2/menu.cpp
  /cygdrive/c/cc++ labs/lab2/menu.h
@@ -43,3 +44,10 @@ CMakeFiles/lab2.dir/myPolynomial.cpp.o
  /cygdrive/c/cc++ labs/lab2/myPolynomial.cpp
  /cygdrive/c/cc++ labs/lab2/myPolynomial.h
  /cygdrive/c/cc++ labs/lab2/mySequence.h
+CMakeFiles/lab2.dir/tests.cpp.o
+ /cygdrive/c/cc++ labs/lab2/myArraySequence.h
+ /cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
+ /cygdrive/c/cc++ labs/lab2/myDynamicArray.h
+ /cygdrive/c/cc++ labs/lab2/mySequence.h
+ /cygdrive/c/cc++ labs/lab2/tests.cpp
+ /cygdrive/c/cc++ labs/lab2/tests.h

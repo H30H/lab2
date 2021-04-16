@@ -153,21 +153,21 @@ public:
         return -1;
     }
 
-    int find(myLinkedList<T> linkedList) {
-        if (linkedList.len == 0) throw IndexOutOfRange(0, 0);
+    int find(myLinkedList<T> *linkedList) {
+        if (linkedList->len == 0) throw IndexOutOfRange(0, 0);
         if (len == 0) throw IndexOutOfRange(0, 0);
 
-        if (len < linkedList.len) return -1;
+        if (len < linkedList->len) return -1;
 
         element *elem = head;
-        element *compare = linkedList.head;
+        element *compare = linkedList->head;
         int index = 0;
         int count = 0;
         while (elem != nullptr) {
-            if (count == linkedList.len)  //мы нашли подпоследовательность, которая начинается с элемента index
+            if (count == linkedList->len)  //мы нашли подпоследовательность, которая начинается с элемента index
                 return index;
 
-            if (index + len > linkedList.len)  //у нас осталось для обхода меньше элементов, чем содержится в linkedList
+            if (index + len > linkedList->len)  //у нас осталось для обхода меньше элементов, чем содержится в linkedList
                 break;
 
             if (elem->data == compare->data) {
@@ -178,7 +178,7 @@ public:
                 index++;
 
                 if (count != 0) {
-                    compare = linkedList.head;
+                    compare = linkedList->head;
                     index += count;
                     count = 0;
                 }

@@ -4,6 +4,9 @@
 
 #include "myDynamicArray.h"
 
+#ifndef LAB2_MYDYNAMICARRAY_CPP
+#define LAB2_MYDYNAMICARRAY_CPP
+
 template<class T>
 void arrCopy(T *arr_in, T *arr_out, int count) {
     for (int i = 0; i < count; i++) {
@@ -138,3 +141,5 @@ template<class T>
 T *myDynamicArray<T>::end() const {    //функция для работы итератора
     return arr ? arr + len : nullptr;
 }
+
+#endif

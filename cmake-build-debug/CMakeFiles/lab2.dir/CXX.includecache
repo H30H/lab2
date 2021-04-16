@@ -6,44 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/cc++ labs/lab2/main.cpp
-myDynamicArray.cpp
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
-myLinkedList.cpp
-/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
-mySequence.cpp
-/cygdrive/c/cc++ labs/lab2/mySequence.cpp
-myArraySequence.cpp
-/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
-myPolynomial.h
-/cygdrive/c/cc++ labs/lab2/myPolynomial.h
-myLinkedList.h
-/cygdrive/c/cc++ labs/lab2/myLinkedList.h
-myDynamicArray.h
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
-iostream
--
-menu.h
-/cygdrive/c/cc++ labs/lab2/menu.h
-
-/cygdrive/c/cc++ labs/lab2/menu.cpp
-menu.h
-/cygdrive/c/cc++ labs/lab2/menu.h
-myDynamicArray.cpp
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
-
-/cygdrive/c/cc++ labs/lab2/menu.h
-complex
--
-myPolynomial.h
-/cygdrive/c/cc++ labs/lab2/myPolynomial.h
-iostream
--
-
-/cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
-myArraySequence.h
-/cygdrive/c/cc++ labs/lab2/myArraySequence.h
-
 /cygdrive/c/cc++ labs/lab2/myArraySequence.h
 mySequence.h
 /cygdrive/c/cc++ labs/lab2/mySequence.h
@@ -62,31 +24,23 @@ string
 iostream
 -
 
-/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
-myLinkedList.h
-/cygdrive/c/cc++ labs/lab2/myLinkedList.h
-
-/cygdrive/c/cc++ labs/lab2/myLinkedList.h
-cstdlib
-/cygdrive/c/cc++ labs/lab2/cstdlib
+/cygdrive/c/cc++ labs/lab2/mySequence.h
 iostream
 -
 
-/cygdrive/c/cc++ labs/lab2/myPolynomial.cpp
-myPolynomial.h
-/cygdrive/c/cc++ labs/lab2/myPolynomial.h
+/cygdrive/c/cc++ labs/lab2/tests.cpp
+tests.h
+/cygdrive/c/cc++ labs/lab2/tests.h
+cstdio
+/cygdrive/c/cc++ labs/lab2/cstdio
 
-/cygdrive/c/cc++ labs/lab2/myPolynomial.h
-iostream
--
+/cygdrive/c/cc++ labs/lab2/tests.h
+myDynamicArray.cpp
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
 myArraySequence.h
 /cygdrive/c/cc++ labs/lab2/myArraySequence.h
-
-/cygdrive/c/cc++ labs/lab2/mySequence.cpp
-mySequence.h
-/cygdrive/c/cc++ labs/lab2/mySequence.h
-
-/cygdrive/c/cc++ labs/lab2/mySequence.h
 iostream
--
+/cygdrive/c/cc++ labs/lab2/iostream
+random
+/cygdrive/c/cc++ labs/lab2/random
 

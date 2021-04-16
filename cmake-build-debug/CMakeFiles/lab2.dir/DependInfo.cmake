@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myLinkedList.cpp.o"
   "/cygdrive/c/cc++ labs/lab2/myListSequence.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myListSequence.cpp.o"
   "/cygdrive/c/cc++ labs/lab2/myPolynomial.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/myPolynomial.cpp.o"
+  "/cygdrive/c/cc++ labs/lab2/tests.cpp" "/cygdrive/c/cc++ labs/lab2/cmake-build-debug/CMakeFiles/lab2.dir/tests.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

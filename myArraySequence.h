@@ -156,7 +156,7 @@ public:
 
     void prepend(T item) {
         dynamicArray.resize(dynamicArray.length() + 1);
-        for (int i = dynamicArray.length() - 1; i >= 0; i--) {
+        for (int i = dynamicArray.length() - 2; i >= 0; i--) {
             dynamicArray[i+1] = dynamicArray[i];
         }
         dynamicArray[0] = item;
@@ -198,16 +198,16 @@ public:
     }
 
     void insert(T item, int index) {
-        dynamicArray[index];
+        if (index < 0 || index >=dynamicArray.length()) throw IndexOutOfRange(dynamicArray.length(), index);
         dynamicArray.resize(dynamicArray.length() + 1);
-        for (int i = dynamicArray.length() - 1; i >= index; i--) {
+        for (int i = dynamicArray.length() - 2; i >= index; i--) {
             dynamicArray[i+1] = dynamicArray[i];
         }
         dynamicArray[index] = item;
     }
 
     void insert(T *item, int index) {
-        insert(*item);
+        insert(*item, index);
         /*
         dynamicArray[index];
         dynamicArray.resize(dynamicArray.length() + 1);
@@ -317,6 +317,14 @@ public:
         }
 
         return res;
+    }
+
+    int find(T item) {
+        return dynamicArray.find(item);
+    }
+
+    int find(myArraySequence<T> *arraySequence) {
+        return dynamicArray.find(&arraySequence->dynamicArray);
     }
 };
 

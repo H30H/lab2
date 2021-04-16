@@ -11,4 +11,4 @@ add_executable(
         myLinkedList.cpp
         myListSequence.cpp
         myPolynomial.cpp
-        menu.cpp menu.h)
+        menu.cpp menu.h tests.cpp tests.h)

@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/lab2.dir/myLinkedList.cpp.o"
   "CMakeFiles/lab2.dir/myListSequence.cpp.o"
   "CMakeFiles/lab2.dir/myPolynomial.cpp.o"
+  "CMakeFiles/lab2.dir/tests.cpp.o"
   "lab2.exe"
   "lab2.pdb"
   "liblab2.dll.a"
