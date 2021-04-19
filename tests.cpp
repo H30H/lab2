@@ -8,7 +8,7 @@
 #define maxSizeAS 1000    // *Максимальный размер последовательности массива
 #define maxSizeLL 2000    // *Максимальный размер связного списка
 #define maxSizeLS 2000    // *Максимальный размер последовательности списка
-#define maxSizeP 150      // *Максимальная степень многочлена
+#define maxSizeP 200      // *Максимальная степень многочлена
 #define maxItemP 10000    // *Максильманый элемент многочлена
 
 void printDone(int count, int done, int print) {
@@ -19,7 +19,6 @@ void printDone(int count, int done, int print) {
             std::cout << "\tТест не пройден (провалено \"" << count - done << "\", пройдено \"" << done << "\" тестов).\n\n";
     else if (done != count)
         throw testFault(done, count - done);
-
 }
 
 int getLen(int max) {
@@ -33,6 +32,14 @@ int getLen(int max) {
 int getIndex(int max){
     if (max == 0) return 0;
     return rand()%max;
+}
+
+void testAll(int count, int print) {
+    dynamicArrTest(count, print);
+    myArraySequenceTest(count, print);
+    myLinkedListTest(count, print);
+    myListSequenceTest(count, print);
+    myPolynomialTest(count, print);
 }
 
 void dynamicArrTest(int count, int print) {
@@ -190,7 +197,7 @@ void myArraySequenceTestGetItem(int count, int print) {
     int done = 0;
     int actions = 100;
     if (print)
-        std::cout << "\tТестирование чтения элеметов последовательности\n";
+        std::cout << "\tТестирование чтения элеметов последовательности:\n";
     for (int i = 0; i < count; i+=actions) {
         myArraySequence<int> sequence;
         int len = getLen(maxSizeAS);
@@ -361,7 +368,7 @@ void myLinkedListTestFind(int count, int print) {
     int done = 0;
     int actions = 10;
     if (print)
-        std::cout << "\tТестирование поиска элементов в списке\n";
+        std::cout << "\tТестирование поиска элементов в списке:\n";
     for (int i = 0; i < count; i++) {
         myLinkedList<int> linkedList;
         int len = getLen(maxSizeLL);
@@ -384,7 +391,7 @@ void myLinkedListTestFind(int count, int print) {
 
 void myListSequenceTest(int count, int print) {
     if (print)
-        std::cout << "Тестирование последовательности связного списка\n";
+        std::cout << "Тестирование последовательности связного списка:\n";
     myListSequenceTestResize(count, print);
     myListSequenceTestGetItem(count, print);
     myListSequenceTestReverse(count, print);
@@ -423,7 +430,7 @@ void myListSequenceTestGetItem(int count, int print) {
     int done = 0;
     int actions = 10;
     if (print)
-        std::cout << "\nТестирование чтения элементов последовательности:\n";
+        std::cout << "\tТестирование чтения элементов последовательности:\n";
     for (int i = 0; i < count; i+=actions) {
         myListSequence<int> listSequence;
         int len = getLen(maxSizeLS);
@@ -526,7 +533,6 @@ void myPolynomialTestSum(int count, int print) {
         auto res1 = polynomial1 + polynomial2;
         auto res2 = polynomial2 + polynomial1;
         if (res1 != res2) continue;
-
         int res = 1;
         for (int j = 0; j < len2 && res == 1; j++) {
             if (polynomial1[j] + polynomial2[j] != res1[j])
@@ -544,7 +550,176 @@ void myPolynomialTestSum(int count, int print) {
     printDone(count, done, print);
 }
 
-void myPolynomialTestSub(int count, int print) {}
-void myPolynomialTestMult(int count, int print) {}
-void myPolynomialTestScalar(int count, int print) {}
-void myPolynomialTestPow(int count, int print) {}
+void myPolynomialTestSub(int count, int print) {
+    int done = 0;
+    if (print)
+        std::cout << "\tТестирование вычитания:\n";
+    for (int i = 0; i < count; i++) {
+        int len1 = getLen(maxSizeP);
+        int len2 = getLen(maxSizeP);
+        if (len1 < len2) {
+            int d = len1;
+            len1 = len2;
+            len2 = d;
+        }
+        myArraySequence<int> arraySequence1;
+        myArraySequence<int> arraySequence2;
+        for (int j = 0; j < len1; j++) {
+            arraySequence1.append(getIndex(maxItemP) + 1);
+        }
+
+        for (int j = 0; j < len2; j++) {
+            arraySequence2.append(getIndex(maxItemP) + 1);
+        }
+        myPolynomial<int> polynomial1(arraySequence1);
+        myPolynomial<int> polynomial2(arraySequence2);
+        auto res1 = polynomial1 - polynomial2;
+        auto res2 = polynomial2 - polynomial1;
+        if (res1 != -res2) continue;
+        int res = 1;
+        for (int j = 0; j < len2 && res == 1; j++) {
+            if (polynomial1[j] - polynomial2[j] != res1[j])
+                res = 0;
+        }
+
+        for (int j = len2; j < len1 && res == 1; j++) {
+            if (polynomial1[j] != res1[j])
+                res = 0;
+        }
+
+        done += res;
+    }
+
+    printDone(count, done, print);
+}
+
+void myPolynomialTestMult(int count, int print) {
+    int done = 0;
+    if (print)
+        std::cout << "\tТестирование умножения:\n";
+    for (int i = 0; i < count; i++) {
+        int len1 = getLen(maxSizeP/4);
+        int len2 = getLen(maxSizeP/4);
+        if (len1 < len2) {
+            int d = len1;
+            len1 = len2;
+            len2 = d;
+        }
+        myArraySequence<int> arraySequence1;
+        myArraySequence<int> arraySequence2;
+        for (int j = 0; j < len1; j++) {
+            arraySequence1.append(getIndex(maxItemP) + 1);
+        }
+
+        for (int j = 0; j < len2; j++) {
+            arraySequence2.append(getIndex(maxItemP) + 1);
+        }
+        myPolynomial<int> polynomial1(arraySequence1);
+        myPolynomial<int> polynomial2(arraySequence2);
+        auto res1 = polynomial1 * polynomial2;
+        auto res2 = polynomial2 * polynomial1;
+        if (res1 != res2) continue;
+        int res = 1;
+        myArraySequence<int> resultArr;
+        for (int i = 0; i < len1; i++) {
+            for (int j = 0; j < len2; j++) {
+                int elem = arraySequence1[i] * arraySequence2[j];
+                int index = i + j;
+                if (resultArr.length() <= index) {
+                    resultArr.append(elem);
+                    continue;
+                }
+                resultArr[index] += elem;
+            }
+        }
+        myPolynomial<int> result(resultArr);
+        if (result != res1) continue;
+        done += res;
+    }
+
+    printDone(count, done, print);
+}
+
+void myPolynomialTestScalar(int count, int print) {
+    int done = 0;
+    if (print)
+        std::cout << "\tТестирование скалярного умножения:\n";
+    for (int i = 0; i < count; i++) {
+        myArraySequence<int> array;
+        int len = getLen(maxSizeP);
+        for (int j = 0; j < len; j++) {
+            array.append(getIndex(maxItemP));
+        }
+        int scalar = getIndex(maxItemP);
+        myPolynomial<int> polynomial(array);
+        auto res = polynomial * scalar;
+        if (scalar == 0 && res.length() == 1) {
+            done++;
+            continue;
+        }
+        if (res.length() != polynomial.length()) {
+            continue;
+        }
+        int Done = 1;
+        for (int j = 0; j < polynomial.length() && Done == 1; j++) {
+            if (res[j] != polynomial[j] * scalar)
+                Done = 0;
+        }
+
+        done+=Done;
+        if (!Done) {
+            std::cout << res << std::endl;
+        }
+    }
+
+    printDone(count, done, print);
+}
+
+void myPolynomialTestPow(int count, int print) {
+    int done = 0;
+    if (print)
+        std::cout << "\tТестирование изменения порядка многочлена:\n";
+    for (int i = 0; i < count; i++) {
+        myArraySequence<int> sequence;
+        int len = getLen(maxSizeP);
+        for (int j = 0; j < len; j++) {
+            sequence.append(getIndex(maxItemP));
+        }
+        int index = getIndex(len) * (getIndex(len) % 2 * 2 - 1); //число * +-1
+        myPolynomial<int> pol1(sequence);
+        auto pol2 = pol1;
+        pol2.changeDegree(index);
+
+        if (index == 0 && pol2.length() != pol1.length())
+            continue;
+        else if (index > 0) {
+            if (pol1.length() + index != pol2.length())
+                continue;
+
+            int Done = 1;
+            for (int j = index, k = 0; k < pol1.length() && Done; k++, j++) {
+                if (pol2[j] != pol1[k])
+                    Done = 0;
+            }
+            if (!Done)
+                continue;
+        }
+        else {
+            index *= -1;
+            if (pol1.length() != pol2.length() + index)
+                continue;
+
+            int Done = 1;
+            for (int j = 0, k = index; j < pol2.length() && Done; k++, j++) {
+                if (pol2[j] != pol1[k])
+                    Done = 0;
+            }
+            if (!Done)
+                continue;
+        }
+
+        done++;
+    }
+
+    printDone(count, done, print);
+}

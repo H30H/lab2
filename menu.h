@@ -8,6 +8,7 @@
 #include <complex>
 #include "myPolynomial.h"
 #include <iostream>
+#include "tests.h"
 
 void mainMenu();
 int getType();
@@ -45,6 +46,7 @@ void deletePolynomial(myArraySequence<myPolynomial<int>*> *intArr,
 template<class T>
 void deleteTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);
 
-
+//5
+void testFunc();
 
 #endif //LAB2_MENU_H

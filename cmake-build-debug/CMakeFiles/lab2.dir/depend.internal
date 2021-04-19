@@ -21,8 +21,12 @@ CMakeFiles/lab2.dir/menu.cpp.o
  /cygdrive/c/cc++ labs/lab2/myArraySequence.h
  /cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
  /cygdrive/c/cc++ labs/lab2/myDynamicArray.h
+ /cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+ /cygdrive/c/cc++ labs/lab2/myLinkedList.h
+ /cygdrive/c/cc++ labs/lab2/myListSequence.h
  /cygdrive/c/cc++ labs/lab2/myPolynomial.h
  /cygdrive/c/cc++ labs/lab2/mySequence.h
+ /cygdrive/c/cc++ labs/lab2/tests.h
 CMakeFiles/lab2.dir/myArraySequence.cpp.o
  /cygdrive/c/cc++ labs/lab2/myArraySequence.cpp
  /cygdrive/c/cc++ labs/lab2/myArraySequence.h

@@ -33,6 +33,27 @@ int getInt(int down, int up) {
     return k;
 }
 
+ostream& operator << (ostream& cout, complex<int> num) {
+    if (num.imag() == 0) return cout << num.real();
+
+    if (num.real() != 0) {
+        cout << num.real();
+    }
+
+    if (num.imag() > 0) {
+        if (num.real() != 0)
+            cout << '+';
+        if (num.imag() != 1)
+            cout << num.imag();
+        return cout << 'i';
+    }
+    else {
+        if (num.imag() == -1)
+            return cout << "-i";
+        return cout << num.imag() << 'i';
+    }
+}  //красивый вывод комплексного числа
+
 template<class T>
 void printArr(myArraySequence<myPolynomial<T>*> *arr) {
     for (int i = 0; i < arr->length(); i++) {
@@ -69,7 +90,7 @@ void mainMenu() {
             case 2: operationWithPolynomial(&arrInt, &arrFloat, &arrComplex); break;
             case 3: printPolynomial(&arrInt, &arrFloat, &arrComplex); break;
             case 4: deletePolynomial(&arrInt, &arrFloat, &arrComplex); break;
-            case 5: cout << "В разработке...\n"; break;
+            case 5: testFunc(); break;
             default: break;
         }
     }
@@ -394,6 +415,24 @@ void deleteTypePolynomial(myArraySequence<myPolynomial<T>*> *arr) {
     }
 }
 
+//5
+void testFunc() {
+    cout << "Введите:\n"
+            "\t- положительное число для ввода итераций тестов\n"
+            "\t- нуль или отрицательное число для выхода\n: ";
+    int count = getInt();
+    if (count <= 0)
+        return;
+
+    testAll(count, 1);
+
+    cout << "Хотите запустить тестирование ещё раз?\n"
+            "\t0 - нет\n"
+            "\t1 - да\n: ";
+    count = getInt(0, 1);
+    if (count == 1)
+        testFunc();
+}
 
 #define funcTemplate(T) \
 template void readTypePolynomial(myArraySequence<myPolynomial<T>*> *arr, int count); \

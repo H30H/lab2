@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+/cygdrive/c/cc++ labs/lab2/menu.cpp
+menu.h
+/cygdrive/c/cc++ labs/lab2/menu.h
+myDynamicArray.cpp
+/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
+
+/cygdrive/c/cc++ labs/lab2/menu.h
+complex
+-
+myPolynomial.h
+/cygdrive/c/cc++ labs/lab2/myPolynomial.h
+iostream
+-
+tests.h
+/cygdrive/c/cc++ labs/lab2/tests.h
+
 /cygdrive/c/cc++ labs/lab2/myArraySequence.h
 mySequence.h
 /cygdrive/c/cc++ labs/lab2/mySequence.h
@@ -51,10 +67,6 @@ myArraySequence.h
 /cygdrive/c/cc++ labs/lab2/mySequence.h
 iostream
 -
-
-/cygdrive/c/cc++ labs/lab2/tests.cpp
-tests.h
-/cygdrive/c/cc++ labs/lab2/tests.h
 
 /cygdrive/c/cc++ labs/lab2/tests.h
 myDynamicArray.cpp

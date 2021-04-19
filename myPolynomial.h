@@ -62,13 +62,21 @@ public:
         return cout;
     }
 
-    explicit myPolynomial(myArraySequence<T> &arraySequence) : elements(myArraySequence<T>(arraySequence)) {};
+    explicit myPolynomial(myArraySequence<T> &arraySequence) : elements(myArraySequence<T>(arraySequence)) {
+        checkLength();
+    };
 
-    explicit myPolynomial(T item) : elements(myArraySequence<T>(item)) {};
+    explicit myPolynomial(T item) : elements(myArraySequence<T>(item)) {
+        checkLength();
+    };
 
-    myPolynomial() : elements(myArraySequence<T>()) {};
+    myPolynomial() : elements(myArraySequence<T>()) {
+        checkLength();
+    };
 
-    myPolynomial(const myPolynomial<T> &polynomial) : elements(polynomial.elements), symbol(polynomial.symbol) {};
+    myPolynomial(const myPolynomial<T> &polynomial) : elements(polynomial.elements), symbol(polynomial.symbol) {
+        checkLength();
+    };
 
     T get(int index) {
         return elements[index];
@@ -86,7 +94,7 @@ public:
 
     void checkLength() {
         int i;
-        for (i = elements.length() - 1; i > 0 && elements[i] != 0; i--);
+        for (i = elements.length() - 1; i > 0 && elements[i] == 0; i--);
         i++;
         if (i != elements.length())
             elements.remove(i);

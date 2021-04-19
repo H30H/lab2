@@ -22,6 +22,9 @@ public:
     testFault(int done, int fault): done(done), fault(fault) {}
 };
 
+void testAll(int count, int print);
+
+
 void dynamicArrTest(int count, int print);
 
 void dynamicArrTestResize(int count, int print);
