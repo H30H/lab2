@@ -29,8 +29,9 @@ int main() {
 //    myArraySequence<int> Arr1(arr1, 4);
 //    myArraySequence<int> Arr2(arr2, 6);
 
-    myListSequenceTest(10000, 1);
-    /*
+//    myListSequenceTest(10000, 1);
+    myPolynomialTest(10000, 1);
+/*
     for (auto &i : sequence) {
         cout << i << endl;
     }/**/

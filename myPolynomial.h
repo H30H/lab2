@@ -125,6 +125,7 @@ public:
             elements.append(polynomial[i]);
         }
          */
+        checkLength();
         return *this;
     }
 
@@ -133,7 +134,7 @@ public:
     }
 
     myPolynomial<T> operator += (myPolynomial<T> polynomial) {
-        return (*this).add(polynomial);
+        return add(polynomial);
     }
 
     myPolynomial<T> operator+() {
@@ -156,6 +157,7 @@ public:
 
         elements = *arrRes;
         delete arrRes;
+        checkLength();
         /*
         for (int i = 0; i < polynomial.elements.length() && i < elements.length(); i++) {
             elements[i] -= polynomial.elements[i];
@@ -173,7 +175,7 @@ public:
     }
 
     myPolynomial<T> operator -= (myPolynomial<T> polynomial) {
-        return (*this).sub(polynomial);
+        return sub(polynomial);
     }
 
     myPolynomial<T> operator-() {
@@ -192,6 +194,7 @@ public:
         }
 
         elements = res.elements;
+        checkLength();
         /*
         auto result = myPolynomial<T>();
         for (int i = 0; i < elements.length(); i++) {
@@ -215,7 +218,7 @@ public:
     }
 
     myPolynomial<T> operator *= (myPolynomial<T> polynomial) {
-        return (*this).mult(polynomial);
+        return mult(polynomial);
     }
 
     myPolynomial<T> scalarMult(T item) {
@@ -227,6 +230,7 @@ public:
             elements[i] *= item;
         }
          */
+        checkLength();
         return *this;
     }
 
@@ -235,7 +239,7 @@ public:
     }
 
     myPolynomial<T> operator *= (T item) {
-        return (*this).scalarMult(item);
+        return scalarMult(item);
     }
 
     myPolynomial<T> *changeDegree(int delta) {
@@ -258,7 +262,37 @@ public:
             elements = *res;
             delete res;
         }
+        checkLength();
         return this;
+    }
+
+    int operator == (myPolynomial<T> polynomial) {
+        checkLength();
+        polynomial.checkLength();
+        if (elements.length() != polynomial.elements.length()) return 0;
+
+        for (int i = 0; i < elements.length(); i++) {
+            if (elements[i] != polynomial.elements[i])
+                return 0;
+        }
+
+        return 1;
+    }
+
+    int operator != (myPolynomial<T> polynomial) {
+        return !(*this == polynomial);
+    }
+
+    int operator == (T value) {
+        if (elements.length() == 1 && elements[0] == value) return 1;
+
+        if (elements.length() == 0 && value == 0) return 1;
+
+        return 0;
+    }
+
+    int operator != (T value) {
+        return !(*this == value);
     }
 
     myPolynomial<T> *changeDegree_(int delta) {
@@ -309,24 +343,6 @@ public:
     myPolynomial<T> &operator = (const myPolynomial<T> &polynomial) {
         elements = polynomial.elements;
         return *this;
-    }
-
-    int operator == (myPolynomial<T> polynomial) {
-        if (elements.length() != polynomial.length()) return 0;
-
-        for (int i = 0; i < elements.length(); i++) {
-            if (elements[i] != polynomial[i])
-                return 0;
-        }
-        return 1;
-    }
-
-    int operator == (T value) {
-        if (elements.length() == 1 && elements[0] == value) return 1;
-
-        if (elements.length() == 0 && value == 0) return 1;
-
-        return 0;
     }
 
     myPolynomial<T> map (T value, T (*func)(T value1, T value2)) {

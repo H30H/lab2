@@ -4,10 +4,12 @@
 
 #include "tests.h"
 
-#define maxSizeDA 100000
-#define maxSizeAS 1000
-#define maxSizeLL 2000
-#define maxSizeLS 2000
+#define maxSizeDA 100000  // *Максимальный размер динамического массива
+#define maxSizeAS 1000    // *Максимальный размер последовательности массива
+#define maxSizeLL 2000    // *Максимальный размер связного списка
+#define maxSizeLS 2000    // *Максимальный размер последовательности списка
+#define maxSizeP 150      // *Максимальная степень многочлена
+#define maxItemP 10000    // *Максильманый элемент многочлена
 
 void printDone(int count, int done, int print) {
     if (print)
@@ -498,7 +500,50 @@ void myPolynomialTest(int count, int print) {
     myPolynomialTestPow(count, print);
 }
 
-void myPolynomialTestSum(int count, int print) {}
+void myPolynomialTestSum(int count, int print) {
+    int done = 0;
+    if (print)
+        std::cout << "\tТестирование суммирования:\n";
+    for (int i = 0; i < count; i++) {
+        int len1 = getLen(maxSizeP);
+        int len2 = getLen(maxSizeP);
+        if (len1 < len2) {
+            int d = len1;
+            len1 = len2;
+            len2 = d;
+        }
+        myArraySequence<int> arraySequence1;
+        myArraySequence<int> arraySequence2;
+        for (int j = 0; j < len1; j++) {
+            arraySequence1.append(getIndex(maxItemP) + 1);
+        }
+
+        for (int j = 0; j < len2; j++) {
+            arraySequence2.append(getIndex(maxItemP) + 1);
+        }
+        myPolynomial<int> polynomial1(arraySequence1);
+        myPolynomial<int> polynomial2(arraySequence2);
+        auto res1 = polynomial1 + polynomial2;
+        auto res2 = polynomial2 + polynomial1;
+        if (res1 != res2) continue;
+
+        int res = 1;
+        for (int j = 0; j < len2 && res == 1; j++) {
+            if (polynomial1[j] + polynomial2[j] != res1[j])
+                res = 0;
+        }
+
+        for (int j = len2; j < len1 && res == 1; j++) {
+            if (polynomial1[j] != res1[j])
+                res = 0;
+        }
+
+        done += res;
+    }
+
+    printDone(count, done, print);
+}
+
 void myPolynomialTestSub(int count, int print) {}
 void myPolynomialTestMult(int count, int print) {}
 void myPolynomialTestScalar(int count, int print) {}

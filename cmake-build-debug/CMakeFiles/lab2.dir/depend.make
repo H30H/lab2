@@ -52,6 +52,7 @@ CMakeFiles/lab2.dir/tests.cpp.o: ../myDynamicArray.h
 CMakeFiles/lab2.dir/tests.cpp.o: ../myLinkedList.cpp
 CMakeFiles/lab2.dir/tests.cpp.o: ../myLinkedList.h
 CMakeFiles/lab2.dir/tests.cpp.o: ../myListSequence.h
+CMakeFiles/lab2.dir/tests.cpp.o: ../myPolynomial.h
 CMakeFiles/lab2.dir/tests.cpp.o: ../mySequence.h
 CMakeFiles/lab2.dir/tests.cpp.o: ../tests.cpp
 CMakeFiles/lab2.dir/tests.cpp.o: ../tests.h

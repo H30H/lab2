@@ -9,6 +9,7 @@
 #include "myArraySequence.h"
 #include "myLinkedList.cpp"
 #include "myListSequence.h"
+#include "myPolynomial.h"
 
 #include "iostream"
 #include "random"
