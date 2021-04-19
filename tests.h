@@ -52,4 +52,13 @@ void myListSequenceTestGetItem(int count, int print);
 void myListSequenceTestReverse(int count, int print);
 void myListSequenceTestFind(int count, int print);
 
+
+void myPolynomialTest(int count, int print);
+
+void myPolynomialTestSum(int count, int print);
+void myPolynomialTestSub(int count, int print);
+void myPolynomialTestMult(int count, int print);
+void myPolynomialTestScalar(int count, int print);
+void myPolynomialTestPow(int count, int print);
+
 #endif //LAB2_TESTS_H

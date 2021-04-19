@@ -6,7 +6,7 @@
 
 #define maxSizeDA 100000
 #define maxSizeAS 1000
-#define maxSizeLL 1000
+#define maxSizeLL 2000
 #define maxSizeLS 2000
 
 void printDone(int count, int done, int print) {
@@ -183,6 +183,7 @@ void myArraySequenceTestResize(int count, int print) {
 
     printDone(count, done, print);
 }
+
 void myArraySequenceTestGetItem(int count, int print) {
     int done = 0;
     int actions = 100;
@@ -210,6 +211,7 @@ void myArraySequenceTestGetItem(int count, int print) {
 
     printDone(count, done, print);
 }
+
 void myArraySequenceTestReverse(int count, int print) {
     int done = 0;
     if (print)
@@ -352,6 +354,7 @@ void myLinkedListTestReverse(int count, int print) {
 
     printDone(count, done, print);
 }
+
 void myLinkedListTestFind(int count, int print) {
     int done = 0;
     int actions = 10;
@@ -483,3 +486,20 @@ void myListSequenceTestFind(int count, int print) {
 
     printDone(count, done, print);
 }
+
+
+void myPolynomialTest(int count, int print) {
+    if (print)
+        std::cout << "Тестирование многочленов:\n";
+    myPolynomialTestSum(count, print);
+    myPolynomialTestSub(count, print);
+    myPolynomialTestMult(count, print);
+    myPolynomialTestScalar(count, print);
+    myPolynomialTestPow(count, print);
+}
+
+void myPolynomialTestSum(int count, int print) {}
+void myPolynomialTestSub(int count, int print) {}
+void myPolynomialTestMult(int count, int print) {}
+void myPolynomialTestScalar(int count, int print) {}
+void myPolynomialTestPow(int count, int print) {}
