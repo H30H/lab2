@@ -14,7 +14,13 @@ class myListSequence: mySequence<T> {
 private:
     myLinkedList<T> linkedList;
 public:
-    class IndexOutOfRange{};
+    class IndexOutOfRange{
+    public:
+        int length;
+        int index;
+        IndexOutOfRange(int length, int index): length(length), index(index) {};
+        IndexOutOfRange(): length(-1), index(-1) {};
+    };
 
     friend std::ostream &operator << (std::ostream &cout, myListSequence<T> listSequence) {
         return cout << listSequence.linkedList;
@@ -45,22 +51,27 @@ public:
     }
 
     T getFirst() {
+        if (linkedList.length() == 0) throw IndexOutOfRange(0, 0);
         return linkedList.getFirst();
     }
 
     T getLast() {
+        if (linkedList.length() == 0) throw IndexOutOfRange(0, -1);
         return linkedList.getLast();
     }
 
     T get(int index) {
+        if (index < 0 || index >= linkedList.length()) throw (linkedList.length(), index);
         return linkedList.get(index);
     }
 
     void set(T item, int index) {
+        if (index < 0 || index >= linkedList.length()) throw (linkedList.length(), index);
         linkedList.set(item, index);
     }
 
     T &operator [] (int index) {
+        if (index < 0 || index >= linkedList.length()) throw (linkedList.length(), index);
         return linkedList[index];
     }
 
@@ -70,6 +81,9 @@ public:
     }
 
     mySequence<T> *getSubSequence(int startIndex, int endIndex) {
+        if (startIndex < 0 || startIndex >= linkedList.length()) throw (linkedList.length(), startIndex);
+        if (endIndex < 0 || endIndex >= linkedList.length()) throw (linkedList.length(), endIndex);
+
         auto *res = new myListSequence<T>(linkedList.getSubList(startIndex, endIndex));
         return res;
     }
@@ -87,6 +101,8 @@ public:
     }
 
     void insert(T item, int index) {
+        if (index < 0 || index >= linkedList.length()) throw (linkedList.length(), index);
+
         linkedList.insert(item, index);
     }
 
