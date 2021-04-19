@@ -72,6 +72,7 @@ myLinkedList<T>::myLinkedList(T *items, int count) {
     for (int i = 0; i < count; i++) {
         append(items[i]);
     }
+    iter(this);
 }
 
 template<class T>
@@ -82,12 +83,14 @@ myLinkedList<T>::myLinkedList(myLinkedList<T> const &linkedList) {
         append(el->data);
         el = el->next;
     }
+    iter(this);
 }
 
 
 template<class T>
 myLinkedList<T>::myLinkedList(T item) {
     append(item);
+    iter(this);
 }
 
 template<class T>
@@ -127,6 +130,7 @@ myLinkedList<T>::myLinkedList() {
     len = 0;
     head = nullptr;
     ending = nullptr;
+    iter(this);
 }
 
 template<class T>
@@ -160,12 +164,7 @@ T myLinkedList<T>::pop(int index) {
 
 template<class T>
 myLinkedList<T>::~myLinkedList() {
-    Element *next = head;
-    while (next != nullptr) {
-        head = next;
-        next = head->next;
-        delete head;
-    }
+    Delete();
 }
 
 template<class T>

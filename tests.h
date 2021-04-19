@@ -7,9 +7,19 @@
 
 #include "myDynamicArray.cpp"
 #include "myArraySequence.h"
+#include "myLinkedList.cpp"
+#include "myListSequence.h"
 
 #include "iostream"
 #include "random"
+
+class testFault{
+public:
+    int done;
+    int fault;
+    testFault(): done(0), fault(0) {}
+    testFault(int done, int fault): done(done), fault(fault) {}
+};
 
 void dynamicArrTest(int count, int print);
 
@@ -25,5 +35,21 @@ void myArraySequenceTestResize(int count, int print);
 void myArraySequenceTestGetItem(int count, int print);
 void myArraySequenceTestReverse(int count, int print);
 void myArraySequenceTestFind(int count, int print);
+
+
+void myLinkedListTest(int count, int print);
+
+void myLinkedListTestResize(int count, int print);
+void myLinkedListTestGetItem(int count, int print);
+void myLinkedListTestReverse(int count, int print);
+void myLinkedListTestFind(int count, int print);
+
+
+void myListSequenceTest(int count, int print);
+
+void myListSequenceTestResize(int count, int print);
+void myListSequenceTestGetItem(int count, int print);
+void myListSequenceTestReverse(int count, int print);
+void myListSequenceTestFind(int count, int print);
 
 #endif //LAB2_TESTS_H

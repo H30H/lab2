@@ -236,7 +236,7 @@ public:
         newArray->dynamicArray.resize(start + sequence->length());
 
         for (int i = 0; i < sequence->length(); i++) {
-            newArray[i + start] = sequence[i];
+            (*newArray)[i + start] = sequence->get(i);
         }
         return newArray;
     }
@@ -323,8 +323,13 @@ public:
         return dynamicArray.find(item);
     }
 
-    int find(myArraySequence<T> *arraySequence) {
-        return dynamicArray.find(&arraySequence->dynamicArray);
+    int find(mySequence<T> *sequence) {
+        myDynamicArray<T> array;
+        array.resize(sequence->length());
+        for (int i = 0; i < array.length(); i++) {
+            array[i] = sequence->get(i);
+        }
+        return dynamicArray.find(&array);
     }
 };
 

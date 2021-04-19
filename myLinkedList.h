@@ -34,8 +34,9 @@ public:
         myLinkedList<T> *list;
         element *el;
     public:
-        explicit Iterator(myLinkedList<T> *linkedList): list(linkedList), el(linkedList->head) {};
-        explicit Iterator(myLinkedList<T> *linkedList, element *elem): list(linkedList), el(elem) {};
+        Iterator(): list(nullptr), el(nullptr) {}
+        explicit Iterator(myLinkedList<T> *linkedList): list(linkedList), el(linkedList->head) {}
+        explicit Iterator(myLinkedList<T> *linkedList, element *elem): list(linkedList), el(elem) {}
 
         T &operator*() const {
             return el->data;
@@ -55,11 +56,11 @@ public:
             return *this;
         }
 
-        Iterator begin() {
+        Iterator begin() const {
             return Iterator(list);
         }
 
-        Iterator end() {
+        Iterator end() const {
             return Iterator(list, nullptr);
         }
 
@@ -120,14 +121,39 @@ public:
 
     T pop(int index);
 
-    myLinkedList<T> operator * () {
+    void Delete() {
+        Element *next = head;
+        while (next != nullptr) {
+            head = next;
+            next = head->next;
+            delete head;
+        }
+        head = nullptr;
+        ending = nullptr;
+    }
+
+    myLinkedList<T>& operator = (myLinkedList<T> linkedList) {
+        Delete();
+
+        for (element *elem = linkedList.head; elem; append(elem->data), elem = elem->next);
+
+        return *this;
+    }
+
+    myLinkedList<T>& operator = (myLinkedList<T> *linkedList) {
+        Delete();
+        head = linkedList->head;
+        ending = linkedList->ending;
+        len = linkedList->len;
+    }
+
+    myLinkedList<T>& operator *() {
         return *this;
     }
 
     myLinkedList<myLinkedList<T>*>* split(T item) {
         auto res = new myLinkedList<myLinkedList<T>*>;
         auto elem = new myLinkedList<T>;
-        myLinkedList<T>::Iterator iter(this);
         for (auto &i : iter) {
             if (i == item) {
                 res->append(elem);
@@ -190,7 +216,32 @@ public:
         return -1;
     }
 
+    void reverse() {
+        element *myEnding = head;
+        element *elem;
+        element *next;
+        element *previous = head;
+        for (elem = myEnding->next; elem != nullptr;) {
+            next = elem->next;
+            elem->next = previous;
+            previous = elem;
+            elem = next;
+        }
+        myEnding->next = nullptr;
 
+        head = ending;
+        ending = myEnding;
+    }
+
+    Iterator begin() const {
+        return iter.begin();
+    }
+
+    Iterator end() const {
+        return iter.end();
+    }
+
+    Iterator iter;
 };
 
 #endif //LAB2_MYLINKEDLIST_H

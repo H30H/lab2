@@ -6,7 +6,7 @@
 #define LAB2_MYLISTSEQUENCE_H
 
 #include "mySequence.h"
-#include "myLinkedList.h"
+#include "myLinkedList.cpp"
 #include <iostream>
 
 template <class T>
@@ -17,12 +17,11 @@ public:
     class IndexOutOfRange{};
 
     friend std::ostream &operator << (std::ostream &cout, myListSequence<T> listSequence) {
-        cout << listSequence.linkedList;
-        return cout;
+        return cout << listSequence.linkedList;
     }
 
-    friend std::string to_string(myListSequence<T> listSequence) {
-        return listSequence.linkedList.getStr();
+    friend std::ostream &operator << (std::ostream &cout, myListSequence<T> *listSequence) {
+        return cout << *listSequence;
     }
 
     myListSequence() {
@@ -33,7 +32,7 @@ public:
         linkedList = myLinkedList<T>(items, count);
     }
 
-    myListSequence(T item) {
+    explicit myListSequence(T item) {
         linkedList = myLinkedList<T>(item);
     }
 
@@ -41,7 +40,7 @@ public:
         linkedList = list.linkedList;
     }
 
-    myListSequence(const myLinkedList<T> &list) {
+    explicit myListSequence(const myLinkedList<T> &list) {
         linkedList = list;
     }
 
@@ -62,11 +61,17 @@ public:
     }
 
     T &operator [] (int index) {
-        return linkedList.get(index);
+        return linkedList[index];
+    }
+
+    myListSequence<T>& operator = (myListSequence<T> listSequence) {
+        linkedList = listSequence.linkedList;
+        return *this;
     }
 
     mySequence<T> *getSubSequence(int startIndex, int endIndex) {
-        return myListSequence<T>(linkedList.getSubList(startIndex, endIndex));
+        auto *res = new myListSequence<T>(linkedList.getSubList(startIndex, endIndex));
+        return res;
     }
 
     int length() {
@@ -77,43 +82,65 @@ public:
         linkedList.append(item);
     }
 
-    mySequence<T> append_(T item) {
-        auto listSequence = myListSequence<T>(this);
-        listSequence.linkedList.append(item);
-        return listSequence;
-    }
-
     void prepend(T item) {
         linkedList.prepend(item);
-    }
-
-    mySequence<T> prepend_(T item) {
-        auto listSequence = myListSequence<T>(this);
-        listSequence.linkedList.prepend(item);
-        return listSequence;
     }
 
     void insert(T item, int index) {
         linkedList.insert(item, index);
     }
 
-    mySequence<T> insert_(T item, int index) {
-        auto listSequence = myListSequence<T>(this);
-        listSequence.linkedList.insert(item, index);
-        return listSequence;
+    myListSequence<T> *concat(mySequence<T> *list) {
+        for (int i = 0; i < list->length(); i++) {
+            linkedList.append(list->get(i));
+        }
+        return this;
     }
 
-    mySequence<T> *concat(mySequence<T> *list) {
-        myListSequence<T> listSequence = new myListSequence<T>(this);
+    myListSequence<T> *concat_(mySequence<T> *list) {
+        auto *listSequence = new myListSequence<T>(*this);
         for (int i = 0; i < list->length(); i++) {
-            listSequence.append(list[i]);
+            listSequence->append(list->get(i));
         }
         return listSequence;
     }
 
-    std::string getStr() {
-        return linkedList.getStr();
+    void reverse() {
+        linkedList.reverse();
     }
+
+    int find(T item) {
+        return linkedList.find(item);
+    }
+
+    int find(mySequence<T> *sequence) {
+        myLinkedList<T> list;
+        for (int i = 0; i < sequence->length(); i++) {
+            list.append(sequence->get(i));
+        }
+        return linkedList.find(&list);
+    }
+
+    myListSequence<myListSequence<T>*>* split(T item) {
+        auto res = new myListSequence<myListSequence<T>*>;
+
+        auto *listRes = linkedList.split(item);
+
+        for(auto &i : (*listRes)) {
+            res->append(new myListSequence<T>(*i));
+        }
+
+        return res;
+    }
+    /*
+    typename myLinkedList<T>::Iterator begin() const {
+        return linkedList.begin();
+    }
+
+    typename myLinkedList<T>::Iterator end() const {
+        return linkedList.end();
+    }
+    /**/
 };
 
 

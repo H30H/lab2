@@ -24,6 +24,24 @@ string
 iostream
 -
 
+/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+myLinkedList.h
+/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+
+/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+cstdlib
+/cygdrive/c/cc++ labs/lab2/cstdlib
+iostream
+-
+
+/cygdrive/c/cc++ labs/lab2/myListSequence.h
+mySequence.h
+/cygdrive/c/cc++ labs/lab2/mySequence.h
+myLinkedList.cpp
+/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+iostream
+-
+
 /cygdrive/c/cc++ labs/lab2/mySequence.h
 iostream
 -
@@ -31,14 +49,16 @@ iostream
 /cygdrive/c/cc++ labs/lab2/tests.cpp
 tests.h
 /cygdrive/c/cc++ labs/lab2/tests.h
-cstdio
-/cygdrive/c/cc++ labs/lab2/cstdio
 
 /cygdrive/c/cc++ labs/lab2/tests.h
 myDynamicArray.cpp
 /cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
 myArraySequence.h
 /cygdrive/c/cc++ labs/lab2/myArraySequence.h
+myLinkedList.cpp
+/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+myListSequence.h
+/cygdrive/c/cc++ labs/lab2/myListSequence.h
 iostream
 /cygdrive/c/cc++ labs/lab2/iostream
 random

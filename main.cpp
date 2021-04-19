@@ -22,16 +22,21 @@ int sum1(myArraySequence<int> arr) {
 }
 
 int main() {
-    //mainMenu();
+//    mainMenu();
+//    int arr1[] = {1, 2, 3, 4};
+//    int arr2[] = {5, 6, 7, 8, 9, 10};
+//
+//    myArraySequence<int> Arr1(arr1, 4);
+//    myArraySequence<int> Arr2(arr2, 6);
 
-    int arr1[] = {1, 2, 3, 4};
-    int arr2[] = {5, 6, 7, 8, 9, 10};
-
-    myArraySequence<int> Arr1(arr1, 4);
-    myArraySequence<int> Arr2(arr2, 6);
-
+    myListSequenceTest(10000, 1);
+    /*
+    for (auto &i : sequence) {
+        cout << i << endl;
+    }/**/
     //dynamicArrTest(10000, 1);
-    myArraySequenceTest(10000, 1);
+//    myArraySequenceTest(10000, 1);
+//    myLinkedListTest(10000, 1);
     /*
     auto Arr3 = Arr1.zip(&Arr2);
     cout << Arr1 << endl << Arr2 << endl << Arr3 << endl;

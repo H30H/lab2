@@ -3,18 +3,11 @@
 //
 
 #include "tests.h"
-#include "cstdio"
 
 #define maxSizeDA 100000
 #define maxSizeAS 1000
-
-class testFault{
-public:
-    int done;
-    int fault;
-    testFault(): done(0), fault(0) {}
-    testFault(int done, int fault): done(done), fault(fault) {}
-};
+#define maxSizeLL 1000
+#define maxSizeLS 2000
 
 void printDone(int count, int done, int print) {
     if (print)
@@ -71,7 +64,7 @@ void dynamicArrTestGetItem(int count, int print) {
     int done = 0;
     int actions = 10;
     if (print)
-        std::cout << "\tТест обращения к элементам массива:\n";
+        std::cout << "\tТест чтение элементов массива:\n";
 
     for (int i = 0; i < count; i+=actions) {
         myDynamicArray<int> array;
@@ -124,7 +117,7 @@ void dynamicArrTestReverse(int count, int print) {
 void dynamicArrTestFind(int count, int print) {
     int done = 0;
     if (print)
-        std::cout << "\tТест поиска элемента в массива:\n";
+        std::cout << "\tТест поиска элементов в массива:\n";
     for (int i = 0; i < count; i++) {
         myDynamicArray<int> array;
         int len = getLen(maxSizeDA);
@@ -259,6 +252,233 @@ void myArraySequenceTestFind(int count, int print) {
             if (sequence.find(index) == index)
                 done++;
         }
+    }
+
+    printDone(count, done, print);
+}
+
+void myLinkedListTest(int count, int print) {
+    srand(count);
+    if (print)
+        std::cout << "Тестирование связного списка:\n";
+    myLinkedListTestResize(count, print);
+    myLinkedListTestGetItem(count, print);
+    myLinkedListTestReverse(count, print);
+    myLinkedListTestFind(count, print);
+}
+
+void myLinkedListTestResize(int count, int print) {
+    int done = 0;
+    if (print)
+        std::cout << "\tТестирование изменения размера списка:\n";
+    for (int i = 0; i < count; i++) {
+        myLinkedList<int> linkedList;
+        int len = getLen(maxSizeLL / 3);
+        for (int j = 0; j < len; j++) {
+            linkedList.append(j);
+        }
+        if (linkedList.length() != len)
+            continue;
+
+        for (int j = 0; j < len; j++) {
+            linkedList.prepend(j);
+        }
+        if (linkedList.length() != len * 2)
+            continue;
+
+        for (int j = 0; j < len; j++) {
+            linkedList.insert(j, getIndex(linkedList.length()));
+        }
+        if (linkedList.length() != len * 3)
+            continue;
+
+        for (int j = 0; j < len * 3; j++) {
+            linkedList.pop();
+        }
+        if (linkedList.length() != 0)
+            continue;
+
+        done++;
+    }
+
+    printDone(count, done, print);
+}
+
+void myLinkedListTestGetItem(int count, int print) {
+    int done = 0;
+    int actions = 10;
+    if (print)
+        std::cout << "\tТестирование чтения элементов списка:\n";
+    for (int i = 0; i < count; i++) {
+        myLinkedList<int> linkedList;
+        int len = getLen(maxSizeLL);
+        for (int j = 0; j < len; j++) {
+            linkedList.append(j);
+        }
+        int Done = 0;
+        for (int j = 0; j < actions; j++) {
+            //if (j + i >= count) break;
+            int index = getIndex(len);
+            if (linkedList[index] == index)
+                Done++;
+        }
+        done += Done == actions;
+    }
+
+    printDone(count, done, print);
+}
+
+void myLinkedListTestReverse(int count, int print) {
+    int done = 0;
+    if (print)
+        std::cout << "\tТестирование разворота списка:\n";
+    for (int i = 0; i < count; i++) {
+        myLinkedList<int> linkedList;
+        int len = getLen(maxSizeLL);
+        for (int j = 0; j < len; j++) {
+            linkedList.append(j);
+        }
+        myLinkedList<int> reverse = linkedList;
+        reverse.reverse();
+        int same = 1;
+        for (int j = 0, k = len - 1; j < len; j++, k--) {
+            if (linkedList[k] != reverse[j]) {
+                same = 0;
+                break;
+            }
+        }
+        done += same;
+    }
+
+    printDone(count, done, print);
+}
+void myLinkedListTestFind(int count, int print) {
+    int done = 0;
+    int actions = 10;
+    if (print)
+        std::cout << "\tТестирование поиска элементов в списке\n";
+    for (int i = 0; i < count; i++) {
+        myLinkedList<int> linkedList;
+        int len = getLen(maxSizeLL);
+        for (int j = 0; j < len; j++) {
+            linkedList.append(j);
+        }
+
+        int Done = 0;
+        for (int j = 0; j < actions; j++) {
+            int index = getIndex(len);
+            int k = linkedList.find(index);
+            if (k == index)
+                Done++;
+        }
+        done += Done == actions;
+    }
+
+    printDone(count, done, print);
+}
+
+void myListSequenceTest(int count, int print) {
+    if (print)
+        std::cout << "Тестирование последовательности связного списка\n";
+    myListSequenceTestResize(count, print);
+    myListSequenceTestGetItem(count, print);
+    myListSequenceTestReverse(count, print);
+    myListSequenceTestFind(count, print);
+}
+
+void myListSequenceTestResize(int count, int print) {
+    int done = 0;
+    if (print)
+        std::cout << "\tТестирование изменения размера последовательности:\n";
+    for (int i = 0; i < count; i++) {
+        myListSequence<int> listSequence;
+        int len = getLen(maxSizeLS/3);
+        for (int j = 0; j < len; j++) {
+            listSequence.append(j);
+        }
+        if (listSequence.length() != len) continue;
+
+        for (int j = 0; j < len; j++) {
+            listSequence.prepend(j);
+        }
+        if (listSequence.length() != len * 2) continue;
+
+        for (int j = 0; j < len; j++) {
+            listSequence.insert(j, getIndex(listSequence.length()));
+        }
+        if (listSequence.length() != len * 3) continue;
+
+        done++;
+    }
+
+    printDone(count, done, print);
+}
+
+void myListSequenceTestGetItem(int count, int print) {
+    int done = 0;
+    int actions = 10;
+    if (print)
+        std::cout << "\nТестирование чтения элементов последовательности:\n";
+    for (int i = 0; i < count; i+=actions) {
+        myListSequence<int> listSequence;
+        int len = getLen(maxSizeLS);
+        for (int j = 0; j < len; j++) {
+            listSequence.append(j);
+        }
+        for (int j = 0; j < actions; j++) {
+            int index = getIndex(len);
+            if (listSequence[index] == index)
+                done++;
+        }
+    }
+
+    printDone(count, done, print);
+}
+
+void myListSequenceTestReverse(int count, int print) {
+    int done = 0;
+    if (print)
+        std::cout << "\tТестирование разворота последовательности:\n";
+    for (int i = 0; i < count; i++) {
+        myListSequence<int> listSequence;
+        int len = getLen(maxSizeLS);
+        for (int j = 0; j < len; j++) {
+            listSequence.append(j);
+        }
+        auto res = listSequence;
+        res.reverse();
+        int Done = 1;
+        for (int j = 0, k = len - 1; j < len; j++, k--) {
+            if (res[j] != listSequence[k]) {
+                Done = 0;
+                break;
+            }
+        }
+        done += Done;
+    }
+
+    printDone(count, done, print);
+}
+
+void myListSequenceTestFind(int count, int print) {
+    int done = 0;
+    int actions = 10;
+    if (print)
+        std::cout << "\tТестирование поиска элементов в последовательности:\n";
+    for (int i = 0; i < count; i++) {
+        myListSequence<int> listSequence;
+        int len = getLen(maxSizeLS);
+        for (int j = 0; j < len; j++) {
+            listSequence.append(j);
+        }
+
+        int Done = 0;
+        for (int j = 0; j < actions; j++) {
+            int index = getIndex(len);
+            if (listSequence.find(index) == index)
+                Done++;
+        }
+        done += Done == actions;
     }
 
     printDone(count, done, print);
