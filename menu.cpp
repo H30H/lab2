@@ -4,6 +4,9 @@
 
 #include "menu.h"
 #include "myDynamicArray.cpp"
+#include "random"
+
+#define maxInt 10000
 
 using namespace std;
 
@@ -31,6 +34,18 @@ int getInt(int down, int up) {
         return getInt(down, up);
     }
     return k;
+}
+
+int randomInt() {
+    return rand()%maxInt;
+}
+
+float randomFloat() {
+    return (float)randomInt() + (float)randomInt()/(float)randomInt();
+}
+
+complex<int> randomComplex() {
+    return complex<int>(randomInt(), randomInt());
 }
 
 ostream& operator << (ostream& cout, complex<int> num) {
@@ -139,11 +154,44 @@ void readPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
     auto item = getType();
     if (item == 0) return;
 
-    switch (item) {
-        case 1: readTypePolynomial<int>(intArr, count); break;
-        case 2: readTypePolynomial<float>(floatArr, count); break;
-        case 3: readTypePolynomial<complex<int>>(complexArr, count); break;
-        default: break;
+    cout << "Сгенерировать многочлен автоматически или ввести вручную?:\n"
+            "\t0: выход\n"
+            "\t1: ввести многочлен вручную\n"
+            "\t2: сгенерировать многочлен\n: ";
+
+    int item2 = getInt(0, 2);
+    if (item2 == 0) return;
+
+    if (item2 == 1) {
+        switch (item) {
+            case 1:
+                readTypePolynomial<int>(intArr, count);
+                break;
+            case 2:
+                readTypePolynomial<float>(floatArr, count);
+                break;
+            case 3:
+                readTypePolynomial<complex<int>>(complexArr, count);
+                break;
+            default:
+                break;
+        }
+    }
+
+    if (item2 == 2) {
+        switch (item) {
+            case 1:
+                generateRandomPolynomial<int>(intArr, count, randomInt);
+                break;
+            case 2:
+                generateRandomPolynomial<float>(floatArr, count, randomFloat);
+                break;
+            case 3:
+                generateRandomPolynomial<complex<int>>(complexArr, count, randomComplex);
+                break;
+            default:
+                break;
+        }
     }
 
     cout << "Хотите ввести ещё один многочлен?\n"
@@ -182,6 +230,30 @@ void readTypePolynomial(myArraySequence<myPolynomial<T>*> *arr, int count) {
             auto *res = new myPolynomial<T>;
             *res = myPolynomial<T>(element);
             res->setSymbol(symbol);
+            arr->append(res);
+            break;
+    }
+}
+
+template<class T>
+void generateRandomPolynomial(myArraySequence<myPolynomial<T>*> *arr, int count, T (*func)()) {
+    myArraySequence<T> element;
+    for (int i = 0; i <= count; i++) {
+        element.append(func());
+    }
+    myPolynomial<T> pol(element);
+    cout << "Сгенерирован \"" << pol << "\". Записать или сгенерировать новый?\n"
+            "\t-1: выход\n"
+            "\t 0: сгенерировать новый\n"
+            "\t 1: записать многочлен в память\n: ";
+    int item = getInt(-1, 1);
+    switch (item) {
+        default: break;
+        case 0:
+            generateRandomPolynomial(arr, count, func);
+            break;
+        case 1:
+            auto *res = new myPolynomial<T>(element);
             arr->append(res);
             break;
     }
@@ -435,11 +507,12 @@ void testFunc() {
 }
 
 #define funcTemplate(T) \
-template void readTypePolynomial(myArraySequence<myPolynomial<T>*> *arr, int count); \
-template void printTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);           \
-template void printArr(myArraySequence<myPolynomial<T>*> *arr);                      \
-template void deleteTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);          \
-template void operationTypeWithPolynomial(myArraySequence<myPolynomial<T>*> *arr);   \
+template void readTypePolynomial(myArraySequence<myPolynomial<T>*> *arr, int count);                    \
+template void generateRandomPolynomial(myArraySequence<myPolynomial<T>*> *arr, int count, T (*func)()); \
+template void printTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);                              \
+template void printArr(myArraySequence<myPolynomial<T>*> *arr);                                         \
+template void deleteTypePolynomial(myArraySequence<myPolynomial<T>*> *arr);                             \
+template void operationTypeWithPolynomial(myArraySequence<myPolynomial<T>*> *arr);                      \
 
 
 funcTemplate(int)

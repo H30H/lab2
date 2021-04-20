@@ -21,6 +21,9 @@ void readPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
 template<class T>
 void readTypePolynomial(myArraySequence<myPolynomial<T>*> *arr, int count);
 
+template<class T>
+void generateRandomPolynomial(myArraySequence<myPolynomial<T>*> *arr, int count, T (*func)());
+
 //2
 void operationWithPolynomial(myArraySequence<myPolynomial<int>*> *intArr,
                              myArraySequence<myPolynomial<float>*> *floatArr,

@@ -6,33 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/cc++ labs/lab2/main.cpp
-myDynamicArray.cpp
-/mnt/c/cc++ labs/lab2/myDynamicArray.cpp
-myLinkedList.cpp
-/mnt/c/cc++ labs/lab2/myLinkedList.cpp
-mySequence.cpp
-/mnt/c/cc++ labs/lab2/mySequence.cpp
-myArraySequence.cpp
-/mnt/c/cc++ labs/lab2/myArraySequence.cpp
-myPolynomial.h
-/mnt/c/cc++ labs/lab2/myPolynomial.h
-myLinkedList.h
-/mnt/c/cc++ labs/lab2/myLinkedList.h
-myDynamicArray.h
-/mnt/c/cc++ labs/lab2/myDynamicArray.h
-iostream
--
-menu.h
-/mnt/c/cc++ labs/lab2/menu.h
-tests.h
-/mnt/c/cc++ labs/lab2/tests.h
-
 /mnt/c/cc++ labs/lab2/menu.cpp
 menu.h
 /mnt/c/cc++ labs/lab2/menu.h
 myDynamicArray.cpp
 /mnt/c/cc++ labs/lab2/myDynamicArray.cpp
+random
+/mnt/c/cc++ labs/lab2/random
 
 /mnt/c/cc++ labs/lab2/menu.h
 complex
@@ -43,10 +23,6 @@ iostream
 -
 tests.h
 /mnt/c/cc++ labs/lab2/tests.h
-
-/mnt/c/cc++ labs/lab2/myArraySequence.cpp
-myArraySequence.h
-/mnt/c/cc++ labs/lab2/myArraySequence.h
 
 /mnt/c/cc++ labs/lab2/myArraySequence.h
 mySequence.h
@@ -76,10 +52,6 @@ cstdlib
 iostream
 -
 
-/mnt/c/cc++ labs/lab2/myListSequence.cpp
-myListSequence.h
-/mnt/c/cc++ labs/lab2/myListSequence.h
-
 /mnt/c/cc++ labs/lab2/myListSequence.h
 mySequence.h
 /mnt/c/cc++ labs/lab2/mySequence.h
@@ -88,27 +60,15 @@ myLinkedList.cpp
 iostream
 -
 
-/mnt/c/cc++ labs/lab2/myPolynomial.cpp
-myPolynomial.h
-/mnt/c/cc++ labs/lab2/myPolynomial.h
-
 /mnt/c/cc++ labs/lab2/myPolynomial.h
 iostream
 -
 myArraySequence.h
 /mnt/c/cc++ labs/lab2/myArraySequence.h
 
-/mnt/c/cc++ labs/lab2/mySequence.cpp
-mySequence.h
-/mnt/c/cc++ labs/lab2/mySequence.h
-
 /mnt/c/cc++ labs/lab2/mySequence.h
 iostream
 -
-
-/mnt/c/cc++ labs/lab2/tests.cpp
-tests.h
-/mnt/c/cc++ labs/lab2/tests.h
 
 /mnt/c/cc++ labs/lab2/tests.h
 myDynamicArray.cpp
