@@ -6,81 +6,123 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/cc++ labs/lab2/menu.cpp
-menu.h
-/cygdrive/c/cc++ labs/lab2/menu.h
+/mnt/c/cc++ labs/lab2/main.cpp
 myDynamicArray.cpp
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
+/mnt/c/cc++ labs/lab2/myDynamicArray.cpp
+myLinkedList.cpp
+/mnt/c/cc++ labs/lab2/myLinkedList.cpp
+mySequence.cpp
+/mnt/c/cc++ labs/lab2/mySequence.cpp
+myArraySequence.cpp
+/mnt/c/cc++ labs/lab2/myArraySequence.cpp
+myPolynomial.h
+/mnt/c/cc++ labs/lab2/myPolynomial.h
+myLinkedList.h
+/mnt/c/cc++ labs/lab2/myLinkedList.h
+myDynamicArray.h
+/mnt/c/cc++ labs/lab2/myDynamicArray.h
+iostream
+-
+menu.h
+/mnt/c/cc++ labs/lab2/menu.h
+tests.h
+/mnt/c/cc++ labs/lab2/tests.h
 
-/cygdrive/c/cc++ labs/lab2/menu.h
+/mnt/c/cc++ labs/lab2/menu.cpp
+menu.h
+/mnt/c/cc++ labs/lab2/menu.h
+myDynamicArray.cpp
+/mnt/c/cc++ labs/lab2/myDynamicArray.cpp
+
+/mnt/c/cc++ labs/lab2/menu.h
 complex
 -
 myPolynomial.h
-/cygdrive/c/cc++ labs/lab2/myPolynomial.h
+/mnt/c/cc++ labs/lab2/myPolynomial.h
 iostream
 -
 tests.h
-/cygdrive/c/cc++ labs/lab2/tests.h
+/mnt/c/cc++ labs/lab2/tests.h
 
-/cygdrive/c/cc++ labs/lab2/myArraySequence.h
+/mnt/c/cc++ labs/lab2/myArraySequence.cpp
+myArraySequence.h
+/mnt/c/cc++ labs/lab2/myArraySequence.h
+
+/mnt/c/cc++ labs/lab2/myArraySequence.h
 mySequence.h
-/cygdrive/c/cc++ labs/lab2/mySequence.h
+/mnt/c/cc++ labs/lab2/mySequence.h
 myDynamicArray.h
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
+/mnt/c/cc++ labs/lab2/myDynamicArray.h
 
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
+/mnt/c/cc++ labs/lab2/myDynamicArray.cpp
 myDynamicArray.h
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
+/mnt/c/cc++ labs/lab2/myDynamicArray.h
 
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.h
+/mnt/c/cc++ labs/lab2/myDynamicArray.h
 cstring
-/cygdrive/c/cc++ labs/lab2/cstring
+/mnt/c/cc++ labs/lab2/cstring
 string
 -
 iostream
 -
 
-/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+/mnt/c/cc++ labs/lab2/myLinkedList.cpp
 myLinkedList.h
-/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+/mnt/c/cc++ labs/lab2/myLinkedList.h
 
-/cygdrive/c/cc++ labs/lab2/myLinkedList.h
+/mnt/c/cc++ labs/lab2/myLinkedList.h
 cstdlib
-/cygdrive/c/cc++ labs/lab2/cstdlib
+/mnt/c/cc++ labs/lab2/cstdlib
 iostream
 -
 
-/cygdrive/c/cc++ labs/lab2/myListSequence.h
-mySequence.h
-/cygdrive/c/cc++ labs/lab2/mySequence.h
-myLinkedList.cpp
-/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
-iostream
--
-
-/cygdrive/c/cc++ labs/lab2/myPolynomial.h
-iostream
--
-myArraySequence.h
-/cygdrive/c/cc++ labs/lab2/myArraySequence.h
-
-/cygdrive/c/cc++ labs/lab2/mySequence.h
-iostream
--
-
-/cygdrive/c/cc++ labs/lab2/tests.h
-myDynamicArray.cpp
-/cygdrive/c/cc++ labs/lab2/myDynamicArray.cpp
-myArraySequence.h
-/cygdrive/c/cc++ labs/lab2/myArraySequence.h
-myLinkedList.cpp
-/cygdrive/c/cc++ labs/lab2/myLinkedList.cpp
+/mnt/c/cc++ labs/lab2/myListSequence.cpp
 myListSequence.h
-/cygdrive/c/cc++ labs/lab2/myListSequence.h
-myPolynomial.h
-/cygdrive/c/cc++ labs/lab2/myPolynomial.h
+/mnt/c/cc++ labs/lab2/myListSequence.h
+
+/mnt/c/cc++ labs/lab2/myListSequence.h
+mySequence.h
+/mnt/c/cc++ labs/lab2/mySequence.h
+myLinkedList.cpp
+/mnt/c/cc++ labs/lab2/myLinkedList.cpp
 iostream
-/cygdrive/c/cc++ labs/lab2/iostream
+-
+
+/mnt/c/cc++ labs/lab2/myPolynomial.cpp
+myPolynomial.h
+/mnt/c/cc++ labs/lab2/myPolynomial.h
+
+/mnt/c/cc++ labs/lab2/myPolynomial.h
+iostream
+-
+myArraySequence.h
+/mnt/c/cc++ labs/lab2/myArraySequence.h
+
+/mnt/c/cc++ labs/lab2/mySequence.cpp
+mySequence.h
+/mnt/c/cc++ labs/lab2/mySequence.h
+
+/mnt/c/cc++ labs/lab2/mySequence.h
+iostream
+-
+
+/mnt/c/cc++ labs/lab2/tests.cpp
+tests.h
+/mnt/c/cc++ labs/lab2/tests.h
+
+/mnt/c/cc++ labs/lab2/tests.h
+myDynamicArray.cpp
+/mnt/c/cc++ labs/lab2/myDynamicArray.cpp
+myArraySequence.h
+/mnt/c/cc++ labs/lab2/myArraySequence.h
+myLinkedList.cpp
+/mnt/c/cc++ labs/lab2/myLinkedList.cpp
+myListSequence.h
+/mnt/c/cc++ labs/lab2/myListSequence.h
+myPolynomial.h
+/mnt/c/cc++ labs/lab2/myPolynomial.h
+iostream
+/mnt/c/cc++ labs/lab2/iostream
 random
-/cygdrive/c/cc++ labs/lab2/random
+/mnt/c/cc++ labs/lab2/random
 
