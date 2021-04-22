@@ -233,6 +233,19 @@ public:
         ending = myEnding;
     }
 
+    myLinkedList<T>* concat(myLinkedList<T> *linkedList) {
+        for (auto &i : linkedList) {
+            append(i);
+        }
+        return this;
+    }
+
+    myLinkedList<T> *concat_(myLinkedList<T> *linkedList) {
+        auto *res = new myLinkedList<T>(*this);
+        res->concat(linkedList);
+        return res;
+    }
+
     Iterator begin() const {
         return iter.begin();
     }
