@@ -36,7 +36,7 @@ public:
 
         Iterator(myListSequence<T> *sequence, Iter iterator): list(sequence), iter(iterator) {}
 
-        T operator *() {
+        T& operator * () const {
             return *iter;
         }
 
