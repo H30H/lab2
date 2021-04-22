@@ -22,6 +22,59 @@ public:
         IndexOutOfRange(): length(-1), index(-1) {};
     };
 
+    class Iterator {
+    private:
+        myListSequence<T> *list;
+        using Iter = typename myLinkedList<T>::Iterator;
+        Iter iter;
+    public:
+        Iterator(): list(nullptr) {};
+
+        explicit Iterator(myListSequence<T> *sequence): list(sequence) {
+            iter = Iter(&sequence->linkedList);
+        }
+
+        Iterator(myListSequence<T> *sequence, Iter iterator): list(sequence), iter(iterator) {}
+
+        T operator *() {
+            return *iter;
+        }
+
+        Iterator& operator ++ () {
+            ++iter;
+            return *this;
+        }
+
+        int operator == (Iterator iterator) {
+            return list == iterator.list && iter == iterator.iter;
+        }
+
+        int operator != (Iterator iterator) {
+            return !(*this == iterator);
+        }
+
+        Iterator& operator = (Iterator iterator) {
+            list = iterator.list;
+            iter = iterator.iter;
+            return *this;
+        }
+
+        Iterator begin() const {
+            return Iterator(list, iter.begin());
+        }
+
+        Iterator end() const {
+            return Iterator(list, iter.end());
+        }
+
+        void operator () (myListSequence<T> *sequence) {
+            list = sequence;
+            iter = Iter(&sequence->linkedList);
+        }
+    };
+
+    Iterator iter;
+
     friend std::ostream &operator << (std::ostream &cout, myListSequence<T> listSequence) {
         return cout << listSequence.linkedList;
     }
@@ -32,22 +85,27 @@ public:
 
     myListSequence() {
         linkedList = myLinkedList<T>();
+        iter(this);
     }
 
     myListSequence(T *items, int count) {
         linkedList = myLinkedList<T>(items, count);
+        iter(this);
     }
 
     explicit myListSequence(T item) {
         linkedList = myLinkedList<T>(item);
+        iter(this);
     }
 
     myListSequence(const myListSequence<T> &list) {
         linkedList = list.linkedList;
+        iter(this);
     }
 
     explicit myListSequence(const myLinkedList<T> &list) {
         linkedList = list;
+        iter(this);
     }
 
     T getFirst() {
@@ -147,6 +205,18 @@ public:
         }
 
         return res;
+    }
+
+    Iterator begin() const {
+        return iter.begin();
+    }
+
+    Iterator end() const {
+        return iter.end();
+    }
+
+    Iterator operator++() {
+        return ++iter;
     }
     /*
     typename myLinkedList<T>::Iterator begin() const {

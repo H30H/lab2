@@ -68,6 +68,12 @@ public:
             list = linkedList;
             el = linkedList->head;
         }
+
+        Iterator& operator = (Iterator iterator) {
+            list = iterator.list;
+            el = iterator.el;
+            return *this;
+        }
     };
 
     friend std::ostream &operator << (std::ostream &cout, myLinkedList<T> linkedList) {
